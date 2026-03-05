@@ -3,120 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Terminal Joint</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#0f0f0f;
-    color:white;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
 }
 
+body{
+background:#0b0b0b;
+color:white;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
 header{
-    padding:20px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#111;
+position:fixed;
+top:0;
+width:100%;
+padding:15px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+z-index:1000;
 }
 
 .logo{
-    font-size:22px;
-    font-weight:bold;
+font-size:22px;
+font-weight:bold;
+letter-spacing:1px;
 }
 
 nav a{
-    margin-left:20px;
-    text-decoration:none;
-    color:#aaa;
+margin-left:25px;
+text-decoration:none;
+color:#aaa;
+transition:0.3s;
 }
 
 nav a:hover{
-    color:white;
+color:#00e5ff;
 }
 
+/* HERO */
+
 .hero{
-    height:90vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
 }
 
 .hero h1{
-    font-size:50px;
-    margin:0;
+font-size:60px;
+background:linear-gradient(90deg,#00e5ff,#00ff9c);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 .hero p{
-    color:#bbb;
-    max-width:600px;
+margin-top:15px;
+color:#bbb;
+max-width:600px;
 }
 
-.btn{
-    margin-top:20px;
-    padding:12px 25px;
-    background:#00d9ff;
-    border:none;
-    cursor:pointer;
+.hero button{
+margin-top:25px;
+padding:14px 30px;
+border:none;
+background:#00e5ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+border-radius:30px;
+transition:0.3s;
 }
+
+.hero button:hover{
+transform:scale(1.1);
+}
+
+/* PARTICLE BG */
+
+canvas{
+position:absolute;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* SECTIONS */
 
 section{
-    padding:80px 10%;
+padding:100px 12%;
 }
 
-.section-title{
-    font-size:32px;
-    margin-bottom:40px;
+.title{
+font-size:34px;
+margin-bottom:40px;
 }
+
+/* PROJECTS */
 
 .projects{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
 .card{
-    background:#1a1a1a;
-    padding:25px;
-    border-radius:8px;
+background:#151515;
+padding:25px;
+border-radius:10px;
+transition:0.3s;
+border:1px solid transparent;
 }
 
 .card:hover{
-    background:#222;
+transform:translateY(-10px);
+border:1px solid #00e5ff;
+box-shadow:0 0 20px #00e5ff44;
 }
 
+/* TECH */
+
 .tech{
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
+display:flex;
+flex-wrap:wrap;
+gap:15px;
 }
 
 .tech span{
-    background:#222;
-    padding:8px 15px;
-    border-radius:20px;
+background:#1c1c1c;
+padding:10px 18px;
+border-radius:20px;
+transition:0.3s;
 }
 
-.timeline{
-    border-left:2px solid #333;
-    padding-left:20px;
+.tech span:hover{
+background:#00e5ff;
+color:black;
 }
 
-.timeline-item{
-    margin-bottom:25px;
+/* COUNTERS */
+
+.stats{
+display:flex;
+gap:40px;
+margin-top:40px;
 }
+
+.stat{
+font-size:28px;
+}
+
+/* FOOTER */
 
 footer{
-    text-align:center;
-    padding:30px;
-    background:#111;
-    color:#777;
+padding:40px;
+text-align:center;
+background:#050505;
+color:#777;
 }
-</style>
 
+</style>
 </head>
 
 <body>
@@ -127,74 +188,88 @@ footer{
 <a href="#about">About</a>
 <a href="#projects">Projects</a>
 <a href="#tech">Tech</a>
-<a href="#timeline">Journey</a>
 </nav>
 </header>
 
 <div class="hero">
+
+<canvas id="bg"></canvas>
+
 <h1>Building Digital Worlds</h1>
-<p>Developer, Game Creator, and Systems Builder focused on creating innovative tools, games, and platforms.</p>
-<button class="btn">Explore Projects</button>
+
+<p>
+Developer building games, systems and future technology platforms.
+</p>
+
+<button onclick="scrollToSection()">Explore</button>
+
 </div>
 
 <section id="about">
-<h2 class="section-title">About</h2>
+
+<h2 class="title">About</h2>
+
 <p>
-Short introduction about yourself. Explain your mission, your vision,
-and what you are trying to build with your projects.
+Write about yourself here. Your vision, mission and what you want to build.
 </p>
+
+<div class="stats">
+
+<div class="stat">
+<span id="p1">0</span>+
+<br>Projects
+</div>
+
+<div class="stat">
+<span id="p2">0</span>+
+<br>Experiments
+</div>
+
+<div class="stat">
+<span id="p3">0</span>+
+<br>Ideas
+</div>
+
+</div>
+
 </section>
 
 <section id="projects">
-<h2 class="section-title">Projects</h2>
+
+<h2 class="title">Projects</h2>
 
 <div class="projects">
 
 <div class="card">
 <h3>Project Name</h3>
-<p>Short description of the project.</p>
+<p>Description of the project.</p>
 </div>
 
 <div class="card">
 <h3>Project Name</h3>
-<p>Short description of the project.</p>
+<p>Description of the project.</p>
 </div>
 
 <div class="card">
 <h3>Project Name</h3>
-<p>Short description of the project.</p>
+<p>Description of the project.</p>
 </div>
 
 </div>
+
 </section>
 
 <section id="tech">
-<h2 class="section-title">Tech Stack</h2>
+
+<h2 class="title">Tech Stack</h2>
 
 <div class="tech">
+
 <span>JavaScript</span>
 <span>HTML</span>
 <span>CSS</span>
 <span>Game Development</span>
 <span>Web Systems</span>
-</div>
-
-</section>
-
-<section id="timeline">
-<h2 class="section-title">Journey</h2>
-
-<div class="timeline">
-
-<div class="timeline-item">
-<h4>Year</h4>
-<p>Major milestone.</p>
-</div>
-
-<div class="timeline-item">
-<h4>Year</h4>
-<p>Major milestone.</p>
-</div>
 
 </div>
 
@@ -204,5 +279,83 @@ and what you are trying to build with your projects.
 © 2026 Your Brand
 </footer>
 
+<script>
+
+/* smooth scroll */
+
+function scrollToSection(){
+document.getElementById("about").scrollIntoView({
+behavior:"smooth"
+});
+}
+
+/* animated counters */
+
+function counter(id,target){
+
+let element=document.getElementById(id)
+let count=0
+
+let interval=setInterval(()=>{
+
+count++
+element.innerText=count
+
+if(count>=target){
+clearInterval(interval)
+}
+
+},30)
+
+}
+
+counter("p1",5)
+counter("p2",20)
+counter("p3",100)
+
+/* particle background */
+
+let canvas=document.getElementById("bg")
+let ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let particles=[]
+
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2
+})
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="#00e5ff"
+
+particles.forEach(p=>{
+ctx.beginPath()
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
+ctx.fill()
+
+p.y+=0.3
+
+if(p.y>canvas.height){
+p.y=0
+}
+})
+
+requestAnimationFrame(animate)
+
+}
+
+animate()
+
+</script>
+
 </body>
-</html>
+                    </html>
