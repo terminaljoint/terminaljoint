@@ -1,189 +1,208 @@
 <!DOCTYPE html>
-<html>
-  <body>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Terminal Joint JEE</title>
-<h1>
-  <img src="logo2.jpg" alt="Terminal Joint Logo" style="width:50px; vertical-align:middle; margin-right:10px;">
-  Terminal Joint
-</h1>
- <div style="text-align: right;">
-   
- <a href= 'https://www.google.com/search?q=terminal+joint,+jalakandapuram'
-   target="_blank" 
-   style="color:#fff; background:#ff0000; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">
-  Search on Google About Us
-</a>
-  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Joint</title>
+
 <style>
-.btn {
-  background: #007bff;
-  color: white;
-  padding: 15px 25px;   /* bigger padding for touch */
-  font-size: 18px;      /* larger text */
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  display: inline-block;
-  margin: 10px;
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0f0f0f;
+    color:white;
 }
 
-.btn:hover {
-  background: #0056b3;
+header{
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#111;
 }
 
-/* Mobile specific */
-@media (max-width: 500px) {
-  .btn {
-    width: 90%;          /* full width button */
-    font-size: 30px;     /* bigger text on small screens */
-    padding: 20px;       /* extra touch area */
-  }
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+nav a{
+    margin-left:20px;
+    text-decoration:none;
+    color:#aaa;
+}
+
+nav a:hover{
+    color:white;
+}
+
+.hero{
+    height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+    margin:0;
+}
+
+.hero p{
+    color:#bbb;
+    max-width:600px;
+}
+
+.btn{
+    margin-top:20px;
+    padding:12px 25px;
+    background:#00d9ff;
+    border:none;
+    cursor:pointer;
+}
+
+section{
+    padding:80px 10%;
+}
+
+.section-title{
+    font-size:32px;
+    margin-bottom:40px;
+}
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:8px;
+}
+
+.card:hover{
+    background:#222;
+}
+
+.tech{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.tech span{
+    background:#222;
+    padding:8px 15px;
+    border-radius:20px;
+}
+
+.timeline{
+    border-left:2px solid #333;
+    padding-left:20px;
+}
+
+.timeline-item{
+    margin-bottom:25px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#111;
+    color:#777;
 }
 </style>
 
-<style>
-.btn {
-  background:#007bff;
-  color:white;
-  padding:20px 30px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.3s;
-}
-.btn:hover {
-  background:#0056b3;
-}
+</head>
 
-.logo-center {
-    display: block;
-    margin: 0 auto;
-    width: 200px; /* optional: resize */
-}
-body {
-  background: linear-gradient(135deg, #0d0d0d, #1a1a40);
-  color: white;
-}
+<body>
 
-</style>
+<header>
+<div class="logo">YOUR BRAND</div>
+<nav>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#tech">Tech</a>
+<a href="#timeline">Journey</a>
+</nav>
+</header>
 
-<br>
-
-
-<center>
-<br><br><div class="hr-with-text"><span><h1>JEE GUIDE</h1></span></div>
-
-<style>
-.hr-with-text {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
-}
-.hr-with-text::before,
-.hr-with-text::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #bbb;
-}
-.hr-with-text span {
-  padding: 0 8px;
-  font-weight: 600;
-  color: #;
-  white-space: nowrap;
-}
-</style>
-
-<p>Select a subject below:</p>
-
-<center><br><br><a href= 'physics.html'
-   target="_blank" 
-   style="color:#fff; background:#ff0000; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">
-  Physics
-</a><br><br>
-
- <br><br><a href= 'chemistry.html'
-   target="_blank" 
-   style="color:#fff; background:#ff0000; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">
-  Chemistry
-</a><br><br>
-
- <br><br><a href= 'mathematics.html'
-   target="_blank" 
-   style="color:#fff; background:#ff0000; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">
-  Mathematics
-</a><br><br> </center>
-
-</center>
-
-
-<br><br><div class="hr-with-text"><span>TERMINAL JOINT</span></div>
-
-<style>
-.hr-with-text {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
-}
-.hr-with-text::before,
-.hr-with-text::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #bbb;
-}
-.hr-with-text span {
-  padding: 0 8px;
-  font-weight: 600;
-  color: #;
-  white-space: nowrap;
-}
-</style>
-
-
-<div style="text-align:center;">
-<br><br><img src="darklogo.jpg" alt="Terminal Joint Logo" class="logo-center"><br>
-<h4>This is a just started company , Support us by subscribing <br><br>"This website is Optimised also for low end devices like keypad phones"<br><br>  <a href="https://www.youtube.com/@terminaljoint" 
-   target="_blank" 
-   style="color:#fff; background:#ff0000; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">
-  ▶ YouTube Channel</a><br><br>
-</h4><br>
-<style>
-.premium-box {
-  background: linear-gradient(145deg, #1e3c72, #2a5298);
-  color: #f8f8f8;
-  padding: 25px 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05);
-  line-height: 1.6;
-  font-size: 17px;
-  letter-spacing: 0.3px;
-  width: 100%;           /* full responsive width */
-  max-width: 800px;      /* optional: limit max width */
-  margin: 20px auto;     /* center and space */
-  box-sizing: border-box;
-}
-</style>
-
-<div class="premium-box">
-<center> <h2> @About News : </h2><br><h4>"Terminal Joint" is a gaming and software company started at sep-2025 , this is just the first official project , then the game "Terminal Cities , Season-1(Begin)" is in creation progress and expected to be released at sep-2026.<img src="newicon1.png" alt="Terminal Cities Logo" class="logo-center">
-</h4><br></center>
-</div>
-<a href="https://en.wikibooks.org/wiki/Ada_Programming/Basic" 
-   target="_blank" 
-   style="color:#fff; background:#ff0000; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">
-  for me </a><br><br>
-
-   
-    <p>© 2025 Terminal Joint. All Rights Reserved. Unauthorized use is strictly prohibited.</p>
+<div class="hero">
+<h1>Building Digital Worlds</h1>
+<p>Developer, Game Creator, and Systems Builder focused on creating innovative tools, games, and platforms.</p>
+<button class="btn">Explore Projects</button>
 </div>
 
+<section id="about">
+<h2 class="section-title">About</h2>
+<p>
+Short introduction about yourself. Explain your mission, your vision,
+and what you are trying to build with your projects.
+</p>
+</section>
 
- 
-  </body>
+<section id="projects">
+<h2 class="section-title">Projects</h2>
+
+<div class="projects">
+
+<div class="card">
+<h3>Project Name</h3>
+<p>Short description of the project.</p>
+</div>
+
+<div class="card">
+<h3>Project Name</h3>
+<p>Short description of the project.</p>
+</div>
+
+<div class="card">
+<h3>Project Name</h3>
+<p>Short description of the project.</p>
+</div>
+
+</div>
+</section>
+
+<section id="tech">
+<h2 class="section-title">Tech Stack</h2>
+
+<div class="tech">
+<span>JavaScript</span>
+<span>HTML</span>
+<span>CSS</span>
+<span>Game Development</span>
+<span>Web Systems</span>
+</div>
+
+</section>
+
+<section id="timeline">
+<h2 class="section-title">Journey</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h4>Year</h4>
+<p>Major milestone.</p>
+</div>
+
+<div class="timeline-item">
+<h4>Year</h4>
+<p>Major milestone.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Your Brand
+</footer>
+
+</body>
 </html>
