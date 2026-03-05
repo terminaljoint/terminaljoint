@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,116 +14,101 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+font-family:Segoe UI, sans-serif;
 }
 
 body{
-background:#0b0b0b;
+background:#0a0a0a;
 color:white;
 overflow-x:hidden;
 }
 
-/* ---------- NAVBAR ---------- */
+/* NAVBAR */
 
 header{
+
 position:fixed;
 top:0;
 width:100%;
-padding:12px 20px;
+padding:14px 25px;
+
 display:flex;
 justify-content:space-between;
 align-items:center;
+
 background:rgba(0,0,0,0.7);
 backdrop-filter:blur(10px);
-z-index:1000;
+
 }
 
-.logo-small{
+.logo-area{
 display:flex;
 align-items:center;
 gap:10px;
 }
 
-.logo-small img{
-width:35px;
-height:35px;
-object-fit:contain;
+.logo-area img{
+width:38px;
 }
 
 nav a{
-margin-left:20px;
+
+margin-left:18px;
 text-decoration:none;
 color:#aaa;
 font-size:14px;
+
 }
 
 nav a:hover{
 color:#00e5ff;
 }
 
-/* ---------- HERO ---------- */
+/* HERO */
 
 .hero{
 
 height:100vh;
+
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+
 text-align:center;
 padding:20px;
 
 }
 
-/* MAIN BRAND LOGO */
-
 .brand-logo{
 
-width:260px;
-height:260px;
-
-display:flex;
-justify-content:center;
-align-items:center;
+width:230px;
+height:230px;
 
 border-radius:50%;
 
 background:#111;
 
-box-shadow:
-0 0 40px #00e5ff55,
-0 0 80px #00e5ff33;
+display:flex;
+align-items:center;
+justify-content:center;
 
-margin-bottom:25px;
+box-shadow:0 0 60px #00e5ff33;
 
-transition:0.4s;
-
-}
-
-.brand-logo:hover{
-
-transform:scale(1.05);
-
-box-shadow:
-0 0 60px #00e5ff,
-0 0 120px #00e5ff66;
+margin-bottom:20px;
 
 }
 
 .brand-logo img{
 
-width:75%;
-height:75%;
+width:70%;
 object-fit:contain;
 
 }
 
-/* HERO TEXT */
-
 .hero h1{
 
 font-size:42px;
-margin-bottom:10px;
 
 background:linear-gradient(90deg,#00e5ff,#00ff9c);
 -webkit-background-clip:text;
@@ -132,21 +118,19 @@ background:linear-gradient(90deg,#00e5ff,#00ff9c);
 
 .hero p{
 
-max-width:500px;
-color:#bbb;
+max-width:520px;
+color:#aaa;
+
+margin-top:12px;
 
 }
 
-/* BUTTON */
-
 .hero button{
 
-margin-top:25px;
-
+margin-top:22px;
 padding:12px 28px;
 
 border:none;
-
 border-radius:25px;
 
 background:#00e5ff;
@@ -155,43 +139,32 @@ font-weight:bold;
 
 cursor:pointer;
 
-transition:0.3s;
-
 }
 
-.hero button:hover{
-
-transform:scale(1.1);
-
-}
-
-/* ---------- SECTIONS ---------- */
+/* SECTIONS */
 
 section{
 
-padding:80px 8%;
+padding:90px 10%;
 
 }
 
-.section-title{
+.title{
 
 font-size:30px;
-
-margin-bottom:35px;
-
-text-align:center;
+margin-bottom:40px;
 
 }
 
-/* ---------- PROJECTS ---------- */
+/* PROJECT GRID */
 
 .projects{
 
 display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
 
-gap:20px;
+gap:22px;
 
 }
 
@@ -199,117 +172,97 @@ gap:20px;
 
 background:#141414;
 
-padding:22px;
-
 border-radius:10px;
 
-transition:0.3s;
+padding:24px;
 
-border:1px solid transparent;
+transition:0.3s;
 
 }
 
 .card:hover{
 
-transform:translateY(-8px);
+transform:translateY(-6px);
 
-border:1px solid #00e5ff;
-
-box-shadow:0 0 15px #00e5ff55;
+box-shadow:0 0 20px #00e5ff44;
 
 }
 
-/* ---------- TECH STACK ---------- */
+/* PLACEHOLDER STYLE */
 
-.tech{
+.placeholder{
 
-display:flex;
-
-flex-wrap:wrap;
-
-gap:12px;
-
-justify-content:center;
+opacity:0.5;
+border:1px dashed #444;
 
 }
 
-.tech span{
+/* ROADMAP */
 
-background:#1b1b1b;
+.timeline{
 
-padding:8px 14px;
-
-border-radius:20px;
-
-font-size:14px;
+border-left:2px solid #333;
+padding-left:20px;
 
 }
 
-.tech span:hover{
+.timeline div{
 
-background:#00e5ff;
-
-color:black;
+margin-bottom:20px;
 
 }
 
-/* ---------- FOOTER ---------- */
+/* FOOTER */
 
 footer{
 
-padding:30px;
-
 text-align:center;
-
+padding:35px;
 background:#050505;
-
-color:#777;
-
-font-size:14px;
+color:#666;
 
 }
 
-/* ---------- MOBILE OPTIMIZATION ---------- */
+/* MOBILE */
 
-@media (max-width:768px){
-
-.hero h1{
-font-size:32px;
-}
-
-.brand-logo{
-width:200px;
-height:200px;
-}
+@media(max-width:768px){
 
 nav{
 display:none;
 }
 
+.hero h1{
+font-size:30px;
+}
+
+.brand-logo{
+width:180px;
+height:180px;
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-<div class="logo-small">
+<div class="logo-area">
 
-<img src="logo.png" alt="logo">
+<img src="logo.png">
 
-<strong>YOUR BRAND</strong>
+<b>Your Brand</b>
 
 </div>
 
 <nav>
 
-<a href="#about">About</a>
-
+<a href="#vision">Vision</a>
 <a href="#projects">Projects</a>
-
-<a href="#tech">Tech</a>
+<a href="#roadmap">Roadmap</a>
 
 </nav>
 
@@ -319,66 +272,84 @@ display:none;
 
 <div class="brand-logo">
 
-<img src="logo.png" alt="Brand Logo">
+<img src="logo.png">
 
 </div>
 
-<h1>Your Brand Name</h1>
+<h1>Your Brand</h1>
 
 <p>
-Short brand statement. What you build and why it matters.
+
+Short statement about what you are building and why.
+
 </p>
 
-<button onclick="scrollDown()">Explore</button>
+<button onclick="go()">Discover</button>
 
 </div>
 
-<section id="about">
+<section id="vision">
 
-<h2 class="section-title">About</h2>
+<h2 class="title">Vision</h2>
 
-<p style="text-align:center;max-width:700px;margin:auto;">
-Write about your vision, mission and what your projects aim to build.
+<p>
+
+Write your mission here. Even a short vision statement works.
+
 </p>
 
 </section>
 
 <section id="projects">
 
-<h2 class="section-title">Projects</h2>
+<h2 class="title">Projects</h2>
 
 <div class="projects">
 
 <div class="card">
 <h3>Project Name</h3>
-<p>Short description of the project.</p>
+<p>Short description.</p>
 </div>
 
-<div class="card">
-<h3>Project Name</h3>
-<p>Short description of the project.</p>
+<div class="card placeholder">
+<h3>Future Project</h3>
+<p>Coming Soon</p>
 </div>
 
-<div class="card">
-<h3>Project Name</h3>
-<p>Short description of the project.</p>
+<div class="card placeholder">
+<h3>Future Project</h3>
+<p>Coming Soon</p>
+</div>
+
+<div class="card placeholder">
+<h3>Future Project</h3>
+<p>Coming Soon</p>
 </div>
 
 </div>
 
 </section>
 
-<section id="tech">
+<section id="roadmap">
 
-<h2 class="section-title">Tech Stack</h2>
+<h2 class="title">Roadmap</h2>
 
-<div class="tech">
+<div class="timeline">
 
-<span>JavaScript</span>
-<span>HTML</span>
-<span>CSS</span>
-<span>Game Dev</span>
-<span>Systems</span>
+<div>
+<b>Phase 1</b>
+<p>Foundation building</p>
+</div>
+
+<div>
+<b>Phase 2</b>
+<p>System expansion</p>
+</div>
+
+<div>
+<b>Phase 3</b>
+<p>Platform launch</p>
+</div>
 
 </div>
 
@@ -392,12 +363,10 @@ Write about your vision, mission and what your projects aim to build.
 
 <script>
 
-function scrollDown(){
+function go(){
 
-document.getElementById("about").scrollIntoView({
-
+document.getElementById("vision").scrollIntoView({
 behavior:"smooth"
-
 })
 
 }
@@ -405,4 +374,5 @@ behavior:"smooth"
 </script>
 
 </body>
+
 </html>
