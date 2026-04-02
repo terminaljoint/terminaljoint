@@ -1,5 +1,7 @@
 ## Hi there 👋
-
+I am Murugan Santhosh, and this is Terminal Joint, where i present all my projects!
+I am recently created the repository for the official python documentation for tamil , and i am now maintaining it now.
+Also i am now developing a game named "Ultimate Lands" , as soon it will be released!
 <!--
 **terminaljoint/terminaljoint** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
