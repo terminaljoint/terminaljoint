@@ -1,7 +1,7 @@
 ## Hi there 👋
 - I am Murugan Santhosh, and this is Terminal Joint, where i present all my projects!
 - I am from Jalakandapuram, Salem, Tamil Nadu, India ( 636501 ).
-- Not Much to say..., But;
+- Not More to say..., But;
 - Self-taught some coding skills...
 - Yeah, i started this Terminal Joint as a brand for hosting some websites, and for Developing Games!, In Sep-2025 As solo.
 - My Open Source experience started early Jan-2026 on Translating Gdevelop engine to tamil via Crowdin.
