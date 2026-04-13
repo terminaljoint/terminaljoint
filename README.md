@@ -10,7 +10,6 @@
 - Then Created PyTamil - Tamil Python Community.
 - And also My First ever official PR in Github is in the official Python DevGuide!
 - Also i am now developing a game named "Ultimate Lands" , as soon it will be released!
-- But, My School Marks are messy… but my work is not!
 <!--
 **terminaljoint/terminaljoint** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
