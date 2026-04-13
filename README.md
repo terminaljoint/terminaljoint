@@ -1,6 +1,7 @@
 ## Hi there 👋
 - I am Murugan Santhosh, and this is Terminal Joint, where i present all my projects!
-- Nothing Big to say about me.. , But;
+- Nothing Big to say about me..., But;
+- Self thaught some coding skills...
 - Yeah, i started this Terminal Joint as a brand at my 17 for hosting some websites, and for Developing Games!
 - Within 6 months from initiating my brand, I have created the repository for the official python documentation for tamil, and i am now maintaining it now.
 - And became the Coordinator in the Official Python Documentation in Tamil.
