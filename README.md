@@ -1,11 +1,11 @@
 ## Hi there 👋
 - I am Murugan Santhosh, and this is Terminal Joint, where i present all my projects!
-- I am from Jalakandapuram, Salem, Tamil Nadu, India ( 636501 ).
+- I am from Jalakandapuram, Salem, Tamil Nadu, India (636501).
 - Not More to say..., But;
 - Self-taught some coding skills...
 - Yeah, i started this Terminal Joint as a brand for hosting some websites, and for Developing Games!, In Sep-2025 As solo.
 - My Open Source experience started early Jan-2026 on Translating Gdevelop engine to tamil via Crowdin.
-- Within 6 months from initiating my brand, in March-2026 I have created the repository for the official python documentation for tamil, and i am now maintaining it now.
+- Within 6 months from initiating my brand, in March-2026 I have created the repository for the official python documentation for tamil, and i am maintaining it now.
 - And became the Coordinator in the Official Python Documentation in Tamil.
 - Then Created PyTamil - Tamil Python Community.
 - And also My First ever official PR in Github is in the official Python DevGuide!
