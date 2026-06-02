@@ -1,432 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ta">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Terminal Joint</title>
-
-<style>
-
-/* GLOBAL */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-scroll-behavior:smooth;
-}
-
-body{
-background:#000;
-color:white;
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-
-header{
-
-position:fixed;
-top:0;
-width:100%;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:16px 40px;
-
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(20px);
-
-z-index:1000;
-
-}
-
-.brand{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.brand img{
-width:32px;
-border-radius:6px;
-}
-
-nav a{
-
-margin-left:25px;
-color:#ccc;
-text-decoration:none;
-font-size:14px;
-
-}
-
-nav a:hover{
-color:white;
-}
-
-/* HERO */
-
-.hero{
-
-height:110vh;
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-
-text-align:center;
-
-padding:40px;
-
-}
-
-.hero-logo{
-
-width:220px;
-height:220px;
-
-border-radius:40px;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-background:#111;
-
-box-shadow:0 30px 80px rgba(0,0,0,0.8);
-
-margin-bottom:40px;
-
-}
-
-.hero-logo img{
-
-width:70%;
-
-}
-
-/* HERO TEXT */
-
-.hero h1{
-
-font-size:60px;
-font-weight:600;
-
-margin-bottom:10px;
-
-}
-
-.hero p{
-
-font-size:20px;
-color:#aaa;
-
-max-width:520px;
-
-}
-
-/* SECTIONS */
-
-section{
-
-padding:140px 12%;
-text-align:center;
-
-opacity:0;
-transform:translateY(40px);
-transition:1s;
-
-}
-
-section.show{
-
-opacity:1;
-transform:translateY(0);
-
-}
-
-/* TITLE */
-
-.title{
-
-font-size:44px;
-font-weight:600;
-
-margin-bottom:50px;
-
-}
-
-/* PROJECT GRID */
-
-.projects{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-gap:40px;
-
-}
-
-/* CARD */
-
-.card{
-
-background:#111;
-
-border-radius:30px;
-
-overflow:hidden;
-
-box-shadow:
-0 20px 50px rgba(0,0,0,0.6);
-
-transition:0.4s;
-
-}
-
-.card:hover{
-
-transform:translateY(-10px);
-
-}
-
-/* IMAGE */
-
-.card-image{
-
-height:200px;
-
-}
-
-.card-image img{
-
-width:100%;
-height:100%;
-object-fit:cover;
-
-}
-
-/* CONTENT */
-
-.card-content{
-
-padding:30px;
-
-}
-
-.card-content h3{
-
-font-size:22px;
-margin-bottom:10px;
-
-}
-
-.card-content p{
-
-color:#aaa;
-
-}
-
-/* FUTURE */
-
-.future{
-
-font-size:18px;
-color:#aaa;
-max-width:700px;
-margin:auto;
-
-}
-
-/* FOOTER */
-
-footer{
-
-padding:60px;
-text-align:center;
-color:#666;
-
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:36px;
-}
-
-.hero-logo{
-width:150px;
-height:150px;
-}
-
-nav{
-display:none;
-}
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murugan Santhosh | Personal Blog</title>
+    <style>
+        /* Simple, clean developer aesthetic */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #eaeaea;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #111;
+        }
+
+        header p {
+            color: #666;
+            font-style: italic;
+        }
+
+        .about-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .blog-posts {
+            margin-top: 40px;
+        }
+
+        .post {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .post-title {
+            margin-top: 0;
+            color: #0066cc;
+        }
+
+        .post-meta {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px 0;
+            color: #888;
+            border-top: 1px solid #eaeaea;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
+    <header>
+        <h1>Murugan Santhosh</h1>
+        <p>Creator & Maintainer of PyTamil | Open Source Enthusiast</p>
+    </header>
 
-<div class="brand">
+    <section class="about-section">
+        <h2>About Me</h2>
+        <p>
+            Vanakkam! I am Murugan Santhosh. I love Python, open-source development, and localization. 
+            I founded PyTamil to bridge the gap between technology and the Tamil language, leading the effort 
+            to translate the official Python documentation. This is my personal space where I share my stories, 
+            technical challenges, and life experiences.
+        </p>
+    </section>
 
-<img src="logo.jpg">
-<b>Terminal Joint</b>
+    <main class="blog-posts">
+        <h2>My Stories</h2>
 
-</div>
+        <article class="post">
+            <h3 class="post-title">The Spark Behind PyTamil</h3>
+            <div class="post-meta">Published on: June 2, 2026</div>
+            <p>
+                Every project starts with a single problem. For me, it was realizing how many incredible 
+                minds miss out on learning Python simply because the core documentation is entirely in English. 
+                I wanted to change that. In this story, I share the exact night I decided to create the 
+                PyTamil repository and the initial hurdles of setting up the workflow...
+            </p>
+        </article>
 
-<nav>
+        <article class="post">
+            <h3 class="post-title">Lessons Learned as an Open Source Maintainer</h3>
+            <div class="post-meta">Published on: May 15, 2026</div>
+            <p>
+                Managing a growing open-source community isn't just about reviewing Pull Requests. 
+                It's about communication, building a shared vision, and organizing technical terminology. 
+                Here are three key lessons I've learned while coordinating the Tamil translation project...
+            </p>
+        </article>
+    </main>
 
-<a href="#vision">Vision</a>
-<a href="#projects">Projects</a>
-<a href="#future">Future</a>
-
-</nav>
-
-</header>
-
-<div class="hero">
-
-<div class="hero-logo">
-<img src="logo2.jpg">
-</div>
-
-<h1>Terminal Joint</h1>
-
-<p>
-Building digital systems, platforms and games.
-</p>
-
-</div>
-
-<section id="vision">
-
-<h2 class="title">Vision</h2>
-
-<p class="future">
-
-Developing systems for real-world needs and future digital platforms.
-
-</p>
-
-</section>
-
-<section id="projects">
-
-<h2 class="title">Projects</h2>
-
-<div class="projects">
-
-<div class="card">
-
-<div class="card-image">
-<img src="Screenshot 2026-04-02 8.43.30 PM.png">
-</div>
-
-<div class="card-content">
-
-<h3>Terminal Joint CBT</h3>
-
-<p>
-Practice Computer Based Tests with a realistic exam interface.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-image">
-  <img src="DOCUMENTATION (2).png">
-</div>
-
-<div class="card-content">
-
-<h3>Python Docs Contribution</h3>
-<p>I have created and maintaining the repository for tamil documentation useful for plenty of tamil people</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-image">
-  <img src="Screenshot 2026-04-04 8.35.35 AM.png">
-</div>
-
-<div class="card-content">
-
-<h3>GDevelop Contribution</h3>
-<p>Made GDevelop translation to tamil</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="future">
-
-<h2 class="title">Future Systems</h2>
-
-<p class="future">
-
-More platforms and digital tools are under development.
-
-</p>
-
-</section>
-
-<footer>
-
-© 2026 Terminal Joint
-
-</footer>
-
-<script>
-
-/* APPLE STYLE SCROLL REVEAL */
-
-let sections=document.querySelectorAll("section")
-
-window.addEventListener("scroll",()=>{
-
-sections.forEach(sec=>{
-
-let top=sec.getBoundingClientRect().top
-
-if(top<window.innerHeight-100){
-
-sec.classList.add("show")
-
-}
-
-})
-
-})
-
-</script>
+    <footer>
+        <p>© 2026 Murugan Santhosh. Built with pure HTML & CSS.</p>
+    </footer>
 
 </body>
-
-  </html>
+</html>
