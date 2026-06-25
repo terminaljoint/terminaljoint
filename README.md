@@ -1,5 +1,5 @@
 ## Hi there 👋
-- I am Murugan Santhosh, and this is Terminal Joint, where i present all my projects!
+- I am Murugan Santhosh, B.Tech CSE(with CYS) Student at Amrita University Chennai. and this is Terminal Joint, where i present all my projects!
 - Terminal Joint is a person-based online open-source lab founded and maintained by Murugan Santhosh (@terminaljoint). Operating as an experimental digital workshop, the lab serves as a centralized hub for independent game development, regional tech accessibility tools, and native-language localization workflows. Built on the core philosophy of open collaboration, Terminal Joint provides a completely open-to-work ecosystem where global developers, translators, and creators can contribute to public repositories and collaborative platforms—headlined by its flagship community project, PyTamil, which is translating the official Python documentation into Tamil.
 - I am from Jalakandapuram, Salem, Tamil Nadu, India (636501).
 - Not More to say..., But;
@@ -7,7 +7,8 @@
 - Yeah, i started this Terminal Joint as a brand for hosting some websites, and for Developing Games!, In Sep-2025 As solo.
 - My Open Source experience started early Jan-2026 on Translating Gdevelop engine to tamil via Crowdin.
 - Within 6 months from initiating my brand, in March-2026 I have created the repository for the official python documentation for tamil, and i am maintaining it now.
-- Also i am now developing a game named "Ultimate Lands", hope that it will be released soon!
+- And, I am the initiative of PyTamil Community, An online community communicating via discord. Established at March 2026.
+- Also i am now developing some games
 <!--
 **terminaljoint/terminaljoint** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
