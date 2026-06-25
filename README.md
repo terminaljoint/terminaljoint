@@ -4,7 +4,7 @@
 - I am from Jalakandapuram, Salem, Tamil Nadu, India (636501).
 - Not More to say..., But;
 - Self-taught some coding skills...
-- Yeah, i started this Terminal Joint as a brand for hosting some websites, and for Developing Games!, In Sep-2025 As solo.
+- I have started this Terminal Joint as a brand for hosting some websites, and for Developing Games!, In Sep-2025 As solo.
 - My Open Source experience started early Jan-2026 on Translating Gdevelop engine to tamil via Crowdin.
 - Within 6 months from initiating my brand, in March-2026 I have created the repository for the official python documentation for tamil, and i am maintaining it now.
 - And, I am the initiative of PyTamil Community, An online community communicating via discord. Established at March 2026.
