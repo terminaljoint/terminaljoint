@@ -6,21 +6,22 @@
     <title>Terminal Joint | Murugan Santhosh</title>
     <style>
         :root {
-            --bg-color: #080c10;
-            --card-bg: #12161f; 
+            --bg-color: #06090e;
+            --card-bg: #0d1117;
             --accent-color: #58a6ff;
-            --accent-glow: rgba(88, 166, 255, 0.25);
+            --accent-glow: rgba(88, 166, 255, 0.3);
             --text-color: #c9d1d9;
             --text-muted: #8b949e;
             --border-color: #21262d;
-            --modal-overlay: rgba(8, 12, 16, 0.9);
+            --terminal-green: #39ff14;
+            --modal-overlay: rgba(6, 9, 14, 0.95);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'SF Pro Display', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -35,25 +36,21 @@
             justify-content: center;
         }
 
-        /* Tech Grid Matrix Background */
-        body::before {
-            content: "";
+        /* Tech Canvas Background */
+        #bg-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
-                              linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.15;
             z-index: -1;
+            opacity: 0.25;
         }
 
         /* Top Navigation Header */
         nav {
             position: fixed;
             top: 0; left: 0; width: 100%;
-            background: rgba(18, 22, 31, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(13, 17, 23, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-color);
             z-index: 100;
             padding: 0.8rem 1.5rem;
@@ -63,47 +60,43 @@
         }
 
         nav .logo {
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 0.95rem;
+            font-weight: 800;
             color: #fff;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        nav .logo span {
-            color: var(--accent-color);
-        }
+        nav .logo span { color: var(--accent-color); }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.2rem;
-        }
+        nav ul { display: flex; list-style: none; gap: 1.2rem; }
 
         nav button {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.2s ease;
+            background: none; border: none;
+            color: var(--text-muted); font-size: 0.85rem; font-weight: 500;
+            cursor: pointer; transition: color 0.2s ease;
         }
 
-        nav button:hover {
-            color: var(--accent-color);
-        }
+        nav button:hover { color: var(--accent-color); }
 
-        /* Main Center Dashboard View */
-        .landing-container {
+        /* Main Workspace Grid Container */
+        .main-workspace {
             width: 100%;
-            max-width: 900px;
+            max-width: 1200px;
             padding: 2rem 1.5rem;
-            text-align: center;
-            margin-top: 40px;
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        /* Left Column: Core Identity and Grid Controls */
+        .core-identity {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
+            text-align: left;
         }
 
         .status-pill {
@@ -117,213 +110,174 @@
             font-size: 0.8rem;
             font-weight: 600;
             border: 1px solid rgba(88, 166, 255, 0.2);
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
         }
 
         .status-indicator {
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
             background-color: var(--accent-color);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-color);
+            border-radius: 50%; box-shadow: 0 0 8px var(--accent-color);
             animation: pulse 2s infinite;
         }
 
         h1 {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            color: #fff;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+            color: #fff; font-weight: 800; line-height: 1.15;
+            margin-bottom: 1rem; letter-spacing: -0.5px;
         }
 
         h1 span {
-            color: var(--accent-color);
-            text-shadow: 0 0 30px var(--accent-glow);
+            color: var(--accent-color); text-shadow: 0 0 30px var(--accent-glow);
         }
 
-        /* Auto-Typing Dynamic Subtext Area */
         .dynamic-intro {
-            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-            color: var(--text-muted);
-            max-width: 640px;
-            min-height: 54px; /* Preserves spacing while layout types */
-            margin-bottom: 2.5rem;
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            color: var(--text-muted); min-height: 54px; margin-bottom: 2rem;
         }
 
-        /* Dashboard Interface Grids */
+        /* Dashboard Interface Layout Grid */
         .dash-layout {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            width: 100%;
-            max-width: 600px;
+            gap: 0.8rem; width: 100%;
         }
 
         .action-node {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: #fff;
-            padding: 1.2rem 1rem;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            color: #fff; padding: 1.2rem 1rem; border-radius: 10px;
+            font-size: 0.9rem; font-weight: 600; cursor: pointer;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: all 0.2s ease;
         }
 
-        .action-node:hover, .action-node:active {
+        .action-node:hover {
             border-color: var(--accent-color);
             box-shadow: 0 0 20px rgba(88, 166, 255, 0.15);
             transform: translateY(-2px);
-            background: rgba(18, 22, 31, 0.9);
         }
 
         .node-key {
-            font-size: 0.7rem;
-            background: var(--border-color);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--text-muted);
+            font-size: 0.65rem; background: var(--border-color);
+            padding: 2px 6px; border-radius: 4px; color: var(--text-muted);
         }
 
-        /* PREMIUM GLASS POPUP MODAL ARCHITECTURE */
+        /* Right Column: High-Tech Telemetry Widgets */
+        .telemetry-deck {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Terminal Display Console Module */
+        .console-box {
+            background: #010409;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.2rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.78rem;
+            color: #fff;
+            height: 180px;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .console-header {
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px; margin-bottom: auto;
+            font-weight: bold; display: flex; justify-content: space-between;
+        }
+
+        .console-line { margin-top: 4px; line-height: 1.3; }
+        .console-line.success { color: var(--terminal-green); }
+        .console-line.system { color: var(--accent-color); }
+
+        /* Real-Time Matrix Info Module */
+        .info-matrix {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .matrix-cell {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 1rem;
+        }
+
+        .matrix-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+        .matrix-value { font-size: 1.1rem; font-weight: 700; color: #fff; margin-top: 2px; }
+
+        /* OVERLAY MODAL LAYERS */
         .panel-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--modal-overlay);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 1000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
 
-        .panel-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .panel-overlay.active { opacity: 1; pointer-events: auto; }
 
         .panel-box {
-            background: rgba(18, 22, 31, 0.85);
-            border: 1px solid var(--border-color);
-            width: 92%;
-            max-width: 580px;
-            max-height: 82vh;
-            border-radius: 14px;
-            padding: 2.2rem;
-            position: relative;
-            overflow-y: auto;
-            transform: scale(0.96) translateY(10px);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            width: 92%; max-width: 580px; max-height: 80vh; border-radius: 14px;
+            padding: 2rem; position: relative; overflow-y: auto;
+            transform: scale(0.96); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .panel-overlay.active .panel-box {
-            transform: scale(1) translateY(0);
-        }
+        .panel-overlay.active .panel-box { transform: scale(1); }
 
         .exit-trigger {
-            position: absolute;
-            top: 1.2rem; right: 1.2rem;
-            background: var(--border-color);
-            border: none;
-            color: var(--text-muted);
-            width: 28px; height: 28px;
-            border-radius: 50%;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, color 0.2s;
+            position: absolute; top: 1.2rem; right: 1.2rem;
+            background: var(--border-color); border: none; color: var(--text-muted);
+            width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .exit-trigger:hover {
-            background: #ff7b72;
-            color: #fff;
-        }
+        .panel-header { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 1.2rem; }
 
-        .panel-header {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .panel-body {
-            font-size: 0.95rem;
-            color: var(--text-color);
-        }
-
-        /* Timeline Components */
-        .stack-timeline { padding-left: 0.5rem; border-left: 2px solid var(--border-color); margin-top: 0.5rem; }
-        .stack-node { position: relative; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        /* Timeline and Info Structures */
+        .stack-timeline { padding-left: 0.5rem; border-left: 2px solid var(--border-color); }
+        .stack-node { position: relative; padding-left: 1.5rem; margin-bottom: 1.2rem; }
         .stack-node::before {
             content: ""; position: absolute; left: -21px; top: 6px;
-            width: 8px; height: 8px; border-radius: 50%;
-            background: var(--bg-color); border: 2px solid var(--accent-color);
+            width: 8px; height: 8px; border-radius: 50%; background: #000; border: 2px solid var(--accent-color);
         }
-        .stack-time { font-size: 0.8rem; font-weight: 700; color: var(--accent-color); }
-        .stack-node h4 { color: #fff; font-size: 1rem; margin: 2px 0; }
-
-        /* Block Cards */
-        .info-block {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-        }
-        .info-block h4 { color: #fff; margin-bottom: 4px; font-size: 1rem; }
-
-        /* Link System Deck */
+        .stack-time { font-size: 0.75rem; font-weight: 700; color: var(--accent-color); }
+        .info-block { background: rgba(255,255,255,0.01); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 0.8rem; }
         .gateway-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
         .gateway-tab {
             display: flex; align-items: center; justify-content: space-between;
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border-color);
-            padding: 1rem; border-radius: 8px; text-decoration: none; color: #fff; font-weight: 600;
-            transition: all 0.2s ease; font-size: 0.9rem;
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border-color);
+            padding: 0.8rem; border-radius: 8px; text-decoration: none; color: #fff; font-size: 0.85rem;
         }
-        .gateway-tab:hover { border-color: var(--accent-color); background: rgba(88,166,255,0.05); }
-
-        /* Fixed Background Footer tracking details */
-        .sub-coord {
-            position: fixed; bottom: 1.2rem; font-size: 0.75rem; color: var(--text-muted);
-            text-align: center; width: 100%; letter-spacing: 0.5px;
-        }
+        .gateway-tab:hover { border-color: var(--accent-color); }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.5); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(88, 166, 255, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(88, 166, 255, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(88, 166, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0); }
         }
 
-        /* DESIGN ADAPTATIONS FOR MOBILES & TABLETS */
-        @media (max-width: 640px) {
-            nav ul, .node-key { display: none; }
-            .dash-layout { grid-template-columns: 1fr; width: 90%; }
+        /* Responsive Optimization Queries */
+        @media (max-width: 900px) {
+            body { overflow-y: auto; height: auto; }
+            #bg-canvas { display: none; }
+            nav ul { display: none; }
+            .main-workspace { grid-template-columns: 1fr; margin-top: 80px; padding-bottom: 4rem; }
             .gateway-grid { grid-template-columns: 1fr; }
-            .panel-box { padding: 1.5rem; }
-            .action-node { padding: 1rem; }
         }
     </style>
 </head>
 <body>
+
+    <canvas id="bg-canvas"></canvas>
 
     <nav>
         <div class="logo">Terminal<span>Joint</span></div>
@@ -335,28 +289,62 @@
         </ul>
     </nav>
 
-    <div class="landing-container">
-        <div class="status-pill">
-            <div class="status-indicator"></div>
-            <span>B.Tech CSE (Cyber Security) · 1st Year</span>
-        </div>
-        <h1>Hi, I am <span>Santhosh</span></h1>
+    <div class="main-workspace">
         
-        <div class="dynamic-intro" id="typed-output"></div>
+        <div class="core-identity">
+            <div class="status-pill">
+                <div class="status-indicator"></div>
+                <span>B.Tech CSE (Cyber Security) · Amrita Chennai</span>
+            </div>
+            <h1>Hi, I am <span>Santhosh</span></h1>
+            
+            <div class="dynamic-intro" id="typed-output"></div>
 
-        <div class="dash-layout">
-            <button class="action-node" onclick="openPanel('panel-about')">
-                <span>📁 Lab Concept</span> <span class="node-key">1</span>
-            </button>
-            <button class="action-node" onclick="openPanel('panel-timeline')">
-                <span>⏳ Track Record</span> <span class="node-key">2</span>
-            </button>
-            <button class="action-node" onclick="openPanel('panel-domains')">
-                <span>⚔️ Core Focus</span> <span class="node-key">3</span>
-            </button>
-            <button class="action-node" onclick="openPanel('panel-network')">
-                <span>🔗 Connect Hub</span> <span class="node-key">4</span>
-            </button>
+            <div class="dash-layout">
+                <button class="action-node" onclick="openPanel('panel-about')">
+                    <span>📁 Lab Concept</span> <span class="node-key">1</span>
+                </button>
+                <button class="action-node" onclick="openPanel('panel-timeline')">
+                    <span>⏳ Track Record</span> <span class="node-key">2</span>
+                </button>
+                <button class="action-node" onclick="openPanel('panel-domains')">
+                    <span>⚔️ Core Focus</span> <span class="node-key">3</span>
+                </button>
+                <button class="action-node" onclick="openPanel('panel-network')">
+                    <span>🔗 Connect Hub</span> <span class="node-key">4</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="telemetry-deck">
+            
+            <div class="console-box">
+                <div class="console-header">
+                    <span>SYSTEM CORE ACTIVITY MONITOR</span>
+                    <span>v1.0.4</span>
+                </div>
+                <div id="terminal-stream-log"></div>
+            </div>
+
+            <div class="info-matrix">
+                <div class="matrix-cell">
+                    <div class="matrix-label">System Uptime</div>
+                    <div class="matrix-value" id="uptime-clock">00:00:00</div>
+                </div>
+                <div class="matrix-cell">
+                    <div class="matrix-label">Ecosystem Target</div>
+                    <div class="matrix-value" style="color: var(--accent-color);">Open Source</div>
+                </div>
+                <div class="matrix-cell">
+                    <div class="matrix-label">Location Node</div>
+                    <div class="matrix-value" style="font-size: 0.9rem;">Salem, TN (636501)</div>
+                </div>
+                <div class="matrix-cell">
+                    <div class="matrix-label">Framework Engine</div>
+                    <div class="matrix-value" style="font-size: 0.9rem;">PyTamil / Python</div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -367,7 +355,6 @@
             <div class="panel-body">
                 <p>A person-based online open-source lab founded and maintained by <strong>Murugan Santhosh (@terminaljoint)</strong>.</p>
                 <p style="margin-top: 1rem;">Operating as an experimental digital workshop, the lab serves as a centralized node for independent game development, regional tech accessibility tools, and native-language localization setups.</p>
-                <p style="margin-top: 1rem;">Built on open collaboration, Terminal Joint provides an ecosystem where global developers and creators can contribute directly to public repositories.</p>
             </div>
         </div>
     </div>
@@ -381,17 +368,17 @@
                     <div class="stack-node">
                         <span class="stack-time">Sep 2025</span>
                         <h4>Brand Framework Genesis</h4>
-                        <p>Self-taught initial programming configurations and launched Terminal Joint solo for game prototyping and custom web hosting platforms.</p>
+                        <p>Self-taught programming configurations and launched Terminal Joint solo for game prototyping and web hosting platforms.</p>
                     </div>
                     <div class="stack-node">
                         <span class="stack-time">Jan 2026</span>
-                        <h4>Open Source Framework Launch</h4>
+                        <h4>Open Source Engine Launch</h4>
                         <p>Initiated technical localization pathways by localizing the GDevelop engine into Tamil via Crowdin workflows.</p>
                     </div>
                     <div class="stack-node">
                         <span class="stack-time">Mar 2026</span>
                         <h4>Flagship Architecture Deployment</h4>
-                        <p>Formed the official Python Documentation Tamil Translation repository. Initiated and launched the PyTamil Discord community hub.</p>
+                        <p>Formed the official Python Documentation Tamil Translation repository and launched the PyTamil Discord community hub.</p>
                     </div>
                 </div>
             </div>
@@ -401,19 +388,15 @@
     <div id="panel-domains" class="panel-overlay" onclick="closePanelOutside(event, 'panel-domains')">
         <div class="panel-box">
             <button class="exit-trigger" onclick="document.getElementById('panel-domains').classList.remove('active')">×</button>
-            <div class="panel-header">⚔️ Core Ecosystem Modules</div>
+            <div class="panel-header">⚔️ Core Focus Areas</div>
             <div class="panel-body">
                 <div class="info-block">
                     <h4>🎮 Game Architecture</h4>
-                    <p>Designing, coding, and deploying independent game builds and functional computer architecture prototypes.</p>
+                    <p>Designing, coding, and deploying independent game builds and functional computer architecture simulations.</p>
                 </div>
                 <div class="info-block">
                     <h4>🌐 Native Language Localization</h4>
-                    <p>Maintaining codebase nodes like python-docs-ta to deliver modern programming tools directly to native environments.</p>
-                </div>
-                <div class="info-block">
-                    <h4>🔒 Academic Base</h4>
-                    <p>Structuring clean engineering core values inside the B.Tech Computer Science (Cyber Security) program at Amrita University (2026 - 2030).</p>
+                    <p>Maintaining codebase nodes like python-docs-ta to deliver programming tools directly to native environments.</p>
                 </div>
             </div>
         </div>
@@ -423,7 +406,6 @@
         <div class="panel-box">
             <button class="exit-trigger" onclick="document.getElementById('panel-network').classList.remove('active')">×</button>
             <div class="panel-header">🔗 Gateway Channels</div>
-            <p style="margin-bottom: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">Connect with global nodes and track core live codebases.</p>
             <div class="gateway-grid">
                 <a href="https://github.com/terminaljoint" target="_blank" class="gateway-tab"><span>🐙 GitHub</span><span>→</span></a>
                 <a href="#" target="_blank" class="gateway-tab"><span>💬 Discord Network</span><span>→</span></a>
@@ -433,63 +415,132 @@
         </div>
     </div>
 
-    <div class="sub-coord">
-        Ecosystem Node: Jalakandapuram, Salem, TN, India (636501)
-    </div>
-
     <script>
-        // 1. Dynamic Text Typing Animation Logic
-        const introductoryStrings = [
+        // 1. Interactive Canvas Matrix Grid & Node Logic
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let points = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initPoints();
+        }
+
+        function initPoints() {
+            points = [];
+            const count = Math.min(40, Math.floor(window.innerWidth / 30));
+            for(let i=0; i<count; i++) {
+                points.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4
+                });
+            }
+        }
+
+        function renderCanvasNodes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#21262d';
+            ctx.fillStyle = '#58a6ff';
+            ctx.lineWidth = 0.5;
+
+            for(let i=0; i<points.length; i++) {
+                let p = points[i];
+                p.x += p.vx; p.y += p.vy;
+                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+                ctx.fill();
+
+                for(let j=i+1; j<points.length; j++) {
+                    let p2 = points[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if(dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(renderCanvasNodes);
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        requestAnimationFrame(renderCanvasNodes);
+
+        // 2. Dynamic Text Typing Engine
+        const introStrings = [
             "Welcome to Terminal Joint: An independent open-source lab.",
             "Building indie game designs and regional localization modules.",
             "Structuring tech accessibility for native language developers."
         ];
-        let currentStringIndex = 0;
-        let currentCharIndex = 0;
-        const targetOutputElement = document.getElementById("typed-output");
+        let strIdx = 0, charIdx = 0;
+        const targetOutput = document.getElementById("typed-output");
 
-        function executeTypingEngine() {
-            if (currentCharIndex < introductoryStrings[currentStringIndex].length) {
-                targetOutputElement.textContent += introductoryStrings[currentStringIndex].charAt(currentCharIndex);
-                currentCharIndex++;
-                setTimeout(executeTypingEngine, 25);
-            } else {
-                setTimeout(executeEraseEngine, 2000);
+        function type() {
+            if (charIdx < introStrings[strIdx].length) {
+                targetOutput.textContent += introStrings[strIdx].charAt(charIdx);
+                charIdx++; setTimeout(type, 20);
+            } else { setTimeout(erase, 2500); }
+        }
+        function erase() {
+            if (charIdx > 0) {
+                targetOutput.textContent = introStrings[strIdx].substring(0, charIdx - 1);
+                charIdx--; setTimeout(erase, 10);
+            } else { strIdx = (strIdx + 1) % introStrings.length; setTimeout(type, 400); }
+        }
+        setTimeout(type, 500);
+
+        // 3. Automated Terminal Simulator Engine
+        const logNode = document.getElementById('terminal-stream-log');
+        const logs = [
+            { text: "[INFO] Initializing Terminal Joint brand module...", type: "system" },
+            { text: "[SUCCESS] Subsystem core pipeline attached.", type: "success" },
+            { text: "[INFO] Mapping documentation parameters for python-docs-ta...", type: "system" },
+            { text: "[INFO] Fetching localization nodes on Crowdin API...", type: "system" },
+            { text: "[SUCCESS] GDevelop localization target established.", type: "success" },
+            { text: "[INFO] Synced PyTamil communication routing on Discord server.", type: "system" }
+        ];
+        let logIdx = 0;
+
+        function appendLog() {
+            if(logIdx < logs.length) {
+                const line = document.createElement('div');
+                line.className = `console-line ${logs[logIdx].type}`;
+                line.textContent = `> ${logs[logIdx].text}`;
+                logNode.appendChild(line);
+                logIdx++;
+                setTimeout(appendLog, 1800);
             }
         }
+        setTimeout(appendLog, 1000);
 
-        function executeEraseEngine() {
-            if (currentCharIndex > 0) {
-                targetOutputElement.textContent = introductoryStrings[currentStringIndex].substring(0, currentCharIndex - 1);
-                currentCharIndex--;
-                setTimeout(executeEraseEngine, 15);
-            } else {
-                currentStringIndex = (currentStringIndex + 1) % introductoryStrings.length;
-                setTimeout(executeTypingEngine, 300);
-            }
-        }
-        document.addEventListener("DOMContentLoaded", () => setTimeout(executeTypingEngine, 500));
+        // 4. Live Runtime Clock Engine
+        let sec = 0, min = 0, hr = 0;
+        const clockNode = document.getElementById('uptime-clock');
+        setInterval(() => {
+            sec++; if(sec >= 60) { sec = 0; min++; if(min >= 60) { min = 0; hr++; } }
+            clockNode.textContent = `${String(hr).padStart(2,'0')}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+        }, 1000);
 
-        // 2. Interactive Panel Control Mechanics
+        // 5. Interface Layout Control Functions
         function openPanel(id) {
-            // Dismiss any panel currently active first
-            const openActivePanel = document.querySelector('.panel-overlay.active');
-            if (openActivePanel) openActivePanel.classList.remove('active');
-            
+            const active = document.querySelector('.panel-overlay.active');
+            if (active) active.classList.remove('active');
             document.getElementById(id).classList.add('active');
         }
-
-        function closePanelOutside(event, id) {
-            if (event.target === document.getElementById(id)) {
-                document.getElementById(id).classList.remove('active');
-            }
+        function closePanelOutside(e, id) {
+            if (e.target === document.getElementById(id)) document.getElementById(id).classList.remove('active');
         }
-
-        // 3. High-Tech Desktop Keyboard Map Navigation Controls
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                const openActivePanel = document.querySelector('.panel-overlay.active');
-                if (openActivePanel) openActivePanel.classList.remove('active');
+                const active = document.querySelector('.panel-overlay.active');
+                if (active) active.classList.remove('active');
             }
             if (['1', '2', '3', '4'].includes(e.key)) {
                 const maps = { '1': 'panel-about', '2': 'panel-timeline', '3': 'panel-domains', '4': 'panel-network' };
