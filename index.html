@@ -6,372 +6,494 @@
     <title>Terminal Joint | Murugan Santhosh</title>
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
+            --bg-color: #080c10;
+            --card-bg: #12161f;
             --accent-color: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.25);
             --text-color: #c9d1d9;
             --text-muted: #8b949e;
-            --border-color: #30363d;
-            --glow-color: rgba(88, 166, 255, 0.2);
-            --modal-overlay: rgba(13, 17, 23, 0.85);
+            --border-color: #21262d;
+            --modal-overlay: rgba(8, 12, 16, 0.9);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'SF Pro Display', -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            overflow: hidden; /* Prevents background scrolling */
+            overflow: hidden;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Cyber Grid Background */
+        /* Tech Grid Matrix Background */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
                               linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.1;
+            background-size: 40px 40px;
+            opacity: 0.15;
             z-index: -1;
         }
 
-        /* Header Navigation */
+        /* Top Navigation Header */
         nav {
             position: fixed;
             top: 0; left: 0; width: 100%;
-            background: rgba(22, 27, 34, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(18, 22, 31, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             z-index: 100;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         nav .logo {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent-color);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+        }
+
+        nav .logo span {
+            color: var(--accent-color);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         nav button {
             background: none;
             border: none;
-            color: var(--text-color);
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: color 0.2s ease;
         }
 
         nav button:hover {
             color: var(--accent-color);
         }
 
-        /* Hero / Main Display Core */
-        .hero-core {
+        /* Main Center Dashboard View */
+        .landing-container {
+            width: 100%;
+            max-width: 900px;
+            padding: 2rem 1.5rem;
             text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-            margin-top: 60px;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .badge {
-            display: inline-block;
-            background: rgba(88, 166, 255, 0.1);
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(88, 166, 255, 0.08);
             color: var(--accent-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(88, 166, 255, 0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(88, 166, 255, 0.2);
             margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .status-indicator {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-color);
+            animation: pulse 2s infinite;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
             color: #fff;
+            font-weight: 800;
+            line-height: 1.15;
             margin-bottom: 1rem;
-            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
 
         h1 span {
             color: var(--accent-color);
-            text-shadow: 0 0 20px var(--glow-color);
+            text-shadow: 0 0 30px var(--accent-glow);
         }
 
-        .tagline {
-            font-size: 1.1rem;
+        /* Auto-Typing Dynamic Subtext Area */
+        .dynamic-intro {
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
             color: var(--text-muted);
+            max-width: 640px;
+            min-height: 54px; /* Preserves spacing while layout types */
             margin-bottom: 2.5rem;
         }
 
-        /* Dashboard Interface Buttons */
-        .dash-menu {
+        /* Dashboard Interface Grids */
+        .dash-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
+            max-width: 600px;
         }
 
-        .dash-btn {
+        .action-node {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: #fff;
-            padding: 1rem;
-            border-radius: 8px;
+            padding: 1.2rem 1rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .dash-btn:hover {
+        .action-node:hover, .action-node:active {
             border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.15);
             transform: translateY(-2px);
+            background: rgba(18, 22, 31, 0.9);
         }
 
-        /* POPUP MODAL PANELS */
-        .modal-panel {
+        .node-key {
+            font-size: 0.7rem;
+            background: var(--border-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* PREMIUM GLASS POPUP MODAL ARCHITECTURE */
+        .panel-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--modal-overlay);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
 
-        /* Show Class controlled via JS */
-        .modal-panel.active {
+        .panel-overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
 
-        .modal-content {
-            background: var(--card-bg);
+        .panel-box {
+            background: rgba(18, 22, 31, 0.85);
             border: 1px solid var(--border-color);
-            width: 90%;
-            max-width: 650px;
-            max-height: 80vh;
-            border-radius: 12px;
-            padding: 2.5rem;
+            width: 92%;
+            max-width: 580px;
+            max-height: 82vh;
+            border-radius: 14px;
+            padding: 2.2rem;
             position: relative;
             overflow-y: auto;
-            transform: scale(0.9);
-            transition: transform 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: scale(0.96) translateY(10px);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
         }
 
-        .modal-panel.active .modal-content {
-            transform: scale(1);
+        .panel-overlay.active .panel-box {
+            transform: scale(1) translateY(0);
         }
 
-        .close-btn {
+        .exit-trigger {
             position: absolute;
-            top: 1.5rem; right: 1.5rem;
-            background: none;
+            top: 1.2rem; right: 1.2rem;
+            background: var(--border-color);
             border: none;
             color: var(--text-muted);
-            font-size: 1.5rem;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
         }
 
-        .close-btn:hover {
-            color: #ff7b72;
+        .exit-trigger:hover {
+            background: #ff7b72;
+            color: #fff;
         }
 
-        .modal-title {
-            font-size: 1.8rem;
+        .panel-header {
+            font-size: 1.4rem;
+            font-weight: 700;
             color: #fff;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Timeline inside popup */
-        .timeline { padding-left: 1rem; border-left: 2px solid var(--border-color); }
-        .timeline-item { margin-bottom: 1.5rem; position: relative;}
-        .timeline-date { color: var(--accent-color); font-size: 0.85rem; font-weight: bold; }
-        .timeline-item h4 { color: #fff; margin: 0.2rem 0; }
+        .panel-body {
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
 
-        /* Grid inside popup */
-        .popup-grid { display: flex; flex-direction: column; gap: 1rem; }
-        .popup-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 1rem; border-radius: 6px; }
-        .popup-card h4 { color: #fff; margin-bottom: 0.3rem; }
+        /* Timeline Components */
+        .stack-timeline { padding-left: 0.5rem; border-left: 2px solid var(--border-color); margin-top: 0.5rem; }
+        .stack-node { position: relative; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .stack-node::before {
+            content: ""; position: absolute; left: -21px; top: 6px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--bg-color); border: 2px solid var(--accent-color);
+        }
+        .stack-time { font-size: 0.8rem; font-weight: 700; color: var(--accent-color); }
+        .stack-node h4 { color: #fff; font-size: 1rem; margin: 2px 0; }
 
-        /* External Link Tabs Setup */
-        .links-deck { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .link-tab {
+        /* Block Cards */
+        .info-block {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+        .info-block h4 { color: #fff; margin-bottom: 4px; font-size: 1rem; }
+
+        /* Link System Deck */
+        .gateway-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+        .gateway-tab {
             display: flex; align-items: center; justify-content: space-between;
             background: rgba(255,255,255,0.03); border: 1px solid var(--border-color);
             padding: 1rem; border-radius: 8px; text-decoration: none; color: #fff; font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease; font-size: 0.9rem;
         }
-        .link-tab:hover { border-color: var(--accent-color); background: rgba(88,166,255,0.05); }
+        .gateway-tab:hover { border-color: var(--accent-color); background: rgba(88,166,255,0.05); }
 
-        /* General Footer inside screen view */
-        .footer-note {
-            position: fixed; bottom: 1.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center; width: 100%;
+        /* Fixed Background Footer tracking details */
+        .sub-coord {
+            position: fixed; bottom: 1.2rem; font-size: 0.75rem; color: var(--text-muted);
+            text-align: center; width: 100%; letter-spacing: 0.5px;
         }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            nav ul { display: none; }
-            .links-deck { grid-template-columns: 1fr; }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(88, 166, 255, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(88, 166, 255, 0); }
+        }
+
+        /* DESIGN ADAPTATIONS FOR MOBILES & TABLETS */
+        @media (max-width: 640px) {
+            nav ul, .node-key { display: none; }
+            .dash-layout { grid-template-columns: 1fr; width: 90%; }
+            .gateway-grid { grid-template-columns: 1fr; }
+            .panel-box { padding: 1.5rem; }
+            .action-node { padding: 1rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">Terminal Joint</div>
+        <div class="logo">Terminal<span>Joint</span></div>
         <ul>
-            <li><button onclick="openModal('about-modal')">About Lab</button></li>
-            <li><button onclick="openModal('journey-modal')">Journey</button></li>
-            <li><button onclick="openModal('domains-modal')">Domains</button></li>
-            <li><button onclick="openModal('links-modal')">Ecosystem Links</button></li>
+            <li><button onclick="openPanel('panel-about')">Lab Profile</button></li>
+            <li><button onclick="openPanel('panel-timeline')">Milestones</button></li>
+            <li><button onclick="openPanel('panel-domains')">Active Domains</button></li>
+            <li><button onclick="openPanel('panel-network')">Network Index</button></li>
         </ul>
     </nav>
 
-    <div class="hero-core">
-        <span class="badge">B.Tech CSE (Cyber Security) · Amrita University</span>
-        <h1>Hi there 👋<br>I am <span>Murugan Santhosh</span></h1>
-        <p class="tagline">Welcome to Terminal Joint, an experimental digital workshop focused on indie game development, localization workflows, and open-source ecosystems (2026-2030).</p>
+    <div class="landing-container">
+        <div class="status-pill">
+            <div class="status-indicator"></div>
+            <span>B.Tech CSE (Cyber Security) · 1st Year</span>
+        </div>
+        <h1>Hi, I am <span>Santhosh</span></h1>
         
-        <div class="dash-menu">
-            <button class="dash-btn" onclick="openModal('about-modal')">📁 The Lab Concept</button>
-            <button class="dash-btn" onclick="openModal('journey-modal')">⏳ Timeline Record</button>
-            <button class="dash-btn" onclick="openModal('domains-modal')">⚔️ Active Domains</button>
-            <button class="dash-btn" onclick="openModal('links-modal')">🔗 Network Links</button>
+        <div class="dynamic-intro" id="typed-output"></div>
+
+        <div class="dash-layout">
+            <button class="action-node" onclick="openPanel('panel-about')">
+                <span>📁 Lab Concept</span> <span class="node-key">1</span>
+            </button>
+            <button class="action-node" onclick="openPanel('panel-timeline')">
+                <span>⏳ Track Record</span> <span class="node-key">2</span>
+            </button>
+            <button class="action-node" onclick="openPanel('panel-domains')">
+                <span>⚔️ Core Focus</span> <span class="node-key">3</span>
+            </button>
+            <button class="action-node" onclick="openPanel('panel-network')">
+                <span>🔗 Connect Hub</span> <span class="node-key">4</span>
+            </button>
         </div>
     </div>
 
-    <div id="about-modal" class="modal-panel" onclick="closeModal(event, 'about-modal')">
-        <div class="modal-content">
-            <button class="close-btn" onclick="document.getElementById('about-modal').classList.remove('active')">×</button>
-            <h3 class="modal-title">The Lab Concept</h3>
-            <p><strong>Terminal Joint</strong> is a person-based online open-source lab founded and maintained by Murugan Santhosh (@terminaljoint).</p>
-            <p style="margin-top: 1rem;">Operating as an experimental digital workshop, the lab serves as a centralized hub for independent game development, regional tech accessibility tools, and native-language localization workflows.</p>
-            <p style="margin-top: 1rem;">Built on the core philosophy of open collaboration, Terminal Joint provides a completely open-to-work ecosystem where global developers, translators, and creators can contribute to public repositories.</p>
+    <div id="panel-about" class="panel-overlay" onclick="closePanelOutside(event, 'panel-about')">
+        <div class="panel-box">
+            <button class="exit-trigger" onclick="document.getElementById('panel-about').classList.remove('active')">×</button>
+            <div class="panel-header">📁 Terminal Joint Core</div>
+            <div class="panel-body">
+                <p>A person-based online open-source lab founded and maintained by <strong>Murugan Santhosh (@terminaljoint)</strong>.</p>
+                <p style="margin-top: 1rem;">Operating as an experimental digital workshop, the lab serves as a centralized node for independent game development, regional tech accessibility tools, and native-language localization setups.</p>
+                <p style="margin-top: 1rem;">Built on open collaboration, Terminal Joint provides an ecosystem where global developers and creators can contribute directly to public repositories.</p>
+            </div>
         </div>
     </div>
 
-    <div id="journey-modal" class="modal-panel" onclick="closeModal(event, 'journey-modal')">
-        <div class="modal-content">
-            <button class="close-btn" onclick="document.getElementById('journey-modal').classList.remove('active')">×</button>
-            <h3 class="modal-title">Timeline & Milestones</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="timeline-date">Sep 2025</span>
-                    <h4>Brand Conception</h4>
-                    <p>Self-taught coding basics and established Terminal Joint as a solo project for web hosting and game prototyping.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">Jan 2026</span>
-                    <h4>GDevelop Localization</h4>
-                    <p>Began translating the open-source GDevelop engine into Tamil using the Crowdin infrastructure.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">Mar 2026</span>
-                    <h4>Official Python Translation & PyTamil</h4>
-                    <p>Created and currently maintain the official GitHub repo for Python documentation in Tamil. Founded the PyTamil community hub on Discord.</p>
+    <div id="panel-timeline" class="panel-overlay" onclick="closePanelOutside(event, 'panel-timeline')">
+        <div class="panel-box">
+            <button class="exit-trigger" onclick="document.getElementById('panel-timeline').classList.remove('active')">×</button>
+            <div class="panel-header">⏳ Timeline History</div>
+            <div class="panel-body">
+                <div class="stack-timeline">
+                    <div class="stack-node">
+                        <span class="stack-time">Sep 2025</span>
+                        <h4>Brand Framework Genesis</h4>
+                        <p>Self-taught initial programming configurations and launched Terminal Joint solo for game prototyping and custom web hosting platforms.</p>
+                    </div>
+                    <div class="stack-node">
+                        <span class="stack-time">Jan 2026</span>
+                        <h4>Open Source Framework Launch</h4>
+                        <p>Initiated technical localization pathways by localizing the GDevelop engine into Tamil via Crowdin workflows.</p>
+                    </div>
+                    <div class="stack-node">
+                        <span class="stack-time">Mar 2026</span>
+                        <h4>Flagship Architecture Deployment</h4>
+                        <p>Formed the official Python Documentation Tamil Translation repository. Initiated and launched the PyTamil Discord community hub.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="domains-modal" class="modal-panel" onclick="closeModal(event, 'domains-modal')">
-        <div class="modal-content">
-            <button class="close-btn" onclick="document.getElementById('domains-modal').classList.remove('active')">×</button>
-            <h3 class="modal-title">Active Domains</h3>
-            <div class="popup-grid">
-                <div class="popup-card">
-                    <h4>🎮 Game Development</h4>
-                    <p>Currently scripting and processing creative independent games built natively.</p>
+    <div id="panel-domains" class="panel-overlay" onclick="closePanelOutside(event, 'panel-domains')">
+        <div class="panel-box">
+            <button class="exit-trigger" onclick="document.getElementById('panel-domains').classList.remove('active')">×</button>
+            <div class="panel-header">⚔️ Core Ecosystem Modules</div>
+            <div class="panel-body">
+                <div class="info-block">
+                    <h4>🎮 Game Architecture</h4>
+                    <p>Designing, coding, and deploying independent game builds and functional computer architecture prototypes.</p>
                 </div>
-                <div class="popup-card">
-                    <h4>🌐 Regional Accessibility</h4>
-                    <p>Spearheading the localized translation of development documentation to bridge knowledge gaps for native speakers.</p>
+                <div class="info-block">
+                    <h4>🌐 Native Language Localization</h4>
+                    <p>Maintaining codebase nodes like python-docs-ta to deliver modern programming tools directly to native environments.</p>
                 </div>
-                <div class="popup-card">
-                    <h4>👥 Open Collaboration</h4>
-                    <p>Fostering public infrastructure where creators globally can contribute dynamically to live setups.</p>
+                <div class="info-block">
+                    <h4>🔒 Academic Base</h4>
+                    <p>Structuring clean engineering core values inside the B.Tech Computer Science (Cyber Security) program at Amrita University (2026 - 2030).</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="links-modal" class="modal-panel" onclick="closeModal(event, 'links-modal')">
-        <div class="modal-content">
-            <button class="close-btn" onclick="document.getElementById('links-modal').classList.remove('active')">×</button>
-            <h3 class="modal-title">Network Index</h3>
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Direct pathways to live open-source components and profiles.</p>
-            
-            <div class="links-deck">
-                <a href="https://github.com/terminaljoint" target="_blank" class="link-tab">
-                    <span>🐙 GitHub</span><span>→</span>
-                </a>
-                <a href="#" target="_blank" class="link-tab">
-                    <span>💬 Discord</span><span>→</span>
-                </a>
-                <a href="#" target="_blank" class="link-tab">
-                    <span>💼 LinkedIn</span><span>→</span>
-                </a>
-                <a href="https://github.com/terminaljoint/python-docs-ta" target="_blank" class="link-tab">
-                    <span>🐍 PyTamil Repo</span><span>→</span>
-                </a>
+    <div id="panel-network" class="panel-overlay" onclick="closePanelOutside(event, 'panel-network')">
+        <div class="panel-box">
+            <button class="exit-trigger" onclick="document.getElementById('panel-network').classList.remove('active')">×</button>
+            <div class="panel-header">🔗 Gateway Channels</div>
+            <p style="margin-bottom: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">Connect with global nodes and track core live codebases.</p>
+            <div class="gateway-grid">
+                <a href="https://github.com/terminaljoint" target="_blank" class="gateway-tab"><span>🐙 GitHub</span><span>→</span></a>
+                <a href="#" target="_blank" class="gateway-tab"><span>💬 Discord Network</span><span>→</span></a>
+                <a href="#" target="_blank" class="gateway-tab"><span>💼 LinkedIn</span><span>→</span></a>
+                <a href="https://github.com/terminaljoint/python-docs-ta" target="_blank" class="gateway-tab"><span>🐍 PyTamil Repo</span><span>→</span></a>
             </div>
         </div>
     </div>
 
-    <div class="footer-note">
-        Terminal Joint · Jalakandapuram, Salem, TN, India (636501)
+    <div class="sub-coord">
+        Ecosystem Node: Jalakandapuram, Salem, TN, India (636501)
     </div>
 
     <script>
-        // Open target modal panel
-        function openModal(id) {
+        // 1. Dynamic Text Typing Animation Logic
+        const introductoryStrings = [
+            "Welcome to Terminal Joint: An independent open-source lab.",
+            "Building indie game designs and regional localization modules.",
+            "Structuring tech accessibility for native language developers."
+        ];
+        let currentStringIndex = 0;
+        let currentCharIndex = 0;
+        const targetOutputElement = document.getElementById("typed-output");
+
+        function executeTypingEngine() {
+            if (currentCharIndex < introductoryStrings[currentStringIndex].length) {
+                targetOutputElement.textContent += introductoryStrings[currentStringIndex].charAt(currentCharIndex);
+                currentCharIndex++;
+                setTimeout(executeTypingEngine, 25);
+            } else {
+                setTimeout(executeEraseEngine, 2000);
+            }
+        }
+
+        function executeEraseEngine() {
+            if (currentCharIndex > 0) {
+                targetOutputElement.textContent = introductoryStrings[currentStringIndex].substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+                setTimeout(executeEraseEngine, 15);
+            } else {
+                currentStringIndex = (currentStringIndex + 1) % introductoryStrings.length;
+                setTimeout(executeTypingEngine, 300);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => setTimeout(executeTypingEngine, 500));
+
+        // 2. Interactive Panel Control Mechanics
+        function openPanel(id) {
+            // Dismiss any panel currently active first
+            const openActivePanel = document.querySelector('.panel-overlay.active');
+            if (openActivePanel) openActivePanel.classList.remove('active');
+            
             document.getElementById(id).classList.add('active');
         }
 
-        // Close modal when clicking outside the content window area
-        function closeModal(event, id) {
+        function closePanelOutside(event, id) {
             if (event.target === document.getElementById(id)) {
                 document.getElementById(id).classList.remove('active');
             }
         }
 
-        // Keyboard accessibility: Escape key closes active panel
+        // 3. High-Tech Desktop Keyboard Map Navigation Controls
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const activeModal = document.querySelector('.modal-panel.active');
-                if (activeModal) activeModal.classList.remove('active');
+                const openActivePanel = document.querySelector('.panel-overlay.active');
+                if (openActivePanel) openActivePanel.classList.remove('active');
+            }
+            if (['1', '2', '3', '4'].includes(e.key)) {
+                const maps = { '1': 'panel-about', '2': 'panel-timeline', '3': 'panel-domains', '4': 'panel-network' };
+                openPanel(maps[e.key]);
             }
         });
     </script>
