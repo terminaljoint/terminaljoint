@@ -1,5 +1,5 @@
 ## Hi there 👋
-- I am Murugan Santhosh, B.Tech CSE(with CYS) Student at Amrita University Chennai. and this is Terminal Joint, where i present all my projects!
+- I am Murugan Santhosh, B.Tech CSE(with CYS) 1st year (2026 to 2030) Student at Amrita University Chennai. and this is Terminal Joint, where i present all my projects!
 - Terminal Joint is a person-based online open-source lab founded and maintained by Murugan Santhosh (@terminaljoint). Operating as an experimental digital workshop, the lab serves as a centralized hub for independent game development, regional tech accessibility tools, and native-language localization workflows. Built on the core philosophy of open collaboration, Terminal Joint provides a completely open-to-work ecosystem where global developers, translators, and creators can contribute to public repositories and collaborative platforms—headlined by its flagship community project, PyTamil, which is translating the official Python documentation into Tamil.
 - I am from Jalakandapuram, Salem, Tamil Nadu, India (636501).
 - Not More to say..., But;
