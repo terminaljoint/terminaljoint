@@ -3,605 +3,485 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal Joint | Murugan Santhosh</title>
+    <title>Terminal Joint Console</title>
     <style>
         :root {
-            --bg-color: #080c10;
-            --card-bg: #12161f;
-            --accent-color: #58a6ff;
-            --accent-glow: rgba(88, 166, 255, 0.25);
-            --text-color: #c9d1d9;
-            --text-muted: #8b949e;
-            --border-color: #21262d;
-            --modal-overlay: rgba(8, 12, 16, 0.9);
-            --matrix-color: #238636;
+            --bg-color: #0b0b0c;
+            --sidebar-bg: #141416;
+            --canvas-bg: #1a1a1e;
+            --tile-bg: #262629;
+            --tile-hover: #323236;
+            --accent-color: #0a84ff;
+            --accent-soft: rgba(10, 132, 255, 0.15);
+            --text-color: #f5f5f7;
+            --text-muted: #8e8e93;
+            --border-color: #242427;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'SF Pro Display', -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
-            overflow: hidden;
+            display: flex;
             height: 100vh;
+            overflow: hidden;
+        }
+
+        /* App Layout Container */
+        .settings-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Ambient Cyber Grid and Glow */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
-                              linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        /* Top Navigation Header */
-        nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: rgba(18, 22, 31, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 100;
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        nav .logo span {
-            color: var(--accent-color);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.2rem;
-        }
-
-        nav button {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        nav button:hover {
-            color: var(--accent-color);
-        }
-
-        /* Main Center Dashboard View */
-        .landing-container {
             width: 100%;
-            max-width: 900px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            margin-top: 40px;
+            height: 100%;
+        }
+
+        /* Left Side Navigation Panel */
+        .sidebar {
+            width: 320px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            z-index: 5;
+            padding: 2.5rem 1.25rem 1.25rem 1.25rem;
+            overflow-y: auto;
+            flex-shrink: 0;
         }
 
-        /* Interactive Bio Badge Array */
-        .bio-chips {
+        .profile-card {
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            padding: 0.85rem;
+            margin-bottom: 2rem;
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-color), #5e5ce6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 1rem;
-            max-width: 600px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 14px var(--accent-soft);
         }
 
-        .chip {
-            background: rgba(33, 38, 45, 0.6);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 6px;
+        .profile-info h1 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            line-height: 1.3;
+        }
+
+        .profile-info p {
             font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .menu-group-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin: 0 0 0.5rem 0.5rem;
+            font-weight: 600;
+        }
+
+        .menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 1.75rem;
+        }
+
+        .menu-tile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            border: none;
+            width: 100%;
+            padding: 0.75rem 0.85rem;
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 0.95rem;
             font-weight: 500;
-            cursor: default;
-            transition: all 0.2s ease;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .chip:hover {
-            border-color: var(--accent-color);
+        .menu-tile:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        .menu-tile.active {
+            background-color: var(--tile-bg);
+        }
+
+        .tile-icon-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
             color: #fff;
-            background: rgba(88, 166, 255, 0.05);
+            transition: transform 0.2s ease;
         }
 
-        .status-pill {
-            display: inline-flex;
+        .menu-tile:hover .icon-box {
+            transform: scale(1.05);
+        }
+
+        .tile-arrow {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            opacity: 0.5;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-tile:hover .tile-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
+        /* Right Side Content Canvas */
+        .main-canvas {
+            flex: 1;
+            background-color: var(--canvas-bg);
+            padding: 3.5rem 4rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Mobile Header Navigation Back Trigger */
+        .mobile-back-bar {
+            display: none;
             align-items: center;
             gap: 8px;
-            background: rgba(88, 166, 255, 0.08);
+            margin-bottom: 1.75rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
             color: var(--accent-color);
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid rgba(88, 166, 255, 0.2);
-            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .status-indicator {
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-color);
-            animation: pulse 2s infinite;
+        /* Content Option Panels */
+        .view-panel {
+            display: none;
+            max-width: 640px;
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        h1 {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            color: #fff;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 1rem;
+        .view-panel.active {
+            display: block;
+        }
+
+        .panel-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.75rem;
             letter-spacing: -0.5px;
         }
 
-        h1 span {
-            color: var(--accent-color);
-            text-shadow: 0 0 30px var(--accent-glow);
-        }
-
-        /* Quick-Intro Segment on Landing Site */
-        .landing-intro-box {
-            background: rgba(18, 22, 31, 0.5);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.2rem 1.5rem;
-            max-width: 650px;
-            margin-bottom: 2rem;
-            text-align: left;
-            position: relative;
-        }
-
-        .landing-intro-box::before {
-            content: "SYSTEM_INFO";
-            position: absolute;
-            top: -9px; left: 15px;
-            background: var(--bg-color);
-            padding: 0 5px;
-            font-family: monospace;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        .landing-intro-box p {
-            font-size: 0.95rem;
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Auto-Typing Terminal Prompt */
-        .dynamic-intro {
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: var(--matrix-color);
-            min-height: 24px;
-        }
-
-        /* Dashboard Interface Grids */
-        .dash-layout {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .action-node {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: #fff;
-            padding: 1.2rem 1rem;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .action-node:hover, .action-node:active {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.15);
-            transform: translateY(-2px);
-            background: rgba(18, 22, 31, 0.9);
-        }
-
-        .node-key {
-            font-size: 0.7rem;
-            background: var(--border-color);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--text-muted);
-        }
-
-        /* GLASS POPUP PANEL ARCHITECTURE */
-        .panel-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--modal-overlay);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .panel-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .panel-box {
-            background: rgba(18, 22, 31, 0.9);
-            border: 1px solid var(--border-color);
-            width: 92%;
-            max-width: 580px;
-            max-height: 82vh;
+        /* Settings Card Infrastructure */
+        .settings-card {
+            background-color: var(--sidebar-bg);
             border-radius: 14px;
-            padding: 2.2rem;
-            position: relative;
-            overflow-y: auto;
-            transform: scale(0.96) translateY(10px);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .panel-overlay.active .panel-box {
-            transform: scale(1) translateY(0);
-        }
-
-        .exit-trigger {
-            position: absolute;
-            top: 1.2rem; right: 1.2rem;
-            background: var(--border-color);
-            border: none;
-            color: var(--text-muted);
-            width: 28px; height: 28px;
-            border-radius: 50%;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .exit-trigger:hover {
-            background: #ff7b72;
-            color: #fff;
-        }
-
-        .panel-header {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .panel-body {
-            font-size: 0.95rem;
-            color: var(--text-color);
-        }
-
-        /* Timeline Components */
-        .stack-timeline { padding-left: 0.5rem; border-left: 2px solid var(--border-color); margin-top: 0.5rem; }
-        .stack-node { position: relative; padding-left: 1.5rem; margin-bottom: 1.5rem; }
-        .stack-node::before {
-            content: ""; position: absolute; left: -21px; top: 6px;
-            width: 8px; height: 8px; border-radius: 50%;
-            background: var(--bg-color); border: 2px solid var(--accent-color);
-        }
-        .stack-time { font-size: 0.8rem; font-weight: 700; color: var(--accent-color); }
-        .stack-node h4 { color: #fff; font-size: 1rem; margin: 2px 0; }
-
-        /* Block Cards */
-        .info-block {
-            background: rgba(255,255,255,0.02);
+            padding: 1.4rem;
+            margin-bottom: 1.25rem;
             border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .settings-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .settings-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .intro-lead {
+            font-size: 1.05rem !important;
+            color: var(--text-color) !important;
+            line-height: 1.6;
             margin-bottom: 0.8rem;
         }
-        .info-block h4 { color: #fff; margin-bottom: 4px; font-size: 1rem; }
 
-        /* Link System Deck */
-        .gateway-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-        .gateway-tab {
-            display: flex; align-items: center; justify-content: space-between;
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border-color);
-            padding: 1rem; border-radius: 8px; text-decoration: none; color: #fff; font-weight: 600;
-            transition: all 0.2s ease; font-size: 0.9rem;
-        }
-        .gateway-tab:hover { border-color: var(--accent-color); background: rgba(88,166,255,0.05); }
-
-        /* Matrix Rain Canvas Layer */
-        #matrix-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-            opacity: 0.04;
-            pointer-events: none;
+        /* Inline Timeline List Rows */
+        .row-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.1rem 0;
         }
 
-        .sub-coord {
-            position: fixed; bottom: 1.2rem; font-size: 0.75rem; color: var(--text-muted);
-            text-align: center; width: 100%; letter-spacing: 0.5px; z-index: 5;
+        .row-item:first-child {
+            padding-top: 0;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.5); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(88, 166, 255, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(88, 166, 255, 0); }
+        .row-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
-        @media (max-width: 640px) {
-            nav ul, .node-key { display: none; }
-            .dash-layout { grid-template-columns: 1fr; width: 100%; }
-            .gateway-grid { grid-template-columns: 1fr; }
-            .panel-box { padding: 1.5rem; }
+        .row-meta {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* External Access Hub Layout */
+        .link-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.95rem 0.5rem;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            border-radius: 8px;
+        }
+
+        .link-row:last-child {
+            border-bottom: none;
+        }
+
+        .link-row:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+            padding-left: 0.8rem;
+            padding-right: 0.3rem;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HARDWARE ADAPTATIONS FOR SMARTPHONES & TABLETS */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: 100%;
+                border-right: none;
+                padding: 2rem 1.25rem;
+            }
+
+            .main-canvas {
+                position: fixed;
+                top: 0; left: 100%;
+                width: 100%; height: 100%;
+                padding: 1.75rem 1.25rem;
+                transition: left 0.28s cubic-bezier(0.32, 0.94, 0.6, 1);
+                z-index: 20;
+            }
+
+            .main-canvas.mobile-active {
+                left: 0;
+            }
+
+            .mobile-back-bar {
+                display: flex;
+            }
+            
+            .panel-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="matrix-canvas"></canvas>
-
-    <nav>
-        <div class="logo">Terminal<span>Joint</span></div>
-        <ul>
-            <li><button onclick="openPanel('panel-about')">Lab Profile</button></li>
-            <li><button onclick="openPanel('panel-timeline')">Milestones</button></li>
-            <li><button onclick="openPanel('panel-domains')">Active Domains</button></li>
-            <li><button onclick="openPanel('panel-network')">Network Index</button></li>
-        </ul>
-    </nav>
-
-    <div class="landing-container">
-        <div class="status-pill">
-            <div class="status-indicator"></div>
-            <span>B.Tech CSE (Cyber Security) · Amrita University</span>
-        </div>
+    <div class="settings-container">
         
-        <h1>Hi, I am <span>Murugan Santhosh</span></h1>
-
-        <div class="bio-chips">
-            <span class="chip">📍 Salem, TN</span>
-            <span class="chip">🎓 Batch of 2026-2030</span>
-            <span class="chip">🐍 PyTamil Founder</span>
-            <span class="chip">👾 Indie Game Dev</span>
-            <span class="chip">🚀 Self-Taught Coder</span>
-        </div>
-        
-        <div class="landing-intro-box">
-            <p>I am a 1st-year Cybersecurity engineering student running <strong>Terminal Joint</strong>—a solo-founded independent open-source lab and experimental digital workshop.</p>
-            <div class="dynamic-intro" id="typed-output"></div>
-        </div>
-
-        <div class="dash-layout">
-            <button class="action-node" onclick="openPanel('panel-about')">
-                <span>📁 Lab Concept</span> <span class="node-key">1</span>
-            </button>
-            <button class="action-node" onclick="openPanel('panel-timeline')">
-                <span>⏳ Track Record</span> <span class="node-key">2</span>
-            </button>
-            <button class="action-node" onclick="openPanel('panel-domains')">
-                <span>⚔️ Core Focus</span> <span class="node-key">3</span>
-            </button>
-            <button class="action-node" onclick="openPanel('panel-network')">
-                <span>🔗 Connect Hub</span> <span class="node-key">4</span>
-            </button>
-        </div>
-    </div>
-
-    <div id="panel-about" class="panel-overlay" onclick="closePanelOutside(event, 'panel-about')">
-        <div class="panel-box">
-            <button class="exit-trigger" onclick="document.getElementById('panel-about').classList.remove('active')">×</button>
-            <div class="panel-header">📁 Terminal Joint Core</div>
-            <div class="panel-body">
-                <p>A person-based online open-source lab founded and maintained by <strong>Murugan Santhosh (@terminaljoint)</strong>.</p>
-                <p style="margin-top: 1rem;">Operating as an experimental digital workshop, the lab serves as a centralized node for independent game development, regional tech accessibility tools, and native-language localization setups.</p>
-                <p style="margin-top: 1rem;">Built on open collaboration, Terminal Joint provides an ecosystem where global developers and creators can contribute directly to public repositories.</p>
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="avatar">MS</div>
+                <div class="profile-info">
+                    <h1>Murugan Santhosh</h1>
+                    <p>Cyber Security Student</p>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div id="panel-timeline" class="panel-overlay" onclick="closePanelOutside(event, 'panel-timeline')">
-        <div class="panel-box">
-            <button class="exit-trigger" onclick="document.getElementById('panel-timeline').classList.remove('active')">×</button>
-            <div class="panel-header">⏳ Timeline History</div>
-            <div class="panel-body">
-                <div class="stack-timeline">
-                    <div class="stack-node">
-                        <span class="stack-time">Sep 2025</span>
-                        <h4>Brand Framework Genesis (Solo)</h4>
-                        <p>Self-taught initial programming configurations and launched Terminal Joint solo for game prototyping and custom web hosting platforms.</p>
+            <div class="menu-group-label">System Identity</div>
+            <ul class="menu-list">
+                <li>
+                    <button class="menu-tile active" onclick="switchPanel('panel-profile', this)">
+                        <div class="tile-icon-group">
+                            <div class="icon-box" style="background-color: #0a84ff;">👤</div>
+                            <span>Overview</span>
+                        </div>
+                        <span class="tile-arrow">›</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-tile" onclick="switchPanel('panel-milestones', this)">
+                        <div class="tile-icon-group">
+                            <div class="icon-box" style="background-color: #34c759;">⏳</div>
+                            <span>Milestones</span>
+                        </div>
+                        <span class="tile-arrow">›</span>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="menu-group-label">Core Matrix</div>
+            <ul class="menu-list">
+                <li>
+                    <button class="menu-tile" onclick="switchPanel('panel-domains', this)">
+                        <div class="tile-icon-group">
+                            <div class="icon-box" style="background-color: #ff9500;">🛡️</div>
+                            <span>Focus Domains</span>
+                        </div>
+                        <span class="tile-arrow">›</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-tile" onclick="switchPanel('panel-gateways', this)">
+                        <div class="tile-icon-group">
+                            <div class="icon-box" style="background-color: #af52de;">🔗</div>
+                            <span>Connections</span>
+                        </div>
+                        <span class="tile-arrow">›</span>
+                    </button>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-canvas" id="content-canvas">
+            
+            <div class="mobile-back-bar">
+                <button class="back-btn" onclick="exitMobilePanel()">‹ Back</button>
+            </div>
+
+            <div id="panel-profile" class="view-panel active">
+                <h2 class="panel-title">Overview</h2>
+                
+                <div class="settings-card">
+                    <h3>About Me</h3>
+                    <p class="intro-lead">I am a 1st-year B.Tech Cybersecurity engineering student at Amrita University Chennai, graduating class of 2026 – 2030.</p>
+                    <p>Driven by independent software innovation, I founded and maintain <strong>Terminal Joint</strong>—an experimental digital workshop. My workflows focus on autonomous coding architectures, regional language localization, and open-source accessibility pipelines.</p>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Geographic Parameters</h3>
+                    <p>Salem, Tamil Nadu, India (636501)</p>
+                </div>
+            </div>
+
+            <div id="panel-milestones" class="view-panel">
+                <h2 class="panel-title">Milestones</h2>
+                <div class="settings-card">
+                    <div class="row-item">
+                        <div class="row-meta">March 2026</div>
+                        <h3>PyTamil Community Deployment</h3>
+                        <p>Constructed the primary localization framework to map official Python documentation into Tamil. Formed and synchronized the supporting community network pipelines live over Discord channels.</p>
                     </div>
-                    <div class="stack-node">
-                        <span class="stack-time">Jan 2026</span>
-                        <h4>Open Source Framework Launch</h4>
-                        <p>Initiated technical localization pathways by localizing the GDevelop engine into Tamil via Crowdin workflows.</p>
+                    <div class="row-item">
+                        <div class="row-meta">January 2026</div>
+                        <h3>GDevelop Engine Contribution</h3>
+                        <p>Managed code localization modules, successfully adapting the core open-source GDevelop software ecosystem to regional settings via Crowdin engines.</p>
                     </div>
-                    <div class="stack-node">
-                        <span class="stack-time">Mar 2026</span>
-                        <h4>Flagship Architecture Deployment</h4>
-                        <p>Formed the official Python Documentation Tamil Translation repository. Initiated and launched the PyTamil Discord community hub.</p>
+                    <div class="row-item">
+                        <div class="row-meta">September 2025</div>
+                        <h3>Terminal Joint Architecture Launch</h3>
+                        <p>Self-taught introductory computer programming baselines and established the Terminal Joint brand banner to host micro-servers and design prototype pipelines.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div id="panel-domains" class="panel-overlay" onclick="closePanelOutside(event, 'panel-domains')">
-        <div class="panel-box">
-            <button class="exit-trigger" onclick="document.getElementById('panel-domains').classList.remove('active')">×</button>
-            <div class="panel-header">⚔️ Core Ecosystem Modules</div>
-            <div class="panel-body">
-                <div class="info-block">
-                    <h4>🎮 Game Architecture</h4>
-                    <p>Designing, coding, and deploying independent game builds and functional computer architecture prototypes.</p>
+            <div id="panel-domains" class="view-panel">
+                <h2 class="panel-title">Focus Domains</h2>
+                <div class="settings-card">
+                    <h3>Cybersecurity & Engineering</h3>
+                    <p>Acquiring defensive security principles and formatting clean object architectural patterns while progressing through academic tiers at Amrita University.</p>
                 </div>
-                <div class="info-block">
-                    <h4>🌐 Native Language Localization</h4>
-                    <p>Maintaining codebase nodes like python-docs-ta to deliver modern programming tools directly to native environments.</p>
+                <div class="settings-card">
+                    <h3>Technical Localization Systems</h3>
+                    <p>Designing structured regional translation tracks to resolve technical resource accessibility issues for native language developers.</p>
                 </div>
-                <div class="info-block">
-                    <h4>🔒 Academic Base</h4>
-                    <p>Structuring clean engineering core values inside the B.Tech Computer Science (Cyber Security) program at Amrita University (2026 - 2030).</p>
+                <div class="settings-card">
+                    <h3>Game Design</h3>
+                    <p>Prototyping standalone logic architectures and testing interactive game environments.</p>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div id="panel-network" class="panel-overlay" onclick="closePanelOutside(event, 'panel-network')">
-        <div class="panel-box">
-            <button class="exit-trigger" onclick="document.getElementById('panel-network').classList.remove('active')">×</button>
-            <div class="panel-header">🔗 Gateway Channels</div>
-            <p style="margin-bottom: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">Connect with global nodes and track core live codebases.</p>
-            <div class="gateway-grid">
-                <a href="https://github.com/terminaljoint" target="_blank" class="gateway-tab"><span>🐙 GitHub</span><span>→</span></a>
-                <a href="#" target="_blank" class="gateway-tab"><span>💬 Discord Network</span><span>→</span></a>
-                <a href="#" target="_blank" class="gateway-tab"><span>💼 LinkedIn</span><span>→</span></a>
-                <a href="https://github.com/terminaljoint/python-docs-ta" target="_blank" class="gateway-tab"><span>🐍 PyTamil Repo</span><span>→</span></a>
+            <div id="panel-gateways" class="view-panel">
+                <h2 class="panel-title">Connections</h2>
+                <div class="settings-card" style="padding: 0.5rem 1rem;">
+                    <a href="https://github.com/terminaljoint" target="_blank" class="link-row">
+                        <span>🐙 GitHub System</span><span>›</span>
+                    </a>
+                    <a href="#" target="_blank" class="link-row">
+                        <span>💬 Discord Network</span><span>›</span>
+                    </a>
+                    <a href="#" target="_blank" class="link-row">
+                        <span>💼 LinkedIn Profile</span><span>›</span>
+                    </a>
+                    <a href="https://github.com/terminaljoint/python-docs-ta" target="_blank" class="link-row">
+                        <span>🐍 PyTamil Repository</span><span>›</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="sub-coord">
-        Jalakandapuram, Salem, TN, India (636501)
+        </main>
     </div>
 
     <script>
-        // 1. Terminal Typer Output
-        const introLines = [
-            "$ initialize open_source_ecosystem...",
-            "$ executing python-docs-ta synchronization...",
-            "$ tracking live independent game loops..."
-        ];
-        let lineIdx = 0, charIdx = 0;
-        const targetOutput = document.getElementById("typed-output");
+        function switchPanel(panelId, clickTarget) {
+            document.querySelectorAll('.menu-tile').forEach(tile => tile.classList.remove('active'));
+            clickTarget.classList.add('active');
 
-        function type() {
-            if (charIdx < introLines[lineIdx].length) {
-                targetOutput.textContent += introLines[lineIdx].charAt(charIdx);
-                charIdx++;
-                setTimeout(type, 35);
-            } else {
-                setTimeout(erase, 2500);
+            document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+
+            if (window.innerWidth <= 768) {
+                document.getElementById('content-canvas').classList.add('mobile-active');
             }
         }
 
-        function erase() {
-            if (charIdx > 0) {
-                targetOutput.textContent = introLines[lineIdx].substring(0, charIdx - 1);
-                charIdx--;
-                setTimeout(erase, 15);
-            } else {
-                lineIdx = (lineIdx + 1) % introLines.length;
-                setTimeout(type, 400);
-            }
+        function exitMobilePanel() {
+            document.getElementById('content-canvas').classList.remove('mobile-active');
         }
-        document.addEventListener("DOMContentLoaded", () => setTimeout(type, 400));
-
-        // 2. Interactive Panel Control Mechanics
-        function openPanel(id) {
-            const openActivePanel = document.querySelector('.panel-overlay.active');
-            if (openActivePanel) openActivePanel.classList.remove('active');
-            document.getElementById(id).classList.add('active');
-        }
-
-        function closePanelOutside(event, id) {
-            if (event.target === document.getElementById(id)) {
-                document.getElementById(id).classList.remove('active');
-            }
-        }
-
-        // Keyboard Shortcut Engine
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const openActivePanel = document.querySelector('.panel-overlay.active');
-                if (openActivePanel) openActivePanel.classList.remove('active');
-            }
-            if (['1', '2', '3', '4'].includes(e.key)) {
-                const maps = { '1': 'panel-about', '2': 'panel-timeline', '3': 'panel-domains', '4': 'panel-network' };
-                openPanel(maps[e.key]);
-            }
-        });
-
-        // 3. Ambient Matrix Rain Tech Feature
-        const canvas = document.getElementById('matrix-canvas');
-        const ctx = canvas.getContext('2d');
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const alphabet = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        const rainDrops = Array(Math.floor(columns)).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(8, 12, 16, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#58a6ff';
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < rainDrops.length; i++) {
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
-                }
-                rainDrops[i]++;
-            }
-        }
-        setInterval(drawMatrix, 40);
     </script>
 </body>
 </html>
