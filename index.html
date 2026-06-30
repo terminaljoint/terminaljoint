@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murugan Santhosh</title>
+    <title>Terminal Joint | Murugan Santhosh</title>
     <style>
         :root {
             --bg-color: #0d1117;
@@ -13,6 +13,7 @@
             --text-muted: #8b949e;
             --border-color: #30363d;
             --glow-color: rgba(88, 166, 255, 0.2);
+            --link-hover: #1f6feb;
         }
 
         * {
@@ -248,7 +249,51 @@
             margin-bottom: 1rem;
         }
 
-        /* Info Footer Footer */
+        /* Links & Connections Tab Deck */
+        .links-deck {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .link-tab {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .link-tab span.icon {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .link-tab:hover {
+            background: rgba(88, 166, 255, 0.05);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .link-tab .arrow {
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .link-tab:hover .arrow {
+            color: var(--accent-color);
+            transform: translateX(3px);
+        }
+
+        /* Info Footer */
         footer {
             background: #090d13;
             padding: 3rem 0;
@@ -273,6 +318,7 @@
             <li><a href="#about">About Lab</a></li>
             <li><a href="#journey">Journey</a></li>
             <li><a href="#projects">Focus Areas</a></li>
+            <li><a href="#links">Links</a></li>
         </ul>
     </nav>
 
@@ -284,7 +330,7 @@
             <p class="hero-tagline">
                 Pursuing my degree at Amrita University Chennai (2026 - 2030). Welcome to <strong>Terminal Joint</strong>, the centralized ecosystem where I build projects, scale regional accessibility tools, and shape open-source ecosystems.
             </p>
-            <a href="#about" class="btn">Explore the Lab</a>
+            <a href="#links" class="btn">View Matrix Links</a>
         </section>
 
         <section id="about">
@@ -360,6 +406,41 @@
             </div>
         </section>
 
+        <section id="links">
+            <h2 class="section-title">Connect & Ecosystem</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Access public hubs, active repositories, and professional nodes across the web.</p>
+            
+            <div class="links-deck">
+                <a href="https://github.com/terminaljoint" target="_blank" class="link-tab">
+                    <div>
+                        <span class="icon">🐙</span> &nbsp; GitHub Profile
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="#" target="_blank" class="link-tab">
+                    <div>
+                        <span class="icon">💬</span> &nbsp; Discord Hub
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="#" target="_blank" class="link-tab">
+                    <div>
+                        <span class="icon">💼</span> &nbsp; LinkedIn
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="https://github.com/terminaljoint/python-docs-ta" target="_blank" class="link-tab">
+                    <div>
+                        <span class="icon">🐍</span> &nbsp; PyTamil Repo
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
     </div>
 
     <footer>
@@ -368,6 +449,6 @@
             <p style="margin-top: 0.5rem; font-size: 0.8rem;">Jalakandapuram, Salem, Tamil Nadu, India (636501)</p>
         </div>
     </footer>
- 
+
 </body>
 </html>
