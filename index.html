@@ -1,121 +1,372 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murugan Santhosh | Personal Blog</title>
+    <title>Terminal Joint | Murugan Santhosh</title>
     <style>
-        /* Simple, clean developer aesthetic */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --accent-color: #58a6ff;
+            --text-color: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+            --glow-color: rgba(88, 166, 255, 0.2);
         }
 
-        header {
-            text-align: center;
-            padding: 40px 0;
-            border-bottom: 2px solid #eaeaea;
-        }
-
-        header h1 {
+        * {
+            box-sizing: border-box;
             margin: 0;
-            color: #111;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        header p {
-            color: #666;
-            font-style: italic;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .about-section {
-            margin: 40px 0;
-            padding: 20px;
-            background: #fff;
+        /* Premium Background Grid Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Container & Section Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 100px 0 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px; left: 0; width: 40px; height: 3px;
+            background: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .badge {
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 span {
+            color: var(--accent-color);
+            text-shadow: 0 0 20px var(--glow-color);
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px var(--glow-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 166, 255, 0.4);
+        }
+
+        /* Lab Concept Card */
+        .lab-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .blog-posts {
-            margin-top: 40px;
+        .lab-card::before {
+            content: "LAB";
+            position: absolute;
+            right: -20px; bottom: -25px;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
         }
 
-        .post {
-            background: #fff;
-            padding: 25px;
-            margin-bottom: 25px;
+        /* Timeline / Journey */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 5px; top: 0; width: 2px; height: 100%;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -31px; top: 8px; width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-content h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Grid Feature Boxes */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
-        .post-title {
-            margin-top: 0;
-            color: #0066cc;
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
         }
 
-        .post-meta {
-            font-size: 0.85em;
-            color: #888;
-            margin-bottom: 15px;
+        .card-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
         }
 
+        /* Info Footer Footer */
         footer {
+            background: #090d13;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
             text-align: center;
-            margin-top: 60px;
-            padding: 20px 0;
-            color: #888;
-            border-top: 1px solid #eaeaea;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Murugan Santhosh</h1>
-        <p>Creator & Maintainer of PyTamil | Open Source Enthusiast</p>
-    </header>
+    <nav>
+        <div class="logo">Terminal Joint</div>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Lab</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#projects">Focus Areas</a></li>
+        </ul>
+    </nav>
 
-    <section class="about-section">
-        <h2>About Me</h2>
-        <p>
-            Vanakkam! I am Murugan Santhosh. I love Python, open-source development, and localization. 
-            I founded PyTamil to bridge the gap between technology and the Tamil language, leading the effort 
-            to translate the official Python documentation. This is my personal space where I share my stories, 
-            technical challenges, and life experiences.
-        </p>
-    </section>
-
-    <main class="blog-posts">
-        <h2>My Stories</h2>
-
-        <article class="post">
-            <h3 class="post-title">The Spark Behind PyTamil</h3>
-            <div class="post-meta">Published on: June 2, 2026</div>
-            <p>
-                Every project starts with a single problem. For me, it was realizing how many incredible 
-                minds miss out on learning Python simply because the core documentation is entirely in English. 
-                I wanted to change that. In this story, I share the exact night I decided to create the 
-                PyTamil repository and the initial hurdles of setting up the workflow...
+    <div class="container">
+        
+        <section id="hero">
+            <span class="badge">B.Tech CSE (Cyber Security) · 1st Year</span>
+            <h1>Hi there 👋<br>I am <span>Murugan Santhosh</span></h1>
+            <p class="hero-tagline">
+                Pursuing my degree at Amrita University Chennai (2026 - 2030). Welcome to <strong>Terminal Joint</strong>, the centralized ecosystem where I build projects, scale regional accessibility tools, and shape open-source ecosystems.
             </p>
-        </article>
+            <a href="#about" class="btn">Explore the Lab</a>
+        </section>
 
-        <article class="post">
-            <h3 class="post-title">Lessons Learned as an Open Source Maintainer</h3>
-            <div class="post-meta">Published on: May 15, 2026</div>
-            <p>
-                Managing a growing open-source community isn't just about reviewing Pull Requests. 
-                It's about communication, building a shared vision, and organizing technical terminology. 
-                Here are three key lessons I've learned while coordinating the Tamil translation project...
-            </p>
-        </article>
-    </main>
+        <section id="about">
+            <h2 class="section-title">The Lab Concept</h2>
+            <div class="lab-card">
+                <p>
+                    <strong>Terminal Joint</strong> is a person-based online open-source lab founded as an experimental digital workshop. Built on the core philosophy of open collaboration, it operates as a completely open-to-work ecosystem where global developers, translators, and creators can contribute to public repositories.
+                </p>
+            </div>
+        </section>
+
+        <section id="journey">
+            <h2 class="section-title">Timeline & Milestones</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">September 2025</div>
+                    <div class="timeline-content">
+                        <h3>Brand Conception</h3>
+                        <p>Self-taught coding skills and launched <strong>Terminal Joint</strong> as a solo brand designed for web hosting and independent game development.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">January 2026</div>
+                    <div class="timeline-content">
+                        <h3>Open Source Genesis</h3>
+                        <p>Kicked off open-source localization contributions by translating the <strong>GDevelop engine</strong> into Tamil using Crowdin.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">March 2026</div>
+                    <div class="timeline-content">
+                        <h3>PyTamil Community & Python Docs</h3>
+                        <p>Created and currently maintain the official repository for translating the <strong>Python documentation into Tamil</strong>. Simultaneously established the <strong>PyTamil Community</strong> on Discord to synchronize localized translation efforts.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Mid 2026 (Current)</div>
+                    <div class="timeline-content">
+                        <h3>Academia & Expansion</h3>
+                        <p>Enrolled as a First-Year CSE (Cyber Security) engineering student at Amrita University Chennai while continuing active indie game development pipelines.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Active Domains</h2>
+            <div class="grid">
+                
+                <div class="card">
+                    <div class="card-icon">🎮</div>
+                    <h3>Game Development</h3>
+                    <p>Building creative pipelines and prototypes for independent game designs hosted under the digital workshop banner.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Regional Accessibility</h3>
+                    <p>Breaking down complex tech barriers via Python localization tools, documentation mappings, and custom structural codebases.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>Open Collaboration</h3>
+                    <p>Providing an open-to-work playground for engineers, developers, and localizers to interact seamlessly over decentralized networks.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
 
     <footer>
-        <p>© 2026 Murugan Santhosh. Built with pure HTML & CSS.</p>
+        <div class="container">
+            <p>© 2026 Terminal Joint · Crafted by Murugan Santhosh (@terminaljoint)</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Jalakandapuram, Salem, Tamil Nadu, India (636501)</p>
+        </div>
     </footer>
 
 </body>
