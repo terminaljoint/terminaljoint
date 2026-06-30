@@ -13,7 +13,7 @@
             --text-muted: #8b949e;
             --border-color: #30363d;
             --glow-color: rgba(88, 166, 255, 0.2);
-            --link-hover: #1f6feb;
+            --modal-overlay: rgba(13, 17, 23, 0.85);
         }
 
         * {
@@ -27,10 +27,14 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow: hidden; /* Prevents background scrolling */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Premium Background Grid Effect */
+        /* Cyber Grid Background */
         body::before {
             content: "";
             position: fixed;
@@ -42,10 +46,10 @@
             z-index: -1;
         }
 
-        /* Navigation */
+        /* Header Navigation */
         nav {
             position: fixed;
-            top: 0; width: 100%;
+            top: 0; left: 0; width: 100%;
             background: rgba(22, 27, 34, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
@@ -70,62 +74,36 @@
             gap: 1.5rem;
         }
 
-        nav a {
+        nav button {
+            background: none;
+            border: none;
             color: var(--text-color);
-            text-decoration: none;
             font-size: 0.9rem;
+            cursor: pointer;
             transition: color 0.3s;
         }
 
-        nav a:hover {
+        nav button:hover {
             color: var(--accent-color);
         }
 
-        /* Container & Section Layout */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 100px 0 60px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #fff;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -5px; left: 0; width: 40px; height: 3px;
-            background: var(--accent-color);
-            box-shadow: 0 0 10px var(--accent-color);
-        }
-
-        /* Hero Section */
-        #hero {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+        /* Hero / Main Display Core */
+        .hero-core {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            margin-top: 60px;
         }
 
         .badge {
+            display: inline-block;
             background: rgba(88, 166, 255, 0.1);
             color: var(--accent-color);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.85rem;
             border: 1px solid rgba(88, 166, 255, 0.3);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         h1 {
@@ -140,172 +118,132 @@
             text-shadow: 0 0 20px var(--glow-color);
         }
 
-        .hero-tagline {
-            font-size: 1.2rem;
+        .tagline {
+            font-size: 1.1rem;
             color: var(--text-muted);
-            max-width: 700px;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--accent-color);
-            color: var(--bg-color);
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px var(--glow-color);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(88, 166, 255, 0.4);
-        }
-
-        /* Lab Concept Card */
-        .lab-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .lab-card::before {
-            content: "LAB";
-            position: absolute;
-            right: -20px; bottom: -25px;
-            font-size: 8rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.02);
-        }
-
-        /* Timeline / Journey */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 5px; top: 0; width: 2px; height: 100%;
-            background: var(--border-color);
-        }
-
-        .timeline-item {
-            position: relative;
             margin-bottom: 2.5rem;
         }
 
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -31px; top: 8px; width: 10px; height: 10px;
-            border-radius: 50%;
-            background: var(--bg-color);
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 8px var(--accent-color);
-        }
-
-        .timeline-date {
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-content h3 {
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Grid Feature Boxes */
-        .grid {
+        /* Dashboard Interface Buttons */
+        .dash-menu {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .card {
+        .dash-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-        }
-
-        .card-icon {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        /* Links & Connections Tab Deck */
-        .links-deck {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1rem;
-        }
-
-        .link-tab {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
             color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .link-tab span.icon {
-            font-size: 1.3rem;
-            color: var(--accent-color);
-        }
-
-        .link-tab:hover {
-            background: rgba(88, 166, 255, 0.05);
+        .dash-btn:hover {
             border-color: var(--accent-color);
             box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
-        .link-tab .arrow {
+        /* POPUP MODAL PANELS */
+        .modal-panel {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--modal-overlay);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Show Class controlled via JS */
+        .modal-panel.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 650px;
+            max-height: 80vh;
+            border-radius: 12px;
+            padding: 2.5rem;
+            position: relative;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-panel.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: none;
+            border: none;
             color: var(--text-muted);
-            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
         }
 
-        .link-tab:hover .arrow {
-            color: var(--accent-color);
-            transform: translateX(3px);
+        .close-btn:hover {
+            color: #ff7b72;
         }
 
-        /* Info Footer */
-        footer {
-            background: #090d13;
-            padding: 3rem 0;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-align: center;
+        .modal-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
+        /* Timeline inside popup */
+        .timeline { padding-left: 1rem; border-left: 2px solid var(--border-color); }
+        .timeline-item { margin-bottom: 1.5rem; position: relative;}
+        .timeline-date { color: var(--accent-color); font-size: 0.85rem; font-weight: bold; }
+        .timeline-item h4 { color: #fff; margin: 0.2rem 0; }
+
+        /* Grid inside popup */
+        .popup-grid { display: flex; flex-direction: column; gap: 1rem; }
+        .popup-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 1rem; border-radius: 6px; }
+        .popup-card h4 { color: #fff; margin-bottom: 0.3rem; }
+
+        /* External Link Tabs Setup */
+        .links-deck { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .link-tab {
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-color);
+            padding: 1rem; border-radius: 8px; text-decoration: none; color: #fff; font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .link-tab:hover { border-color: var(--accent-color); background: rgba(88,166,255,0.05); }
+
+        /* General Footer inside screen view */
+        .footer-note {
+            position: fixed; bottom: 1.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center; width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
             nav ul { display: none; }
+            .links-deck { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -314,141 +252,128 @@
     <nav>
         <div class="logo">Terminal Joint</div>
         <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About Lab</a></li>
-            <li><a href="#journey">Journey</a></li>
-            <li><a href="#projects">Focus Areas</a></li>
-            <li><a href="#links">Links</a></li>
+            <li><button onclick="openModal('about-modal')">About Lab</button></li>
+            <li><button onclick="openModal('journey-modal')">Journey</button></li>
+            <li><button onclick="openModal('domains-modal')">Domains</button></li>
+            <li><button onclick="openModal('links-modal')">Ecosystem Links</button></li>
         </ul>
     </nav>
 
-    <div class="container">
+    <div class="hero-core">
+        <span class="badge">B.Tech CSE (Cyber Security) · Amrita University</span>
+        <h1>Hi there 👋<br>I am <span>Murugan Santhosh</span></h1>
+        <p class="tagline">Welcome to Terminal Joint, an experimental digital workshop focused on indie game development, localization workflows, and open-source ecosystems (2026-2030).</p>
         
-        <section id="hero">
-            <span class="badge">B.Tech CSE (Cyber Security) · 1st Year</span>
-            <h1>Hi there 👋<br>I am <span>Murugan Santhosh</span></h1>
-            <p class="hero-tagline">
-                Pursuing my degree at Amrita University Chennai (2026 - 2030). Welcome to <strong>Terminal Joint</strong>, the centralized ecosystem where I build projects, scale regional accessibility tools, and shape open-source ecosystems.
-            </p>
-            <a href="#links" class="btn">View Matrix Links</a>
-        </section>
+        <div class="dash-menu">
+            <button class="dash-btn" onclick="openModal('about-modal')">📁 The Lab Concept</button>
+            <button class="dash-btn" onclick="openModal('journey-modal')">⏳ Timeline Record</button>
+            <button class="dash-btn" onclick="openModal('domains-modal')">⚔️ Active Domains</button>
+            <button class="dash-btn" onclick="openModal('links-modal')">🔗 Network Links</button>
+        </div>
+    </div>
 
-        <section id="about">
-            <h2 class="section-title">The Lab Concept</h2>
-            <div class="lab-card">
-                <p>
-                    <strong>Terminal Joint</strong> is a person-based online open-source lab founded as an experimental digital workshop. Built on the core philosophy of open collaboration, it operates as a completely open-to-work ecosystem where global developers, translators, and creators can contribute to public repositories.
-                </p>
-            </div>
-        </section>
+    <div id="about-modal" class="modal-panel" onclick="closeModal(event, 'about-modal')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('about-modal').classList.remove('active')">×</button>
+            <h3 class="modal-title">The Lab Concept</h3>
+            <p><strong>Terminal Joint</strong> is a person-based online open-source lab founded and maintained by Murugan Santhosh (@terminaljoint).</p>
+            <p style="margin-top: 1rem;">Operating as an experimental digital workshop, the lab serves as a centralized hub for independent game development, regional tech accessibility tools, and native-language localization workflows.</p>
+            <p style="margin-top: 1rem;">Built on the core philosophy of open collaboration, Terminal Joint provides a completely open-to-work ecosystem where global developers, translators, and creators can contribute to public repositories.</p>
+        </div>
+    </div>
 
-        <section id="journey">
-            <h2 class="section-title">Timeline & Milestones</h2>
+    <div id="journey-modal" class="modal-panel" onclick="closeModal(event, 'journey-modal')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('journey-modal').classList.remove('active')">×</button>
+            <h3 class="modal-title">Timeline & Milestones</h3>
             <div class="timeline">
-                
                 <div class="timeline-item">
-                    <div class="timeline-date">September 2025</div>
-                    <div class="timeline-content">
-                        <h3>Brand Conception</h3>
-                        <p>Self-taught coding skills and launched <strong>Terminal Joint</strong> as a solo brand designed for web hosting and independent game development.</p>
-                    </div>
+                    <span class="timeline-date">Sep 2025</span>
+                    <h4>Brand Conception</h4>
+                    <p>Self-taught coding basics and established Terminal Joint as a solo project for web hosting and game prototyping.</p>
                 </div>
-
                 <div class="timeline-item">
-                    <div class="timeline-date">January 2026</div>
-                    <div class="timeline-content">
-                        <h3>Open Source Genesis</h3>
-                        <p>Kicked off open-source localization contributions by translating the <strong>GDevelop engine</strong> into Tamil using Crowdin.</p>
-                    </div>
+                    <span class="timeline-date">Jan 2026</span>
+                    <h4>GDevelop Localization</h4>
+                    <p>Began translating the open-source GDevelop engine into Tamil using the Crowdin infrastructure.</p>
                 </div>
-
                 <div class="timeline-item">
-                    <div class="timeline-date">March 2026</div>
-                    <div class="timeline-content">
-                        <h3>PyTamil Community & Python Docs</h3>
-                        <p>Created and currently maintain the official repository for translating the <strong>Python documentation into Tamil</strong>. Simultaneously established the <strong>PyTamil Community</strong> on Discord to synchronize localized translation efforts.</p>
-                    </div>
+                    <span class="timeline-date">Mar 2026</span>
+                    <h4>Official Python Translation & PyTamil</h4>
+                    <p>Created and currently maintain the official GitHub repo for Python documentation in Tamil. Founded the PyTamil community hub on Discord.</p>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">Mid 2026 (Current)</div>
-                    <div class="timeline-content">
-                        <h3>Academia & Expansion</h3>
-                        <p>Enrolled as a First-Year CSE (Cyber Security) engineering student at Amrita University Chennai while continuing active indie game development pipelines.</p>
-                    </div>
-                </div>
-
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section id="projects">
-            <h2 class="section-title">Active Domains</h2>
-            <div class="grid">
-                
-                <div class="card">
-                    <div class="card-icon">🎮</div>
-                    <h3>Game Development</h3>
-                    <p>Building creative pipelines and prototypes for independent game designs hosted under the digital workshop banner.</p>
+    <div id="domains-modal" class="modal-panel" onclick="closeModal(event, 'domains-modal')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('domains-modal').classList.remove('active')">×</button>
+            <h3 class="modal-title">Active Domains</h3>
+            <div class="popup-grid">
+                <div class="popup-card">
+                    <h4>🎮 Game Development</h4>
+                    <p>Currently scripting and processing creative independent games built natively.</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-icon">🌐</div>
-                    <h3>Regional Accessibility</h3>
-                    <p>Breaking down complex tech barriers via Python localization tools, documentation mappings, and custom structural codebases.</p>
+                <div class="popup-card">
+                    <h4>🌐 Regional Accessibility</h4>
+                    <p>Spearheading the localized translation of development documentation to bridge knowledge gaps for native speakers.</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-icon">👥</div>
-                    <h3>Open Collaboration</h3>
-                    <p>Providing an open-to-work playground for engineers, developers, and localizers to interact seamlessly over decentralized networks.</p>
+                <div class="popup-card">
+                    <h4>👥 Open Collaboration</h4>
+                    <p>Fostering public infrastructure where creators globally can contribute dynamically to live setups.</p>
                 </div>
-
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section id="links">
-            <h2 class="section-title">Connect & Ecosystem</h2>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Access public hubs, active repositories, and professional nodes across the web.</p>
+    <div id="links-modal" class="modal-panel" onclick="closeModal(event, 'links-modal')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('links-modal').classList.remove('active')">×</button>
+            <h3 class="modal-title">Network Index</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Direct pathways to live open-source components and profiles.</p>
             
             <div class="links-deck">
                 <a href="https://github.com/terminaljoint" target="_blank" class="link-tab">
-                    <div>
-                        <span class="icon">🐙</span> &nbsp; GitHub Profile
-                    </div>
-                    <span class="arrow">→</span>
+                    <span>🐙 GitHub</span><span>→</span>
                 </a>
-
                 <a href="#" target="_blank" class="link-tab">
-                    <div>
-                        <span class="icon">💬</span> &nbsp; Discord Hub
-                    </div>
-                    <span class="arrow">→</span>
+                    <span>💬 Discord</span><span>→</span>
                 </a>
-
                 <a href="#" target="_blank" class="link-tab">
-                    <div>
-                        <span class="icon">💼</span> &nbsp; LinkedIn
-                    </div>
-                    <span class="arrow">→</span>
+                    <span>💼 LinkedIn</span><span>→</span>
                 </a>
-
                 <a href="https://github.com/terminaljoint/python-docs-ta" target="_blank" class="link-tab">
-                    <div>
-                        <span class="icon">🐍</span> &nbsp; PyTamil Repo
-                    </div>
-                    <span class="arrow">→</span>
+                    <span>🐍 PyTamil Repo</span><span>→</span>
                 </a>
             </div>
-        </section>
-
+        </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>© 2026 Terminal Joint · Crafted by Murugan Santhosh (@terminaljoint)</p>
-            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Jalakandapuram, Salem, Tamil Nadu, India (636501)</p>
-        </div>
-    </footer>
+    <div class="footer-note">
+        Terminal Joint · Jalakandapuram, Salem, TN, India (636501)
+    </div>
 
+    <script>
+        // Open target modal panel
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        // Close modal when clicking outside the content window area
+        function closeModal(event, id) {
+            if (event.target === document.getElementById(id)) {
+                document.getElementById(id).classList.remove('active');
+            }
+        }
+
+        // Keyboard accessibility: Escape key closes active panel
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeModal = document.querySelector('.modal-panel.active');
+                if (activeModal) activeModal.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
