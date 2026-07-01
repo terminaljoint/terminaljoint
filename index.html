@@ -6,45 +6,96 @@
     <title>Terminal Joint Console</title>
     <style>
         :root {
-            --bg-color: #040508;
-            --surface-card: rgba(15, 18, 28, 0.7);
-            --surface-inner: #111522;
-            --surface-modal: #080a10;
-            --accent-solid: #0084ff;
-            --accent-glow: rgba(0, 132, 255, 0.25);
-            --text-main: #ffffff;
-            --text-secondary: #9097b0;
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(0, 132, 255, 0.4);
+            /* MAIN MODE COLOR SCHEME */
+            --bg-main: #060b19;
+            --bg-gradient: radial-gradient(circle at 50% 0%, #0a1632 0%, #040817 70%, #02040a 100%);
+            --card-color: #ffffff;
+            --text-main: #111625;
+            --text-secondary: #5c6479;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-hover: #0066cc;
             
-            --tag-cyber: #0084ff;
-            --tag-py: #30d158;
-            --tag-domain: #ff9f0a;
+            /* CONVERTED PANEL COLOR SCHEME */
+            --panel-bg: #f4f6fc;
+            --panel-gradient: radial-gradient(circle at 50% 0%, #e6f0ff 0%, #f4f6fc 70%, #ffffff 100%);
+            --panel-card: #0a1124;
+            --panel-text-main: #ffffff;
+            --panel-text-secondary: #8da0c4;
+            --panel-border: rgba(255, 255, 255, 0.1);
+            --panel-border-hover: #54a9ff;
+
+            --tag-cyber: #0066cc;
+            --tag-py: #248a3d;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(0, 132, 255, 0.15) 0%, transparent 60%),
-                radial-gradient(circle at 100% 100%, rgba(48, 209, 88, 0.03) 0%, transparent 40%);
+            background-color: var(--bg-main);
+            background-image: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             overflow-x: hidden;
             overflow-y: auto;
-            padding: 1.5rem 1rem;
+            padding: 2rem 1rem;
             line-height: 1.5;
+            position: relative;
         }
 
+        /* DYNAMIC BACKGROUND MARQUEE ANIMATIONS */
+        .bg-marquee-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            opacity: 0.18; /* High visibility vivid mix balance */
+        }
+
+        .marquee-row {
+            display: flex;
+            white-space: nowrap;
+            font-size: 5.5rem;
+            font-weight: 900;
+            letter-spacing: 10px;
+            color: #ff0033; /* Deep vivid Red */
+            position: absolute;
+            width: 200%;
+            text-transform: uppercase;
+        }
+
+        .marquee-row.track-left {
+            top: 25%;
+            animation: moveLeft 24s linear infinite;
+        }
+
+        .marquee-row.track-right {
+            top: 60%;
+            animation: moveRight 24s linear infinite;
+        }
+
+        @keyframes moveLeft {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes moveRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+
+        /* MAIN CONTENT LAYOUT */
         .app-container {
             width: 100%;
             max-width: 480px;
@@ -52,32 +103,36 @@
             flex-direction: column;
             gap: 1.5rem;
             padding-bottom: 3rem;
+            z-index: 10;
+            position: relative;
             animation: appEntry 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes appEntry {
-            from { opacity: 0; transform: translateY(12px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TECH IDENTITY CARD */
+        /* ALL CARDS SOLID WHITE SHAPE PROFILE */
+        .identity-card, .intro-box, .action-row, .module-tile {
+            background: var(--card-color) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-main) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
         .identity-card {
-            background: var(--surface-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 1.25rem;
+            border-radius: 24px;
+            padding: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 16px;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            gap: 18px;
         }
 
         .avatar-frame {
             position: relative;
-            width: 70px;
-            height: 70px;
+            width: 72px;
+            height: 72px;
             flex-shrink: 0;
         }
 
@@ -86,21 +141,21 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            background: var(--surface-inner);
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .identity-meta h1 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            color: #ffffff;
+            letter-spacing: -0.4px;
         }
 
         .identity-meta p {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             margin-top: 2px;
+            font-weight: 500;
         }
 
         .pill-container {
@@ -111,53 +166,48 @@
         }
 
         .pill {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 6px;
         }
-        .pill.active-cyber { color: var(--tag-cyber); background: rgba(0, 132, 255, 0.08); border: 1px solid rgba(0, 132, 255, 0.15); }
-        .pill.active-py { color: var(--tag-py); background: rgba(48, 209, 88, 0.08); border: 1px solid rgba(48, 209, 88, 0.15); }
+        .pill.active-cyber { color: var(--tag-cyber); background: rgba(0, 102, 204, 0.08); }
+        .pill.active-py { color: var(--tag-py); background: rgba(36, 138, 61, 0.08); }
 
-        /* DASHBOARD INTRO MODULE */
+        /* BRIEF BLOCK */
         .intro-box {
-            background: rgba(0, 132, 255, 0.02);
-            border: 1px dashed rgba(0, 132, 255, 0.2);
-            border-radius: 16px;
-            padding: 1.15rem;
+            border-radius: 20px;
+            padding: 1.25rem;
         }
 
         .intro-box h2 {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-solid);
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            letter-spacing: 0.8px;
+            color: var(--tag-cyber);
+            margin-bottom: 0.5rem;
         }
 
         .intro-box p {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* LABELS */
         .group-label {
-            font-size: 0.68rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
-            color: var(--text-secondary);
-            letter-spacing: 1.5px;
+            color: #ffffff;
+            letter-spacing: 1.2px;
             font-weight: 700;
             margin-left: 4px;
             margin-bottom: 0.65rem;
-            opacity: 0.7;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
         }
 
-        /* GATEWAY ROW ARCHITECTURE */
+        /* GATEWAY ROWS */
         .interactive-list {
             display: flex;
             flex-direction: column;
@@ -168,21 +218,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: var(--text-main);
             text-decoration: none;
             padding: 1.1rem 1.25rem;
-            background: var(--surface-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-subtle);
-            min-height: 68px;
+            border-radius: 18px;
+            min-height: 70px;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .action-row:active {
-            background: var(--surface-inner);
-            border-color: var(--border-hover);
-            transform: scale(0.98);
-            box-shadow: 0 0 16px var(--accent-glow);
+            border-color: var(--border-hover) !important;
+            transform: scale(0.985);
         }
 
         .row-left {
@@ -192,11 +237,11 @@
         }
 
         .brand-logo-frame {
-            width: 34px;
-            height: 34px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #f4f6f9;
+            border: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -216,20 +261,19 @@
         }
 
         .text-stack .row-title {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            color: #ffffff;
         }
 
         .text-stack .row-subtitle {
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             color: var(--text-secondary);
         }
 
         .row-arrow {
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            opacity: 0.3;
+            font-size: 1.2rem;
+            opacity: 0.5;
         }
 
         /* GRID TILES */
@@ -240,9 +284,7 @@
         }
 
         .module-tile {
-            background: var(--surface-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
+            border-radius: 18px;
             padding: 1.25rem 0.25rem;
             display: flex;
             flex-direction: column;
@@ -255,9 +297,7 @@
         }
 
         .module-tile:active {
-            background: var(--surface-inner);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
 
         .tile-graphic {
@@ -271,26 +311,26 @@
         }
 
         .module-tile h2 {
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 600;
-            color: #ffffff;
         }
 
-        /* FULL PAGE MODAL MASK OVERLAYS */
+        /* CONVERTED LIGHT BACKGROUND MODAL PANELS */
         .modal-mask {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--surface-modal);
+            background-color: var(--panel-bg);
+            background-image: var(--panel-gradient);
             z-index: 2000;
             display: flex;
             flex-direction: column;
             opacity: 0;
             pointer-events: none;
             transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
         }
 
         .modal-mask.active {
@@ -299,15 +339,20 @@
             transform: translateX(0);
         }
 
+        /* Converted Panel Marquee Effect Colors */
+        .modal-mask .marquee-row {
+            color: #990011 !important; /* Adjusted deep red for contrast on light background */
+        }
+
         .modal-navbar {
             padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border-subtle);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(8, 10, 16, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            z-index: 10;
         }
 
         .modal-header-title {
@@ -316,65 +361,80 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #ffffff;
+            color: #111625;
         }
 
         .sheet-dismiss-btn {
-            background: var(--surface-inner);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            color: var(--text-main);
-            font-size: 0.75rem;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #111625;
+            font-size: 0.78rem;
             font-weight: 600;
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: 10px;
             cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
 
         .modal-pane-body {
             padding: 1.5rem;
             overflow-y: auto;
             flex-grow: 1;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        /* OVERLAY DATA CARDS */
-        .content-card {
-            background: var(--surface-card);
-            border-radius: 16px;
+        /* CONVERTED CARDS INSIDE LIGHT PANELS (WHITE -> DEEP DARK BLUE) */
+        .modal-pane-body .content-card {
+            background: var(--panel-card);
+            border: 1px solid var(--panel-border);
+            color: var(--panel-text-main);
+            border-radius: 18px;
             padding: 1.25rem;
-            margin-bottom: 12px;
-            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .content-card h3 {
-            font-size: 0.9rem;
+        .modal-pane-body .content-card h3 {
+            font-size: 0.92rem;
             font-weight: 600;
             margin-bottom: 0.4rem;
             color: #ffffff;
         }
 
-        .content-card p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
+        .modal-pane-body .content-card p {
+            font-size: 0.85rem;
+            color: var(--panel-text-secondary);
+            line-height: 1.55;
         }
 
         .history-node {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.15rem 0;
         }
         .history-node:first-child { padding-top: 0; }
         .history-node:last-child { border-bottom: none; padding-bottom: 0; }
 
         .history-timestamp {
-            font-size: 0.68rem;
-            color: var(--accent-solid);
+            font-size: 0.7rem;
+            color: var(--panel-border-hover);
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
             text-transform: uppercase;
         }
     </style>
 </head>
 <body>
+
+    <div class="bg-marquee-container">
+        <div class="marquee-row track-left">
+            MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp;
+        </div>
+        <div class="marquee-row track-right">
+            TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp;
+        </div>
+    </div>
 
     <div class="app-container">
         
@@ -393,8 +453,8 @@
         </header>
 
         <div class="intro-box">
-            <h2><span>[</span>sys_init<span>]</span> Intro</h2>
-            <p>Welcome to the main pipeline console. I specialize in backend security layers, technical framework translations, and localization optimization tracks within open source platforms.</p>
+            <h2>Console Brief</h2>
+            <p>Welcome to the main pipeline console. I specialize in backend security layers, technical framework translations, and localization optimization tracks within open-source platforms.</p>
         </div>
 
         <nav class="group-wrapper">
@@ -404,7 +464,7 @@
                 <a href="https://github.com/terminaljoint" target="_blank" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="filter: invert(1);" alt="GitHub">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
                         </div>
                         <div class="text-stack">
                             <span class="row-title">GitHub Profile Matrix</span>
@@ -417,7 +477,7 @@
                 <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" style="filter: invert(41%) sepia(87%) saturate(1234%) hue-rotate(186deg) brightness(97%) contrast(102%);" alt="LinkedIn">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
                         </div>
                         <div class="text-stack">
                             <span class="row-title">LinkedIn Network</span>
@@ -443,7 +503,7 @@
                 <a href="https://discord.gg/JNWjefK2yG" target="_blank" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" style="filter: invert(36%) sepia(88%) saturate(1212%) hue-rotate(216deg) brightness(97%) contrast(97%);" alt="Discord">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
                         </div>
                         <div class="text-stack">
                             <span class="row-title">PyTamil Community Hub</span>
@@ -456,7 +516,7 @@
                 <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" style="opacity: 0.5;" alt="Python Proof">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" style="opacity: 0.6;" alt="Python Proof">
                         </div>
                         <div class="text-stack">
                             <span class="row-title">Python DevGuide Coordinator</span>
@@ -466,17 +526,17 @@
                     <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="action-row" style="border-color: rgba(0, 132, 255, 0.4); background: linear-gradient(90deg, rgba(0, 132, 255, 0.04), transparent);">
+                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="action-row" style="border-color: rgba(0, 102, 204, 0.3) !important;">
                     <div class="row-left">
-                        <div class="brand-logo-frame" style="border-color: rgba(0, 132, 255, 0.2); background: rgba(0, 132, 255, 0.1);">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" style="filter: invert(45%) sepia(95%) saturate(2200%) hue-rotate(195deg) brightness(101%) contrast(105%);" alt="Contact Discord">
+                        <div class="brand-logo-frame" style="background: rgba(0, 102, 204, 0.05);">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Contact Discord">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title" style="color: #ffffff; font-weight: 700;">Direct Contact Layer</span>
-                            <span class="row-subtitle" style="color: var(--text-secondary);">Join Terminal Joint Server & Ping</span>
+                            <span class="row-title" style="color: var(--tag-cyber); font-weight: 700;">Direct Contact Layer</span>
+                            <span class="row-subtitle">Join Terminal Joint Server & Ping</span>
                         </div>
                     </div>
-                    <span class="row-arrow" style="opacity: 1; color: var(--accent-solid);">›</span>
+                    <span class="row-arrow" style="opacity: 1; color: var(--tag-cyber);">›</span>
                 </a>
 
             </div>
@@ -487,17 +547,17 @@
             <div class="compact-grid">
                 
                 <div class="module-tile" onclick="launchModal('sheet-overview')">
-                    <div class="tile-graphic" style="background: rgba(0, 132, 255, 0.1); color: var(--tag-cyber);">👤</div>
+                    <div class="tile-graphic" style="background: rgba(0, 102, 204, 0.06); color: var(--tag-cyber);">👤</div>
                     <h2>Overview</h2>
                 </div>
 
                 <div class="module-tile" onclick="launchModal('sheet-history')">
-                    <div class="tile-graphic" style="background: rgba(48, 209, 88, 0.1); color: var(--tag-py);">⏳</div>
+                    <div class="tile-graphic" style="background: rgba(36, 138, 61, 0.06); color: var(--tag-py);">⏳</div>
                     <h2>Milestones</h2>
                 </div>
 
                 <div class="module-tile" onclick="launchModal('sheet-domains')">
-                    <div class="tile-graphic" style="background: rgba(255, 159, 10, 0.1); color: var(--tag-domain);">🛡️</div>
+                    <div class="tile-graphic" style="background: rgba(191, 90, 0, 0.06); color: var(--tag-domain);">🛡️</div>
                     <h2>Focus Areas</h2>
                 </div>
 
@@ -506,6 +566,14 @@
     </div>
 
     <div id="sheet-overview" class="modal-mask">
+        <div class="bg-marquee-container">
+            <div class="marquee-row track-left">
+                MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp;
+            </div>
+            <div class="marquee-row track-right">
+                TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp;
+            </div>
+        </div>
         <div class="modal-navbar">
             <div class="modal-header-title"><span>👤</span> Overview Dataset</div>
             <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
@@ -527,6 +595,14 @@
     </div>
 
     <div id="sheet-history" class="modal-mask">
+        <div class="bg-marquee-container">
+            <div class="marquee-row track-left">
+                MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp;
+            </div>
+            <div class="marquee-row track-right">
+                TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp;
+            </div>
+        </div>
         <div class="modal-navbar">
             <div class="modal-header-title"><span>⏳</span> System Records Log</div>
             <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
@@ -553,6 +629,14 @@
     </div>
 
     <div id="sheet-domains" class="modal-mask">
+        <div class="bg-marquee-container">
+            <div class="marquee-row track-left">
+                MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp; MURUGAN SANTHOSH &nbsp;&bull;&nbsp;
+            </div>
+            <div class="marquee-row track-right">
+                TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp; TERMINAL JOINT &nbsp;&bull;&nbsp;
+            </div>
+        </div>
         <div class="modal-navbar">
             <div class="modal-header-title"><span>🛡️</span> Technical Focus Domains</div>
             <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
@@ -580,8 +664,6 @@
             openModalId = modalId;
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // Push virtual browser state to handle device back button actions
             history.pushState({ modalOpen: modalId }, "");
         }
 
@@ -593,11 +675,9 @@
         }
 
         function triggerBackNavigation() {
-            // Emulates back movement, firing the popstate controller automatically
             history.back();
         }
 
-        // Monitors device system back click activities
         window.addEventListener('popstate', function(event) {
             if (openModalId) {
                 exitModalDirect(openModalId);
