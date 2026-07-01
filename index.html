@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Terminal Joint Console</title>
+    <title>Murugan Santhosh</title>
     <style>
         :root {
-            /* MAIN MODE COLOR SCHEME */
-            --bg-main: #060b19;
-            --bg-gradient: radial-gradient(circle at 50% 0%, #0a1632 0%, #040817 70%, #02040a 100%);
-            --card-color: #ffffff;
-            --text-main: #111625;
-            --text-secondary: #5c6479;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --border-hover: #0066cc;
+            /* DEEP UNIFIED PREMIUM BACKGROUND */
+            --bg-main: #020617;
+            --bg-gradient: radial-gradient(circle at 50% 0%, #0b1936 0%, #020617 85%);
             
-            /* CONVERTED PANEL COLOR SCHEME */
-            --panel-bg: #f4f6fc;
-            --panel-gradient: radial-gradient(circle at 50% 0%, #e6f0ff 0%, #f4f6fc 70%, #ffffff 100%);
-            --panel-card: #0a1124;
-            --panel-text-main: #ffffff;
-            --panel-text-secondary: #8da0c4;
-            --panel-border: rgba(255, 255, 255, 0.1);
-            --panel-border-hover: #54a9ff;
-
-            --tag-cyber: #0066cc;
-            --tag-py: #248a3d;
+            /* HIGH-VISIBILITY CRYSTAL GLASS */
+            --glass-card: rgba(255, 255, 255, 0.07);
+            --glass-card-hover: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-border-hover: rgba(255, 255, 255, 0.45);
+            
+            /* TYPOGRAPHY MATRIX (MAX CONTRAST) */
+            --text-main: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            
+            /* CORE BRAND ACCENTS */
+            --tag-cyber: #38bdf8;
+            --tag-py: #4ade80;
+            --tag-domain: #fb923c;
         }
 
         * {
@@ -39,18 +38,19 @@
         body {
             background-color: var(--bg-main);
             background-image: var(--bg-gradient);
+            background-attachment: fixed;
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             overflow-x: hidden;
             overflow-y: auto;
-            padding: 2rem 1rem;
-            line-height: 1.5;
+            padding: 2.5rem 1.25rem;
+            line-height: 1.6;
             position: relative;
         }
 
-        /* DYNAMIC BACKGROUND MARQUEE ANIMATIONS */
+        /* HYPER-VIVID RED MARQUEE ENGINE */
         .bg-marquee-container {
             position: fixed;
             top: 0;
@@ -60,29 +60,30 @@
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
-            opacity: 0.18; /* High visibility vivid mix balance */
+            opacity: 0.38; 
+            mix-blend-mode: screen;
         }
 
         .marquee-row {
             display: flex;
             white-space: nowrap;
-            font-size: 5.5rem;
+            font-size: 6.5rem;
             font-weight: 900;
-            letter-spacing: 10px;
-            color: #ff0033; /* Deep vivid Red */
+            letter-spacing: 14px;
+            color: #ff003c; 
             position: absolute;
             width: 200%;
             text-transform: uppercase;
         }
 
         .marquee-row.track-left {
-            top: 25%;
-            animation: moveLeft 24s linear infinite;
+            top: 22%;
+            animation: moveLeft 18s linear infinite;
         }
 
         .marquee-row.track-right {
-            top: 60%;
-            animation: moveRight 24s linear infinite;
+            top: 68%;
+            animation: moveRight 18s linear infinite;
         }
 
         @keyframes moveLeft {
@@ -95,44 +96,48 @@
             100% { transform: translateX(0%); }
         }
 
-        /* MAIN CONTENT LAYOUT */
+        /* CONSOLE CORE STRUCTURAL GRID */
         .app-container {
             width: 100%;
-            max-width: 480px;
+            max-width: 460px;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            padding-bottom: 3rem;
+            gap: 2rem; 
+            padding-bottom: 4rem;
             z-index: 10;
             position: relative;
-            animation: appEntry 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: appEntry 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes appEntry {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* ALL CARDS SOLID WHITE SHAPE PROFILE */
-        .identity-card, .intro-box, .action-row, .module-tile {
-            background: var(--card-color) !important;
-            border: 1px solid var(--border-color) !important;
+        /* PREMIUM GLASS HOUSING SHELLS (UNIFIED MAIN + MODAL TILES) */
+        .identity-card, .intro-box, .action-row, .module-tile, .content-card {
+            background: var(--glass-card) !important;
+            backdrop-filter: blur(24px) saturate(140%) !important;
+            -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+            border: 1px solid var(--glass-border) !important;
             color: var(--text-main) !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5) !important;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
+        /* IDENTITY METRIC LAYER */
         .identity-card {
-            border-radius: 24px;
-            padding: 1.5rem;
+            border-radius: 28px;
+            padding: 1.75rem;
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
         }
 
         .avatar-frame {
             position: relative;
-            width: 72px;
-            height: 72px;
+            width: 78px;
+            height: 78px;
             flex-shrink: 0;
         }
 
@@ -141,27 +146,28 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .identity-meta h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.4px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .identity-meta p {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            margin-top: 2px;
+            margin-top: 4px;
             font-weight: 500;
         }
 
         .pill-container {
             display: flex;
-            gap: 6px;
-            margin-top: 8px;
+            gap: 8px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
 
@@ -169,49 +175,57 @@
             font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
-        .pill.active-cyber { color: var(--tag-cyber); background: rgba(0, 102, 204, 0.08); }
-        .pill.active-py { color: var(--tag-py); background: rgba(36, 138, 61, 0.08); }
+        .pill.active-cyber { color: var(--tag-cyber); text-shadow: 0 0 8px rgba(56,189,248,0.4); }
+        .pill.active-py { color: var(--tag-py); text-shadow: 0 0 8px rgba(74,222,128,0.4); }
 
-        /* BRIEF BLOCK */
+        /* BRIEF OVERVIEW NODE */
         .intro-box {
-            border-radius: 20px;
-            padding: 1.25rem;
+            border-radius: 24px;
+            padding: 1.5rem;
         }
 
         .intro-box h2 {
             font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 1.5px;
             color: var(--tag-cyber);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
         }
 
         .intro-box p {
-            font-size: 0.85rem;
+            font-size: 0.92rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* LABELS */
+        /* STRUCTURAL ROUTING LISTS */
+        .group-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
         .group-label {
-            font-size: 0.72rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
-            color: #ffffff;
-            letter-spacing: 1.2px;
-            font-weight: 700;
-            margin-left: 4px;
-            margin-bottom: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 1.8px;
+            font-weight: 800;
+            margin-left: 6px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.4);
         }
 
-        /* GATEWAY ROWS */
         .interactive-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .action-row {
@@ -219,29 +233,30 @@
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
-            padding: 1.1rem 1.25rem;
-            border-radius: 18px;
-            min-height: 70px;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 1.3rem 1.5rem;
+            border-radius: 20px;
+            min-height: 76px;
         }
 
-        .action-row:active {
-            border-color: var(--border-hover) !important;
-            transform: scale(0.985);
+        .action-row:hover, .action-row:active {
+            border-color: var(--glass-border-hover) !important;
+            background: var(--glass-card-hover) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.6) !important;
         }
 
         .row-left {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
 
         .brand-logo-frame {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: #f4f6f9;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -249,88 +264,98 @@
         }
 
         .brand-svg {
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
             object-fit: contain;
+            filter: brightness(1.3);
         }
 
         .text-stack {
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 2px;
         }
 
         .text-stack .row-title {
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: -0.1px;
         }
 
         .text-stack .row-subtitle {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
+            font-size: 0.82rem;
+            color: var(--text-muted);
         }
 
         .row-arrow {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            opacity: 0.5;
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            transition: transform 0.2s ease;
+        }
+        .action-row:hover .row-arrow {
+            transform: translateX(3px);
+            color: var(--text-main);
         }
 
-        /* GRID TILES */
+        /* GRID PIPELINES */
         .compact-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
 
         .module-tile {
-            border-radius: 18px;
-            padding: 1.25rem 0.25rem;
+            border-radius: 20px;
+            padding: 1.5rem 0.25rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .module-tile:active {
-            transform: scale(0.96);
+        .module-tile:hover, .module-tile:active {
+            transform: translateY(-3px);
+            border-color: var(--glass-border-hover) !important;
+            background: var(--glass-card-hover) !important;
         }
 
         .tile-graphic {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.35rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .module-tile h2 {
-            font-size: 0.78rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: -0.1px;
         }
 
-        /* CONVERTED LIGHT BACKGROUND MODAL PANELS */
+        /* UNIFIED HIGH-VISIBILITY MODAL OVERLAYS (EXACT SAME DEEP THEME) */
         .modal-mask {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--panel-bg);
-            background-image: var(--panel-gradient);
+            background-color: var(--bg-main);
+            background-image: var(--bg-gradient);
             z-index: 2000;
             display: flex;
             flex-direction: column;
             opacity: 0;
             pointer-events: none;
             transform: translateX(100%);
-            transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
         }
 
         .modal-mask.active {
@@ -339,89 +364,91 @@
             transform: translateX(0);
         }
 
-        /* Converted Panel Marquee Effect Colors */
-        .modal-mask .marquee-row {
-            color: #990011 !important; /* Adjusted deep red for contrast on light background */
-        }
-
         .modal-navbar {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1.5rem 1.75rem;
+            border-bottom: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(2, 6, 23, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 10;
         }
 
         .modal-header-title {
-            font-size: 0.95rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #111625;
+            gap: 12px;
+            color: var(--text-main);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         .sheet-dismiss-btn {
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: #111625;
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 12px;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .sheet-dismiss-btn:hover, .sheet-dismiss-btn:active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--text-main);
         }
 
         .modal-pane-body {
-            padding: 1.5rem;
+            padding: 1.75rem;
             overflow-y: auto;
             flex-grow: 1;
             z-index: 10;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
         }
 
-        /* CONVERTED CARDS INSIDE LIGHT PANELS (WHITE -> DEEP DARK BLUE) */
+        /* UNIFIED TRANSPARENT DATA CONTAINER INSIDE MODALS */
         .modal-pane-body .content-card {
-            background: var(--panel-card);
-            border: 1px solid var(--panel-border);
-            color: var(--panel-text-main);
-            border-radius: 18px;
-            padding: 1.25rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 24px;
+            padding: 1.5rem;
         }
 
         .modal-pane-body .content-card h3 {
-            font-size: 0.92rem;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             color: #ffffff;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
         }
 
         .modal-pane-body .content-card p {
-            font-size: 0.85rem;
-            color: var(--panel-text-secondary);
-            line-height: 1.55;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
         }
 
         .history-node {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1.15rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.35rem 0;
         }
         .history-node:first-child { padding-top: 0; }
         .history-node:last-child { border-bottom: none; padding-bottom: 0; }
 
         .history-timestamp {
-            font-size: 0.7rem;
-            color: var(--panel-border-hover);
-            font-weight: 700;
-            margin-bottom: 0.3rem;
+            font-size: 0.75rem;
+            color: var(--tag-cyber);
+            font-weight: 800;
+            margin-bottom: 0.4rem;
             text-transform: uppercase;
+            letter-spacing: 0.6px;
+            text-shadow: 0 0 6px rgba(56,189,248,0.3);
         }
     </style>
 </head>
@@ -444,31 +471,32 @@
             </div>
             <div class="identity-meta">
                 <h1>Murugan Santhosh</h1>
-                <p>Cyber Security Engineering Student</p>
+                <p>B.Tech CSE (Cyber Security) Student<br>@ Amrita University Chennai<br>1st Year (2026 to 2030)</p>
                 <div class="pill-container">
-                    <span class="pill active-cyber">Terminal Joint</span>
-                    <span class="pill active-py">Python TA Coordinator</span>
+                    <span class="pill active-cyber">B.Tech CSE (Cyber Security) Student</span>
+                    <span class="pill active-py">Coordinator for Official Python Docs Translation to Tamil</span>
+                    <span class="pill active-cyber">Creator and Lead Developer of Terminal Joint</span>
                 </div>
             </div>
         </header>
 
         <div class="intro-box">
             <h2>Console Brief</h2>
-            <p>Welcome to the main pipeline console. I specialize in backend security layers, technical framework translations, and localization optimization tracks within open-source platforms.</p>
+            <p>I am Murugan Santhosh, B.Tech CSE(with CYS) 1st year (2026 to 2030) Student at Amrita University Chennai. and this is Terminal Joint, where i present all my projects!</p>
         </div>
 
         <nav class="group-wrapper">
-            <div class="group-label">Core Verification Gateways</div>
+            <div class="group-label">MY PROFILES AND CONTACTS</div>
             <div class="interactive-list">
                 
                 <a href="https://github.com/terminaljoint" target="_blank" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="filter: invert(1);" alt="GitHub">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">GitHub Profile Matrix</span>
-                            <span class="row-subtitle">Core code environments</span>
+                            <span class="row-title">My GitHub Profile</span>
+                            <span class="row-subtitle">My Core code environments</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
@@ -477,10 +505,10 @@
                 <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" style="filter: invert(1);" alt="LinkedIn">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">LinkedIn Network</span>
+                            <span class="row-title">My LinkedIn Network</span>
                             <span class="row-subtitle">Professional verification index</span>
                         </div>
                     </div>
@@ -493,8 +521,8 @@
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">Official PyTamil Repo</span>
-                            <span class="row-subtitle">Python framework translation arrays</span>
+                            <span class="row-title">Official Python Docs in Tamil Repo</span>
+                            <span class="row-subtitle">Python Documentation in Tamil</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
@@ -506,8 +534,8 @@
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">PyTamil Community Hub</span>
-                            <span class="row-subtitle">Community synchronization channels</span>
+                            <span class="row-title">PyTamil Community Discord Hub</span>
+                            <span class="row-subtitle">Community Communication Server</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
@@ -516,27 +544,27 @@
                 <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" style="opacity: 0.6;" alt="Python Proof">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" style="opacity: 0.85;" alt="Python Proof">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">Python DevGuide Coordinator</span>
-                            <span class="row-subtitle">Official coordination proof ledger</span>
+                            <span class="row-title">My Coordinator Role Verification</span>
+                            <span class="row-subtitle">I was mentioned as a Corrdinator in Python Devguide</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="action-row" style="border-color: rgba(0, 102, 204, 0.3) !important;">
+                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="action-row" style="border-color: rgba(56, 189, 248, 0.5) !important; background: rgba(56, 189, 248, 0.06) !important;">
                     <div class="row-left">
-                        <div class="brand-logo-frame" style="background: rgba(0, 102, 204, 0.05);">
+                        <div class="brand-logo-frame" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.3);">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Contact Discord">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title" style="color: var(--tag-cyber); font-weight: 700;">Direct Contact Layer</span>
-                            <span class="row-subtitle">Join Terminal Joint Server & Ping</span>
+                            <span class="row-title" style="color: var(--tag-cyber); font-weight: 800;">Direct Contact</span>
+                            <span class="row-subtitle" style="color: var(--text-secondary)">Join Terminal Joint Server & Ping me..!</span>
                         </div>
                     </div>
-                    <span class="row-arrow" style="opacity: 1; color: var(--tag-cyber);">›</span>
+                    <span class="row-arrow" style="color: var(--tag-cyber);">›</span>
                 </a>
 
             </div>
@@ -547,17 +575,17 @@
             <div class="compact-grid">
                 
                 <div class="module-tile" onclick="launchModal('sheet-overview')">
-                    <div class="tile-graphic" style="background: rgba(0, 102, 204, 0.06); color: var(--tag-cyber);">👤</div>
+                    <div class="tile-graphic" style="color: var(--tag-cyber);">👤</div>
                     <h2>Overview</h2>
                 </div>
 
                 <div class="module-tile" onclick="launchModal('sheet-history')">
-                    <div class="tile-graphic" style="background: rgba(36, 138, 61, 0.06); color: var(--tag-py);">⏳</div>
+                    <div class="tile-graphic" style="color: var(--tag-py);">⏳</div>
                     <h2>Milestones</h2>
                 </div>
 
                 <div class="module-tile" onclick="launchModal('sheet-domains')">
-                    <div class="tile-graphic" style="background: rgba(191, 90, 0, 0.06); color: var(--tag-domain);">🛡️</div>
+                    <div class="tile-graphic" style="color: var(--tag-domain);">🛡️</div>
                     <h2>Focus Areas</h2>
                 </div>
 
