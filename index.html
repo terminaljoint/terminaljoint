@@ -6,45 +6,36 @@
     <title>Murugan Santhosh</title>
     <style>
         :root {
-            /* REFINED PREMIUM PALETTE */
-            --bg-main: #020617;
-            --bg-gradient: radial-gradient(circle at 50% 0%, #071636 0%, #020617 100%);
-            
-            /* GLASSMORPHISM INTERFACE LAYER */
-            --glass-card: rgba(8, 18, 41, 0.4);
-            --glass-card-hover: rgba(13, 27, 59, 0.65);
-            --glass-border: rgba(56, 189, 248, 0.08);
-            --glass-border-hover: rgba(56, 189, 248, 0.4);
+            /* APPLE DRIVEN SYSTEM PALETTE */
+            --bg-main: #000000;
+            --bg-surface: #121212;
+            --glass-border: rgba(255, 255, 255, 0.08);
             
             /* TYPOGRAPHY MATRIX */
-            --text-main: #ffffff;
-            --text-secondary: #f1f5f9;
-            --text-muted: #94a3b8;
+            --text-main: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-link: #2997ff;
             
-            /* BRAND SIGNATURE COLORS */
+            /* HIGHLIGHT CODES */
             --tag-cyber: #38bdf8;
             --tag-py: #4ade80;
-            --tag-domain: #fb923c;
-            --glow-cyber: rgba(56, 189, 248, 0.2);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
+            background-color: var(--bg-main);
             height: 100%;
         }
 
         body {
-            background-color: var(--bg-main);
-            background-image: var(--bg-gradient);
-            background-attachment: fixed;
             color: var(--text-main);
             min-height: 100%;
             display: flex;
@@ -53,379 +44,256 @@
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-font-smoothing: antialiased;
-            padding: clamp(1.5rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2.5rem);
-            line-height: 1.62;
-            position: relative;
+            padding: clamp(2rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem);
+            line-height: 1.47059;
+            letter-spacing: -0.022em;
         }
 
-        /* HARDWARE ACCELERATED FINE MESH GRID BACKGROUND */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            z-index: 0;
-            pointer-events: none;
-            background-image: 
-                linear-gradient(rgba(56, 189, 248, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(56, 189, 248, 0.015) 1px, transparent 1px);
-            background-size: 60px 60px;
-            transform: translate3d(0,0,0);
-            will-change: transform;
-            animation: gridScroll 80s linear infinite;
-        }
-
-        @keyframes gridScroll {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-60px, -60px, 0); }
-        }
-
-        /* DYNAMIC APP GRID WINDOW CONTAINER */
+        /* STRUCTURAL CONTAINER WINDOW */
         .app-container {
             width: 100%;
-            max-width: 980px;
+            max-width: 1020px;
             display: grid;
             grid-template-columns: 1fr;
-            gap: clamp(2.5rem, 6vw, 4.5rem); 
-            z-index: 10;
+            gap: clamp(3rem, 8vw, 5rem); 
             position: relative;
-            animation: appEntry 0.6s cubic-bezier(0.215, 0.610, 0.355, 1);
+            animation: appleFade 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        @keyframes appEntry {
-            from { opacity: 0; transform: translate3d(0, 20px, 0); filter: blur(8px); }
-            to { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+        @keyframes appleFade {
+            from { opacity: 0; transform: scale(0.99); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* REFINED DYNAMIC GLASS MODULES */
-        .glass-panel {
-            background: var(--glass-card);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                        border-color 0.3s ease, 
-                        background-color 0.3s ease, 
-                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .glass-panel:hover {
-            border-color: var(--glass-border-hover);
-            background-color: var(--glass-card-hover);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 
-                        0 0 30px -5px var(--glow-cyber),
-                        inset 0 1px 1px rgba(255,255,255,0.08);
-            transform: translate3d(0, -4px, 0);
-        }
-
-        /* PROFILE IDENTITY SECTION */
-        .identity-card {
-            padding: clamp(2.25rem, 6vw, 3.5rem) 1.5rem;
+        /* LEFT COLUMN: CRISP ASYMMETRICAL ALIGNMENT */
+        .identity-column {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 1.75rem;
+            align-items: flex-start;
+            text-align: left;
+            gap: 1.5rem;
         }
 
         .avatar-frame {
             position: relative;
-            width: clamp(100px, 16vw, 120px);
-            height: clamp(100px, 16vw, 120px);
+            width: 80px;
+            height: 80px;
             flex-shrink: 0;
         }
-
-        .avatar-frame::after {
-            content: "";
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 1.5px dashed rgba(56, 189, 248, 0.3);
-            animation: spinRing 40s linear infinite;
-        }
-
-        @keyframes spinRing { 100% { transform: rotate(360deg); } }
 
         .avatar-img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--glass-border);
         }
 
         .identity-meta h1 {
-            font-size: clamp(1.75rem, 4.5vw, 2.4rem);
-            font-weight: 850;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.003em;
+            color: var(--text-main);
+            line-height: 1.1;
         }
 
         .identity-meta p {
-            font-size: 0.98rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            margin-top: 12px;
-            font-weight: 500;
-            line-height: 1.65;
+            margin-top: 0.75rem;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
         .pill-container {
             display: flex;
-            gap: 8px;
-            margin-top: 20px;
+            gap: 6px;
+            margin-top: 1.25rem;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
         .pill {
-            font-size: 0.68rem;
-            font-weight: 700;
+            font-size: 0.65rem;
+            font-weight: 600;
             text-transform: uppercase;
-            padding: 6px 14px;
-            border-radius: 10px;
-            letter-spacing: 0.05em;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.03em;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
         }
-        .pill.active-cyber { color: var(--tag-cyber); background: rgba(56, 189, 248, 0.05); border-color: rgba(56, 189, 248, 0.2); }
-        .pill.active-py { color: var(--tag-py); background: rgba(74, 222, 128, 0.05); border-color: rgba(74, 222, 128, 0.2); }
+        .pill.active-cyber { color: var(--tag-cyber); background: rgba(56, 189, 248, 0.05); }
+        .pill.active-py { color: var(--tag-py); background: rgba(74, 222, 128, 0.05); }
 
-        /* MAIN VERTICAL STACK CONTENT LAYOUT */
-        .main-content-group {
+        /* RIGHT COLUMN: MAIN LOGICAL TRACK */
+        .main-content-column {
             display: flex;
             flex-direction: column;
-            gap: clamp(2rem, 5vw, 3.5rem);
+            gap: clamp(3rem, 8vw, 5rem);
         }
 
         /* ABOUT ME BLOCKS */
-        .intro-box {
-            padding: clamp(1.75rem, 5vw, 2.5rem);
+        .intro-section p {
+            font-size: clamp(1.2rem, 3vw, 1.45rem);
+            font-weight: 400;
+            color: var(--text-main);
+            line-height: 1.5;
+            letter-spacing: -0.009em;
         }
 
-        .intro-box h2 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--tag-cyber);
-            margin-bottom: 1.25rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .intro-box p {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* NAVIGATION SECTIONS */
+        /* APPLE-STYLE STRUCTURAL LINE ITEMS */
         .group-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
+            gap: 2rem;
         }
 
         .group-label {
-            font-size: 0.78rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.2em;
-            font-weight: 800;
-            margin-left: 4px;
+            color: var(--text-secondary);
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5rem;
         }
 
-        .interactive-list {
+        .topic-list {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 2.25rem;
         }
 
-        .action-row {
+        .topic-item {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.25rem;
             text-decoration: none;
-            padding: clamp(1.15rem, 3.5vw, 1.5rem) clamp(1.25rem, 4vw, 2rem);
-            gap: 1.5rem;
-        }
-
-        .action-row:active {
-            transform: scale(0.985);
-        }
-
-        .row-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex: 1;
-            min-width: 0;
+            color: inherit;
         }
 
         .brand-logo-frame {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 24px;
+            height: 24px;
+            margin-top: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
-
-        .action-row:hover .brand-logo-frame {
-            background: rgba(56, 189, 248, 0.1);
-            border-color: rgba(56, 189, 248, 0.3);
-            transform: scale(1.05);
         }
 
         .brand-svg {
-            width: 22px;
-            height: 22px;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .topic-item:hover .brand-svg {
+            opacity: 1;
         }
 
         .text-stack {
             display: flex;
             flex-direction: column;
-            gap: 3px;
-            flex: 1;
-            min-width: 0;
+            gap: 4px;
         }
 
-        .text-stack .row-title {
-            font-size: 1.08rem;
-            font-weight: 700;
-            color: #ffffff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            transition: color 0.2s ease;
+        .row-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .action-row:hover .text-stack .row-title {
-            color: var(--tag-cyber);
+        .row-title .link-arrow {
+            color: var(--text-link);
+            font-weight: 400;
+            transition: transform 0.2s ease;
         }
 
-        .text-stack .row-subtitle {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .topic-item:hover .row-title .link-arrow {
+            transform: translate3d(3px, 0, 0);
         }
 
-        .row-arrow {
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            font-weight: 300;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
-            flex-shrink: 0;
+        .row-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
         }
 
-        .action-row:hover .row-arrow {
-            transform: translate3d(6px, 0, 0);
-            color: var(--tag-cyber);
-        }
-
-        /* EXPLORE TILES SYSTEM (AUTO DYNAMIC FITTING) */
+        /* EXPLORE MORE TILES GRID SYSTEM */
         .compact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
         }
 
         .module-tile {
-            padding: 2.25rem 1rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 1.75rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            text-align: center;
+            align-items: flex-start;
+            gap: 1rem;
             cursor: pointer;
+            transition: border-color 0.2s ease;
         }
 
-        .module-tile:active {
-            transform: scale(0.96);
+        .module-tile:hover {
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .tile-graphic {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .module-tile:hover .tile-graphic {
-            transform: scale(1.08) translate3d(0, -2px, 0);
-            background: rgba(56, 189, 248, 0.08);
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 12px 24px -6px var(--glow-cyber);
+            font-size: 1.25rem;
         }
 
         .module-tile h2 {
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
         }
 
-        /* DESKTOP SPLIT FLEX MATRIX LAYER */
+        .module-tile p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* DESKTOP SPLIT MATRIX INTERFACE SCREEN ADJUSTMENTS */
         @media (min-width: 860px) {
             .app-container {
-                grid-template-columns: 340px 1fr;
+                grid-template-columns: 320px 1fr;
                 align-items: start;
-                gap: 3.5rem;
+                gap: 4rem;
             }
-            .left-column-group {
-                display: flex;
-                flex-direction: column;
+            .identity-column {
                 position: sticky;
-                top: 4.5rem;
+                top: 6rem;
             }
         }
 
-        /* MODAL LAYER OVERLAYS WITH ANTI-LAG SCROLL HOOKS */
+        /* MODAL SHEET OVERLAYS */
         .modal-mask {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100dvh; /* Dynamic mobile viewport alignment */
-            background-color: #010409;
+            height: 100dvh;
+            background-color: var(--bg-main);
             z-index: 2000;
             display: flex;
             flex-direction: column;
             opacity: 0;
             pointer-events: none;
-            transform: translate3d(0, 100%, 0);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-        }
-
-        .modal-mask::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background-image: 
-                linear-gradient(rgba(56, 189, 248, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(56, 189, 248, 0.015) 1px, transparent 1px);
-            background-size: 50px 50px;
+            transform: translate3d(0, 30px, 0);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
         }
 
         .modal-mask.active {
@@ -435,97 +303,69 @@
         }
 
         .modal-navbar {
-            padding: 1.5rem clamp(1.25rem, 5vw, 3rem);
+            padding: 2rem clamp(1.5rem, 5vw, 3rem);
             border-bottom: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             flex-shrink: 0;
         }
 
         .modal-header-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: -0.01em;
-        }
-
-        .sheet-dismiss-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            font-size: 0.9rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            padding: 10px 24px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .sheet-dismiss-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--glass-border-hover);
-            transform: scale(1.02);
-        }
-
-        .modal-pane-body {
-            padding: clamp(1.75rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2.5rem);
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch; /* High fidelity mobile inertial scrolling */
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            max-width: 760px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .modal-pane-body .content-card {
-            padding: clamp(1.5rem, 4vw, 2.25rem);
-        }
-
-        .modal-pane-body .content-card h3 {
-            font-size: 1.2rem;
-            font-weight: 750;
-            margin-bottom: 0.8rem;
-            color: #ffffff;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
+        .sheet-dismiss-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-link);
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .modal-pane-body {
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .modal-pane-body .content-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
         .modal-pane-body .content-card p {
-            font-size: 1.02rem;
+            font-size: 1rem;
             color: var(--text-secondary);
-            line-height: 1.75;
+            line-height: 1.5;
         }
 
         .history-node {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 2rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
         }
         .history-node:first-child { padding-top: 0; }
         .history-node:last-child { border-bottom: none; padding-bottom: 0; }
 
         .history-timestamp {
-            font-size: 0.78rem;
-            color: var(--tag-cyber);
-            font-weight: 800;
-            margin-bottom: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
-
-        @media (min-width: 860px) {
-            .modal-mask {
-                transform: translate3d(100%, 0, 0);
-            }
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
         }
     </style>
 </head>
@@ -533,109 +373,88 @@
 
     <main class="app-container">
         
-        <div class="left-column-group">
-            <header class="identity-card glass-panel">
-                <div class="avatar-frame">
-                    <img class="avatar-img" src="WhatsApp Image 2026-06-27 at 9.22.16 PM.jpeg" alt="Murugan Santhosh" onerror="this.style.display='none';">
+        <div class="identity-column">
+            <div class="avatar-frame">
+                <img class="avatar-img" src="WhatsApp Image 2026-06-27 at 9.22.16 PM.jpeg" alt="Murugan Santhosh" onerror="this.style.display='none';">
+            </div>
+            <div class="identity-meta">
+                <h1>Murugan Santhosh</h1>
+                <p>B.Tech CSE (Cyber Security) Student<br>@ Amrita University Chennai<br>1st Year (2026 to 2030)</p>
+                <div class="pill-container">
+                    <span class="pill active-cyber">B.Tech CYS</span>
+                    <span class="pill active-py">Python Docs Tamil Coordinator</span>
+                    <span class="pill active-cyber">Terminal Joint Lead</span>
                 </div>
-                <div class="identity-meta">
-                    <h1>Murugan Santhosh</h1>
-                    <p>B.Tech CSE (Cyber Security) Student<br>@ Amrita University Chennai<br>1st Year (2026 to 2030)</p>
-                    <div class="pill-container">
-                        <span class="pill active-cyber">B.Tech CYS</span>
-                        <span class="pill active-py">Python Docs Tamil Coordinator</span>
-                        <span class="pill active-cyber">Terminal Joint Lead</span>
-                    </div>
-                </div>
-            </header>
+            </div>
         </div>
 
-        <div class="main-content-group">
-            <section class="intro-box glass-panel">
-                <h2><span>✨</span> About Me</h2>
+        <div class="main-content-column">
+            <section class="intro-section">
                 <p>I am Murugan Santhosh, a B.Tech CSE (Cyber Security) student at Amrita University Chennai. Welcome to Terminal Joint, the architectural sandbox where I anchor my research core and development blueprints.</p>
             </section>
 
             <nav class="group-wrapper">
                 <div class="group-label">Profiles & Links</div>
-                <div class="interactive-list">
+                <div class="topic-list">
                     
-                    <a href="https://github.com/terminaljoint" target="_blank" rel="noopener" class="action-row glass-panel">
-                        <div class="row-left">
-                            <div class="brand-logo-frame">
-                                <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="filter: invert(1);" alt="GitHub">
-                            </div>
-                            <div class="text-stack">
-                                <span class="row-title">GitHub Profile</span>
-                                <span class="row-subtitle">Production deployment environments</span>
-                            </div>
+                    <a href="https://github.com/terminaljoint" target="_blank" rel="noopener" class="topic-item">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="filter: invert(1);" alt="GitHub">
                         </div>
-                        <span class="row-arrow">›</span>
+                        <div class="text-stack">
+                            <span class="row-title">GitHub Profile <span class="link-arrow">↗</span></span>
+                            <span class="row-subtitle">Access core workspace profiles, continuous deployment configurations, and early experimental repository builds.</span>
+                        </div>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" rel="noopener" class="action-row glass-panel">
-                        <div class="row-left">
-                            <div class="brand-logo-frame">
-                                <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" style="filter: invert(1);" alt="LinkedIn">
-                            </div>
-                            <div class="text-stack">
-                                <span class="row-title">LinkedIn Connection</span>
-                                <span class="row-subtitle">Professional validation matrix</span>
-                            </div>
+                    <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" rel="noopener" class="topic-item">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" style="filter: invert(1);" alt="LinkedIn">
                         </div>
-                        <span class="row-arrow">›</span>
+                        <div class="text-stack">
+                            <span class="row-title">LinkedIn Connection <span class="link-arrow">↗</span></span>
+                            <span class="row-subtitle">Professional validation matrix, continuous industry networking setups, and formal academic history data log.</span>
+                        </div>
                     </a>
 
-                    <a href="https://github.com/Terminal-Joint/python-docs-ta" target="_blank" rel="noopener" class="action-row glass-panel">
-                        <div class="row-left">
-                            <div class="brand-logo-frame">
-                                <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python">
-                            </div>
-                            <div class="text-stack">
-                                <span class="row-title">Python Docs Tamil Repo</span>
-                                <span class="row-subtitle">Localized technical library framework</span>
-                            </div>
+                    <a href="https://github.com/Terminal-Joint/python-docs-ta" target="_blank" rel="noopener" class="topic-item">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python">
                         </div>
-                        <span class="row-arrow">›</span>
+                        <div class="text-stack">
+                            <span class="row-title">Python Docs Tamil Repo <span class="link-arrow">↗</span></span>
+                            <span class="row-subtitle">Localized technical library framework aimed at providing complete translation sets for programming logic blocks.</span>
+                        </div>
                     </a>
 
-                    <a href="https://discord.gg/JNWjefK2yG" target="_blank" rel="noopener" class="action-row glass-panel">
-                        <div class="row-left">
-                            <div class="brand-logo-frame">
-                                <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
-                            </div>
-                            <div class="text-stack">
-                                <span class="row-title">PyTamil Discord Hub</span>
-                                <span class="row-subtitle">Community synchronization server</span>
-                            </div>
+                    <a href="https://discord.gg/JNWjefK2yG" target="_blank" rel="noopener" class="topic-item">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
                         </div>
-                        <span class="row-arrow">›</span>
+                        <div class="text-stack">
+                            <span class="row-title">PyTamil Discord Hub <span class="link-arrow">↗</span></span>
+                            <span class="row-subtitle">Community synchronization server connecting developers across regional localization milestones.</span>
+                        </div>
                     </a>
 
-                    <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" rel="noopener" class="action-row glass-panel">
-                        <div class="row-left">
-                            <div class="brand-logo-frame">
-                                <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" style="opacity: 0.85;" alt="Python Proof">
-                            </div>
-                            <div class="text-stack">
-                                <span class="row-title">Role Verification Index</span>
-                                <span class="row-subtitle">Official Coordinator registry on Python Devguide</span>
-                            </div>
+                    <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" rel="noopener" class="topic-item">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python Proof">
                         </div>
-                        <span class="row-arrow">›</span>
+                        <div class="text-stack">
+                            <span class="row-title">Role Verification Index <span class="link-arrow">↗</span></span>
+                            <span class="row-subtitle">Official language track coordinator confirmation registry documented natively in the Python Developer's Guide.</span>
+                        </div>
                     </a>
 
-                    <a href="https://discord.gg/KrWy5B4MGX" target="_blank" rel="noopener" class="action-row glass-panel" style="border-color: rgba(56, 189, 248, 0.35); background: rgba(56, 189, 248, 0.03);">
-                        <div class="row-left">
-                            <div class="brand-logo-frame" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.2);">
-                                <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Contact Discord">
-                            </div>
-                            <div class="text-stack">
-                                <span class="row-title" style="color: var(--tag-cyber); font-weight: 800;">Get In Touch</span>
-                                <span class="row-subtitle" style="color: var(--text-secondary)">Join Terminal Joint Server & ping me</span>
-                            </div>
+                    <a href="https://discord.gg/KrWy5B4MGX" target="_blank" rel="noopener" class="topic-item">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Contact Discord">
                         </div>
-                        <span class="row-arrow" style="color: var(--tag-cyber);">›</span>
+                        <div class="text-stack">
+                            <span class="row-title" style="color: var(--text-link);">Get In Touch <span class="link-arrow">↗</span></span>
+                            <span class="row-subtitle">Initialize a communication connection instantly by joining the central Terminal Joint server and paging my workspace profile.</span>
+                        </div>
                     </a>
 
                 </div>
@@ -645,19 +464,22 @@
                 <div class="group-label">Explore More</div>
                 <div class="compact-grid">
                     
-                    <div class="module-tile glass-panel" onclick="launchModal('sheet-overview')">
-                        <div class="tile-graphic" style="color: var(--tag-cyber);">👤</div>
+                    <div class="module-tile" onclick="launchModal('sheet-overview')">
+                        <div class="tile-graphic">👤</div>
                         <h2>Overview</h2>
+                        <p>Core academic status track records, workshop operations, and localization system backgrounds.</p>
                     </div>
 
-                    <div class="module-tile glass-panel" onclick="launchModal('sheet-history')">
-                        <div class="tile-graphic" style="color: var(--tag-py);">⏳</div>
+                    <div class="module-tile" onclick="launchModal('sheet-history')">
+                        <div class="tile-graphic">⏳</div>
                         <h2>Milestones</h2>
+                        <p>Chronological framework engineering developments, pipeline launches, and localization integrations.</p>
                     </div>
 
-                    <div class="module-tile glass-panel" onclick="launchModal('sheet-domains')">
-                        <div class="tile-graphic" style="color: var(--tag-domain);">🛡️</div>
+                    <div class="module-tile" onclick="launchModal('sheet-domains')">
+                        <div class="tile-graphic">🛡️</div>
                         <h2>Focus</h2>
+                        <p>Deep-dives into specific engineering sectors including cybersecurity metrics and translation architecture layers.</p>
                     </div>
 
                 </div>
@@ -671,15 +493,15 @@
             <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
         </div>
         <div class="modal-pane-body">
-            <div class="content-card glass-panel">
+            <div class="content-card">
                 <h3>Academic Details</h3>
                 <p>Executing active coursework as a 1st-year B.Tech Cybersecurity Engineering student at Amrita University Chennai. Track cycle: Class of 2026 – 2030.</p>
             </div>
-            <div class="content-card glass-panel">
+            <div class="content-card">
                 <h3>Terminal Joint Workshop</h3>
                 <p>Founder and lead manager of Terminal Joint—an independent laboratory environment and software sandbox prioritizing custom codebase development and native translation tracks.</p>
             </div>
-            <div class="content-card glass-panel">
+            <div class="content-card">
                 <h3>Location</h3>
                 <p>Salem, Tamil Nadu, India [Zone Index: 636501]</p>
             </div>
@@ -692,22 +514,20 @@
             <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
         </div>
         <div class="modal-pane-body">
-            <div class="content-card glass-panel">
-                <div class="history-node">
-                    <div class="history-timestamp">March 2026</div>
-                    <h3>PyTamil Documentation Pipeline</h3>
-                    <p>Configured optimization engine translating Python core language documentation into Tamil. Structured continuous synchronization channels over Discord.</p>
-                </div>
-                <div class="history-node">
-                    <div class="history-timestamp">January 2026</div>
-                    <h3>GDevelop Engine Core Integration</h3>
-                    <p>Automated localization sequences and framework translation arrays for GDevelop engine via distributed crowdsourcing nodes.</p>
-                </div>
-                <div class="history-node">
-                    <div class="history-timestamp">September 2025</div>
-                    <h3>Terminal Joint Architecture Launch</h3>
-                    <p>Completed structural logic tracks and formalized the Terminal Joint node to host prototype builds and private environments.</p>
-                </div>
+            <div class="history-node">
+                <div class="history-timestamp">March 2026</div>
+                <h3>PyTamil Documentation Pipeline</h3>
+                <p>Configured optimization engine translating Python core language documentation into Tamil. Structured continuous synchronization channels over Discord.</p>
+            </div>
+            <div class="history-node">
+                <div class="history-timestamp">January 2026</div>
+                <h3>GDevelop Engine Core Integration</h3>
+                <p>Automated localization sequences and framework translation arrays for GDevelop engine via distributed crowdsourcing nodes.</p>
+            </div>
+            <div class="history-node">
+                <div class="history-timestamp">September 2025</div>
+                <h3>Terminal Joint Architecture Launch</h3>
+                <p>Completed structural logic tracks and formalized the Terminal Joint node to host prototype builds and private environments.</p>
             </div>
         </div>
     </div>
@@ -718,15 +538,15 @@
             <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
         </div>
         <div class="modal-pane-body">
-            <div class="content-card glass-panel">
+            <div class="content-card">
                 <h3>Cybersecurity & Frameworks</h3>
                 <p>Analyzing protective network environments, structural object patterns, and defensive dynamics throughout coursework architectures.</p>
             </div>
-            <div class="content-card glass-panel">
+            <div class="content-card">
                 <h3>Translation Layer Engineering</h3>
                 <p>Formulating technical frameworks to resolve native-language barrier constraints for technical documentation logs.</p>
             </div>
-            <div class="content-card glass-panel">
+            <div class="content-card">
                 <h3>Interactive Logic Systems</h3>
                 <p>Building specialized internal state engines, logical loop paths, and modular game script environments.</p>
             </div>
