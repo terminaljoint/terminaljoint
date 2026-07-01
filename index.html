@@ -10,15 +10,15 @@
             --bg-main: #020617;
             --bg-gradient: radial-gradient(circle at 50% 0%, #0b1936 0%, #020617 85%);
             
-            /* HIGH-VISIBILITY CRYSTAL GLASS */
+            /* HIGH-VISIBILITY CRYSTAL GLASS (Kept exactly as requested) */
             --glass-card: rgba(255, 255, 255, 0.07);
             --glass-card-hover: rgba(255, 255, 255, 0.12);
             --glass-border: rgba(255, 255, 255, 0.2);
             --glass-border-hover: rgba(255, 255, 255, 0.45);
             
-            /* TYPOGRAPHY MATRIX (MAX CONTRAST) */
+            /* TYPOGRAPHY MATRIX (Cleaned contrast ratios) */
             --text-main: #ffffff;
-            --text-secondary: #cbd5e1;
+            --text-secondary: #e2e8f0;
             --text-muted: #94a3b8;
             
             /* CORE BRAND ACCENTS */
@@ -50,7 +50,7 @@
             position: relative;
         }
 
-        /* HYPER-VIVID RED MARQUEE ENGINE */
+        /* HYPER-VIVID RED MARQUEE ENGINE (GPU Accelerated to stop stutters) */
         .bg-marquee-container {
             position: fixed;
             top: 0;
@@ -74,6 +74,7 @@
             position: absolute;
             width: 200%;
             text-transform: uppercase;
+            will-change: transform;
         }
 
         .marquee-row.track-left {
@@ -87,13 +88,13 @@
         }
 
         @keyframes moveLeft {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
 
         @keyframes moveRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0%); }
+            0% { transform: translate3d(-50%, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
         }
 
         /* CONSOLE CORE STRUCTURAL GRID */
@@ -114,7 +115,7 @@
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* PREMIUM GLASS HOUSING SHELLS (UNIFIED MAIN + MODAL TILES) */
+        /* PREMIUM GLASS HOUSING SHELLS (Maintained original attributes) */
         .identity-card, .intro-box, .action-row, .module-tile, .content-card {
             background: var(--glass-card) !important;
             backdrop-filter: blur(24px) saturate(140%) !important;
@@ -340,7 +341,7 @@
             letter-spacing: -0.1px;
         }
 
-        /* UNIFIED HIGH-VISIBILITY MODAL OVERLAYS (EXACT SAME DEEP THEME) */
+        /* UNIFIED HIGH-VISIBILITY MODAL OVERLAYS */
         .modal-mask {
             position: fixed;
             top: 0;
@@ -354,14 +355,14 @@
             flex-direction: column;
             opacity: 0;
             pointer-events: none;
-            transform: translateX(100%);
+            transform: translate3d(100%, 0, 0);
             transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
         }
 
         .modal-mask.active {
             opacity: 1;
             pointer-events: auto;
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
         }
 
         .modal-navbar {
@@ -463,7 +464,7 @@
         </div>
     </div>
 
-    <div class="app-container">
+    <main class="app-container">
         
         <header class="identity-card">
             <div class="avatar-frame">
@@ -480,16 +481,16 @@
             </div>
         </header>
 
-        <div class="intro-box">
-            <h2>Console Brief</h2>
+        <section class="intro-box">
+            <h2>Intro About ME</h2>
             <p>I am Murugan Santhosh, B.Tech CSE(with CYS) 1st year (2026 to 2030) Student at Amrita University Chennai. and this is Terminal Joint, where i present all my projects!</p>
-        </div>
+        </section>
 
         <nav class="group-wrapper">
             <div class="group-label">MY PROFILES AND CONTACTS</div>
             <div class="interactive-list">
                 
-                <a href="https://github.com/terminaljoint" target="_blank" class="action-row">
+                <a href="https://github.com/terminaljoint" target="_blank" rel="noopener" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="filter: invert(1);" alt="GitHub">
@@ -502,7 +503,7 @@
                     <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" class="action-row">
+                <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" rel="noopener" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" style="filter: invert(1);" alt="LinkedIn">
@@ -515,7 +516,7 @@
                     <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://github.com/Terminal-Joint/python-docs-ta" target="_blank" class="action-row">
+                <a href="https://github.com/Terminal-Joint/python-docs-ta" target="_blank" rel="noopener" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python">
@@ -528,7 +529,7 @@
                     <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://discord.gg/JNWjefK2yG" target="_blank" class="action-row">
+                <a href="https://discord.gg/JNWjefK2yG" target="_blank" rel="noopener" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
@@ -541,20 +542,20 @@
                     <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" class="action-row">
+                <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" rel="noopener" class="action-row">
                     <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" style="opacity: 0.85;" alt="Python Proof">
                         </div>
                         <div class="text-stack">
                             <span class="row-title">My Coordinator Role Verification</span>
-                            <span class="row-subtitle">I was mentioned as a Corrdinator in Python Devguide</span>
+                            <span class="row-subtitle">I was mentioned as a Coordinator in Python Devguide</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="action-row" style="border-color: rgba(56, 189, 248, 0.5) !important; background: rgba(56, 189, 248, 0.06) !important;">
+                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" rel="noopener" class="action-row" style="border-color: rgba(56, 189, 248, 0.5) !important; background: rgba(56, 189, 248, 0.06) !important;">
                     <div class="row-left">
                         <div class="brand-logo-frame" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.3);">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Contact Discord">
@@ -571,7 +572,7 @@
         </nav>
 
         <section class="group-wrapper">
-            <div class="group-label">System Meta Modules</div>
+            <div class="group-label">Know more About ME here</div>
             <div class="compact-grid">
                 
                 <div class="module-tile" onclick="launchModal('sheet-overview')">
@@ -591,7 +592,7 @@
 
             </div>
         </section>
-    </div>
+    </main>
 
     <div id="sheet-overview" class="modal-mask">
         <div class="bg-marquee-container">
@@ -690,16 +691,22 @@
 
         function launchModal(modalId) {
             openModalId = modalId;
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
-            history.pushState({ modalOpen: modalId }, "");
+            const element = document.getElementById(modalId);
+            if(element) {
+                element.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                history.pushState({ modalOpen: modalId }, "");
+            }
         }
 
         function exitModalDirect(modalId) {
             if (!modalId) return;
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-            openModalId = null;
+            const element = document.getElementById(modalId);
+            if(element) {
+                element.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                openModalId = null;
+            }
         }
 
         function triggerBackNavigation() {
