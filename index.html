@@ -6,79 +6,78 @@
     <title>Terminal Joint Console</title>
     <style>
         :root {
-            --bg-color: #030304;
-            --card-bg: rgba(13, 14, 18, 0.75);
-            --modal-bg: #0b0c0f;
-            --inner-card: #14161d;
-            --accent-color: #0a84ff;
-            --accent-hover: #409fff;
-            --text-color: #f5f5f7;
-            --text-muted: #8e8e93;
-            --border-color: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(10, 132, 255, 0.3);
-            --success-color: #30d158;
-            --warning-color: #ff9f0a;
-            --purple-color: #bf5af2;
-            --glow-color: rgba(10, 132, 255, 0.15);
+            --bg-color: #06070a;
+            --surface-card: rgba(18, 22, 34, 0.65);
+            --surface-inner: #151a29;
+            --surface-modal: #0a0d14;
+            --accent-solid: #0084ff;
+            --accent-glow: rgba(0, 132, 255, 0.2);
+            --text-main: #ffffff;
+            --text-secondary: #9ea5bd;
+            --border-subtle: rgba(255, 255, 255, 0.07);
+            --border-hover: rgba(0, 132, 255, 0.4);
+            
+            --tag-cyber: #0084ff;
+            --tag-py: #30d158;
+            --tag-domain: #ff9f0a;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(10, 132, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 0% 100%, rgba(191, 90, 242, 0.03) 0%, transparent 40%);
-            color: var(--text-color);
+                radial-gradient(circle at 50% 0%, rgba(0, 132, 255, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 0% 100%, rgba(48, 209, 88, 0.04) 0%, transparent 40%);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
             overflow-x: hidden;
             overflow-y: auto;
-            padding: 4rem 2rem;
-            letter-spacing: -0.2px;
+            padding: 1.5rem 1rem;
+            line-height: 1.4;
         }
 
-        /* CONSOLE WRAPPER */
-        .console-container {
+        .app-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            gap: 1.75rem;
+            padding-bottom: 3rem;
+            animation: appEntry 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes appEntry {
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* PREMIUM IDENTITY HEADER */
-        .official-header {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            padding: 2.25rem;
-            background-color: var(--card-bg);
+        .identity-card {
+            background: var(--surface-card);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-subtle);
             border-radius: 24px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .avatar-container {
+        .avatar-frame {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 74px;
+            height: 74px;
             flex-shrink: 0;
         }
 
@@ -88,473 +87,436 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(135deg, var(--inner-card), #222530);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease;
+            background: var(--surface-inner);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         }
 
-        .official-header:hover .avatar-img {
-            transform: scale(1.03);
-            border-color: var(--accent-color);
-        }
-
-        .profile-info {
-            flex-grow: 1;
-        }
-
-        .profile-info h1 {
-            font-size: 1.75rem;
+        .identity-meta h1 {
+            font-size: 1.35rem;
             font-weight: 700;
-            letter-spacing: -0.6px;
+            letter-spacing: -0.5px;
             color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        .profile-info p {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-            font-weight: 400;
+        .identity-meta p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
         }
 
-        .badge-row {
+        .pill-container {
             display: flex;
+            gap: 6px;
+            margin-top: 8px;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 14px;
         }
 
-        .badge {
+        .pill {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 8px;
+            letter-spacing: 0.3px;
+        }
+        .pill.active-cyber { color: var(--tag-cyber); background: rgba(0, 132, 255, 0.08); border: 1px solid rgba(0, 132, 255, 0.15); }
+        .pill.active-py { color: var(--tag-py); background: rgba(48, 209, 88, 0.08); border: 1px solid rgba(48, 209, 88, 0.15); }
+
+        /* GROUP TITLES */
+        .group-label {
             font-size: 0.72rem;
             text-transform: uppercase;
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            letter-spacing: 0.6px;
-            border: 1px solid transparent;
-        }
-
-        .badge.primary {
-            background-color: rgba(10, 132, 255, 0.08);
-            color: var(--accent-color);
-            border-color: rgba(10, 132, 255, 0.15);
-        }
-
-        .badge.secondary {
-            background-color: rgba(48, 209, 88, 0.08);
-            color: var(--success-color);
-            border-color: rgba(48, 209, 88, 0.15);
-        }
-
-        /* HIGH-PRIORITY INTERFACE: REPOS & CHANNELS */
-        .priority-section {
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             letter-spacing: 1.5px;
             font-weight: 700;
             margin-left: 6px;
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
         }
 
-        .gateway-list {
+        /* BRANDED INTERACTIVE GATEWAYS */
+        .interactive-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .gateway-row {
+        .action-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: var(--text-color);
+            color: var(--text-main);
             text-decoration: none;
-            padding: 1.25rem 1.75rem;
-            background-color: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            padding: 1.15rem 1.35rem;
+            background: var(--surface-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+            min-height: 72px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .gateway-row:hover {
-            background-color: rgba(20, 22, 29, 0.6);
+        .action-row:active {
+            background: var(--surface-inner);
             border-color: var(--border-hover);
-            box-shadow: 0 4px 20px var(--glow-color);
-            transform: translateX(4px);
+            transform: scale(0.98);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        .gateway-left {
+        .row-left {
             display: flex;
             align-items: center;
             gap: 16px;
         }
 
-        .gateway-icon {
-            font-size: 1.3rem;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        .brand-logo-frame {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .gateway-arrow {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            opacity: 0.3;
-            transition: transform 0.2s ease, opacity 0.2s ease;
+        .brand-svg {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
         }
 
-        .gateway-row:hover .gateway-arrow {
-            opacity: 1;
-            color: var(--accent-color);
-            transform: translateX(2px);
-        }
-
-        /* SYSTEM METADATA MODULES GRID */
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .matrix-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
+        .text-stack {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 16px;
+            gap: 2px;
+        }
+
+        .text-stack .row-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .text-stack .row-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .row-arrow {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            opacity: 0.35;
+        }
+
+        /* METADATA TARGET MODULE PACKS */
+        .compact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .module-tile {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.35rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .matrix-card:hover {
-            background-color: var(--inner-card);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+        .module-tile:active {
+            background: var(--surface-inner);
+            border-color: rgba(255, 255, 255, 0.18);
+            transform: scale(0.95);
         }
 
-        .matrix-card:active {
-            transform: scale(0.97);
-        }
-
-        .card-icon {
+        .tile-graphic {
             width: 42px;
             height: 42px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-size: 1.15rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .card-info h2 {
-            font-size: 1.05rem;
+        .module-tile h2 {
+            font-size: 0.82rem;
             font-weight: 600;
             color: #ffffff;
         }
 
-        .card-info p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 3px;
-            line-height: 1.3;
-        }
-
-        /* MODAL DIALOG ENVIRONMENT */
-        .modal-overlay {
+        /* SHEET WINDOW COMPONENT (MODALS) */
+        .modal-mask {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(2, 2, 3, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            z-index: 1000;
+            background: rgba(3, 4, 6, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 2000;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.25s ease;
-            padding: 1.5rem;
+            transition: opacity 0.26s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .modal-overlay.active {
+        .modal-mask.active {
             opacity: 1;
             pointer-events: auto;
         }
 
-        .modal-content {
-            background-color: var(--modal-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
+        .modal-sheet {
+            background: var(--surface-modal);
+            border-top: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 28px 28px 0 0;
             width: 100%;
-            max-width: 640px;
-            max-height: 85vh;
+            max-width: 480px;
+            max-height: 84vh;
             overflow-y: auto;
-            position: relative;
-            transform: scale(0.95);
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            transform: translateY(100%);
+            transition: transform 0.28s cubic-bezier(0.15, 1, 0.3, 1);
+            box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.6);
         }
 
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
+        .modal-mask.active .modal-sheet {
+            transform: translateY(0);
         }
 
-        .modal-header {
+        .modal-navbar {
             position: sticky;
             top: 0;
-            background-color: rgba(11, 12, 15, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(10, 13, 20, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.35rem 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            z-index: 10;
+            z-index: 5;
         }
 
-        .modal-title {
-            font-size: 1.2rem;
+        .modal-header-title {
+            font-size: 1.05rem;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: #ffffff;
         }
 
-        .close-btn {
-            background-color: var(--inner-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-color);
-            font-size: 0.82rem;
+        .sheet-dismiss-btn {
+            background: var(--surface-inner);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-main);
+            font-size: 0.8rem;
             font-weight: 600;
             padding: 8px 16px;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .close-btn:hover {
-            background-color: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        /* DATA BLOCKS DISPLAY */
-        .info-block {
-            background-color: var(--inner-card);
-            border-radius: 16px;
+        .modal-pane-body {
             padding: 1.5rem;
-            margin-bottom: 1.25rem;
-            border: 1px solid var(--border-color);
         }
 
-        .info-block:last-child { margin-bottom: 0; }
+        /* DATA BLOCKS */
+        .content-card {
+            background: var(--surface-inner);
+            border-radius: 20px;
+            padding: 1.35rem;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-subtle);
+        }
+        .content-card:last-child { margin-bottom: 0; }
 
-        .info-block h3 {
-            font-size: 1.05rem;
+        .content-card h3 {
+            font-size: 0.98rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.45rem;
             color: #ffffff;
         }
 
-        .info-block p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.6;
+        .content-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
         }
 
-        .row-item {
+        .history-node {
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 1.25rem 0;
+            padding: 1.15rem 0;
         }
-        .row-item:first-child { padding-top: 0; }
-        .row-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .history-node:first-child { padding-top: 0; }
+        .history-node:last-child { border-bottom: none; padding-bottom: 0; }
 
-        .row-meta {
-            font-size: 0.75rem;
-            color: var(--accent-color);
+        .history-timestamp {
+            font-size: 0.72rem;
+            color: var(--accent-solid);
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-
-        /* SCREEN COMPACTNESS & MEDIA QUERIES */
-        @media (max-width: 768px) {
-            body {
-                padding: 2rem 1rem;
-            }
-            .official-header {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.75rem;
-                gap: 20px;
-            }
-            .badge-row {
-                justify-content: center;
-            }
-            .matrix-grid {
-                grid-template-columns: 1fr;
-                gap: 0.85rem;
-            }
-            .matrix-card {
-                flex-direction: row;
-                align-items: center;
-                padding: 1.25rem;
-            }
-            .gateway-row {
-                padding: 1.1rem 1.35rem;
-            }
-            .modal-body {
-                padding: 1.5rem;
-            }
-            .modal-header {
-                padding: 1.25rem 1.5rem;
-            }
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
-    <div class="console-container">
+    <div class="app-container">
         
-        <header class="official-header">
-            <div class="avatar-container">
+        <header class="identity-card">
+            <div class="avatar-frame">
                 <img class="avatar-img" src="WhatsApp Image 2026-06-27 at 9.22.16 PM.jpeg" alt="Murugan Santhosh" onerror="this.style.display='none';">
             </div>
-            <div class="profile-info">
+            <div class="identity-meta">
                 <h1>Murugan Santhosh</h1>
-                <p>Cyber Security Engineering Student @ Amrita University</p>
-                <div class="badge-row">
-                    <span class="badge primary">Terminal Joint Founder</span>
-                    <span class="badge secondary">Python Ta Documentation Coordinator</span>
+                <p>Cyber Security Engineering Student</p>
+                <div class="pill-container">
+                    <span class="pill active-cyber">Terminal Joint</span>
+                    <span class="pill active-py">Python TA Coordinator</span>
                 </div>
             </div>
         </header>
 
-        <section class="priority-section">
-            <div class="section-label">Core Matrix & External Networks</div>
-            <div class="gateway-list">
+        <nav class="group-wrapper">
+            <div class="group-label">Core Verification Gateways</div>
+            <div class="interactive-list">
                 
-                <a href="https://github.com/terminaljoint" target="_blank" class="gateway-row">
-                    <div class="gateway-left">
-                        <span class="gateway-icon">🐙</span>
-                        <span>GitHub Profile Matrix</span>
+                <a href="https://github.com/terminaljoint" target="_blank" class="action-row">
+                    <div class="row-left">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="filter: invert(1);" alt="GitHub">
+                        </div>
+                        <div class="text-stack">
+                            <span class="row-title">GitHub Profile Matrix</span>
+                            <span class="row-subtitle">Main developer ecosystem code repository</span>
+                        </div>
                     </div>
-                    <span class="gateway-arrow">›</span>
+                    <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" class="gateway-row">
-                    <div class="gateway-left">
-                        <span class="gateway-icon">💼</span>
-                        <span>LinkedIn Engineering Network</span>
+                <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" class="action-row">
+                    <div class="row-left">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" style="filter: invert(41%) sepia(87%) saturate(1234%) hue-rotate(186deg) brightness(97%) contrast(102%);" alt="LinkedIn">
+                        </div>
+                        <div class="text-stack">
+                            <span class="row-title">LinkedIn Engineering Network</span>
+                            <span class="row-subtitle">Professional node and academic validation</span>
+                        </div>
                     </div>
-                    <span class="gateway-arrow">›</span>
+                    <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://github.com/Terminal-Joint/python-docs-ta" target="_blank" class="gateway-row">
-                    <div class="gateway-left">
-                        <span class="gateway-icon">🐍</span>
-                        <span>Official PyTamil Repository Base</span>
+                <a href="https://github.com/Terminal-Joint/python-docs-ta" target="_blank" class="action-row">
+                    <div class="row-left">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python">
+                        </div>
+                        <div class="text-stack">
+                            <span class="row-title">Official PyTamil Repository</span>
+                            <span class="row-subtitle">Python core configuration files in Tamil</span>
+                        </div>
                     </div>
-                    <span class="gateway-arrow">›</span>
+                    <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://discord.gg/JNWjefK2yG" target="_blank" class="gateway-row">
-                    <div class="gateway-left">
-                        <span class="gateway-icon">💬</span>
-                        <span>PyTamil Discord Community Relay</span>
+                <a href="https://discord.gg/JNWjefK2yG" target="_blank" class="action-row">
+                    <div class="row-left">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" style="filter: invert(36%) sepia(88%) saturate(1212%) hue-rotate(216deg) brightness(97%) contrast(97%);" alt="Discord">
+                        </div>
+                        <div class="text-stack">
+                            <span class="row-title">PyTamil Community Hub</span>
+                            <span class="row-subtitle">Join community localized chat servers</span>
+                        </div>
                     </div>
-                    <span class="gateway-arrow">›</span>
+                    <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" class="gateway-row">
-                    <div class="gateway-left">
-                        <span class="gateway-icon">📄</span>
-                        <span>Python DevGuide Coordinator Verification</span>
+                <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" class="action-row">
+                    <div class="row-left">
+                        <div class="brand-logo-frame">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" style="opacity: 0.5;" alt="Python Proof">
+                        </div>
+                        <div class="text-stack">
+                            <span class="row-title">Python DevGuide Coordinator</span>
+                            <span class="row-subtitle">Official validation ledger and proof documentation</span>
+                        </div>
                     </div>
-                    <span class="gateway-arrow">›</span>
+                    <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="gateway-row" style="border-color: rgba(10, 132, 255, 0.35); background: linear-gradient(90deg, rgba(10, 132, 255, 0.03), transparent);">
-                    <div class="gateway-left">
-                        <span class="gateway-icon">📢</span>
-                        <span style="font-weight: 600; color: #ffffff;">Contact Layer: Join Terminal Joint & Ping Directly</span>
+                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="action-row" style="border-color: rgba(0, 132, 255, 0.4); background: linear-gradient(90deg, rgba(0, 132, 255, 0.05), transparent);">
+                    <div class="row-left">
+                        <div class="brand-logo-frame" style="border-color: rgba(0, 132, 255, 0.2); background: rgba(0, 132, 255, 0.1);">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" style="filter: invert(45%) sepia(95%) saturate(2200%) hue-rotate(195deg) brightness(101%) contrast(105%);" alt="Contact Discord">
+                        </div>
+                        <div class="text-stack">
+                            <span class="row-title" style="color: #ffffff; font-weight: 700;">Direct Contact Interface</span>
+                            <span class="row-subtitle" style="color: var(--text-secondary);">Join Terminal Joint Server & Ping Me</span>
+                        </div>
                     </div>
-                    <span class="gateway-arrow" style="opacity: 1; color: var(--accent-color);">›</span>
+                    <span class="row-arrow" style="opacity: 1; color: var(--accent-solid);">›</span>
                 </a>
 
             </div>
-        </section>
+        </nav>
 
-        <section class="priority-section">
-            <div class="section-label">Sub-System Parameters</div>
-            <main class="matrix-grid">
+        <section class="group-wrapper">
+            <div class="group-label">System Meta Modules</div>
+            <div class="compact-grid">
                 
-                <div class="matrix-card" onclick="openModal('modal-about')">
-                    <div class="card-icon" style="background-color: var(--accent-color); box-shadow: 0 4px 14px rgba(10, 132, 255, 0.35);">👤</div>
-                    <div class="card-info">
-                        <h2>Overview</h2>
-                        <p>Identity index & background</p>
-                    </div>
+                <div class="module-tile" onclick="launchModal('sheet-overview')">
+                    <div class="tile-graphic" style="background: rgba(0, 132, 255, 0.1); color: var(--tag-cyber);">👤</div>
+                    <h2>Overview</h2>
                 </div>
 
-                <div class="matrix-card" onclick="openModal('modal-milestones')">
-                    <div class="card-icon" style="background-color: var(--success-color); box-shadow: 0 4px 14px rgba(48, 209, 88, 0.35);">⏳</div>
-                    <div class="card-info">
-                        <h2>Milestones</h2>
-                        <p>Architecture deployment timeline</p>
-                    </div>
+                <div class="module-tile" onclick="launchModal('sheet-history')">
+                    <div class="tile-graphic" style="background: rgba(48, 209, 88, 0.1); color: var(--tag-py);">⏳</div>
+                    <h2>Milestones</h2>
                 </div>
 
-                <div class="matrix-card" onclick="openModal('modal-domains')">
-                    <div class="card-icon" style="background-color: var(--warning-color); box-shadow: 0 4px 14px rgba(255, 159, 10, 0.35);">🛡️</div>
-                    <div class="card-info">
-                        <h2>Focus Areas</h2>
-                        <p>Operational workflow models</p>
-                    </div>
+                <div class="module-tile" onclick="launchModal('sheet-domains')">
+                    <div class="tile-graphic" style="background: rgba(255, 159, 10, 0.1); color: var(--tag-domain);">🛡️</div>
+                    <h2>Focus Areas</h2>
                 </div>
 
-            </main>
+            </div>
         </section>
     </div>
 
-    <div id="modal-about" class="modal-overlay" onclick="closeModalOnOuterClick(event, this)">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title"><span>👤</span> Overview Module</div>
-                <button class="close-btn" onclick="closeModal('modal-about')">Close</button>
+    <div id="sheet-overview" class="modal-mask" onclick="dismissModalOnOuterClick(event, this)">
+        <div class="modal-sheet">
+            <div class="modal-navbar">
+                <div class="modal-header-title"><span>👤</span> Overview Dataset</div>
+                <button class="sheet-dismiss-btn" onclick="exitModal('sheet-overview')">Done</button>
             </div>
-            <div class="modal-body">
-                <div class="info-block">
-                    <h3>Academic Context</h3>
-                    <p>Executing active coursework as a 1st-year B.Tech Cybersecurity Engineering student inside the engineering corridors of Amrita University Chennai. Operations parameter tracking is configured for the Class of 2026 – 2030.</p>
+            <div class="modal-pane-body">
+                <div class="content-card">
+                    <h3>Academic Parameters</h3>
+                    <p>Executing active coursework as a 1st-year B.Tech Cybersecurity Engineering student at Amrita University Chennai. Track cycle: Class of 2026 – 2030.</p>
                 </div>
-                <div class="info-block">
+                <div class="content-card">
                     <h3>Terminal Joint Workshop</h3>
-                    <p>Founder and current manager of Terminal Joint—an independent laboratory environment and software ecosystem sandbox. Core operations focus on developing clean codebase logic configurations, multi-lingual technical documentation adaptations, and optimization mechanics.</p>
+                    <p>Founder and lead manager of Terminal Joint—an independent laboratory environment and software sandbox prioritizing custom codebase development and native translation tracks.</p>
                 </div>
-                <div class="info-block">
+                <div class="content-card">
                     <h3>Spatial Localization</h3>
                     <p>Salem, Tamil Nadu, India [Zone Index: 636501]</p>
                 </div>
@@ -562,78 +524,78 @@
         </div>
     </div>
 
-    <div id="modal-milestones" class="modal-overlay" onclick="closeModalOnOuterClick(event, this)">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title"><span>⏳</span> System Records Log</div>
-                <button class="close-btn" onclick="closeModal('modal-milestones')">Close</button>
+    <div id="sheet-history" class="modal-mask" onclick="dismissModalOnOuterClick(event, this)">
+        <div class="modal-sheet">
+            <div class="modal-navbar">
+                <div class="modal-header-title"><span>⏳</span> System Records Log</div>
+                <button class="sheet-dismiss-btn" onclick="exitModal('sheet-history')">Done</button>
             </div>
-            <div class="modal-body">
-                <div class="info-block">
-                    <div class="row-item">
-                        <div class="row-meta">March 2026</div>
-                        <h3>PyTamil Community Pipeline Deployment</h3>
-                        <p>Configured and optimized the underlying adaptation engine translating Python's primary framework logic matrices into Tamil language outputs. Structured continuous integration channels and multi-user collaboration assets directly over Discord framework networks.</p>
+            <div class="modal-pane-body">
+                <div class="content-card">
+                    <div class="history-node">
+                        <div class="history-timestamp">March 2026</div>
+                        <h3>PyTamil Documentation Pipeline</h3>
+                        <p>Configured optimization engine translating Python core language documentation into Tamil. Structured continuous synchronization channels over Discord.</p>
                     </div>
-                    <div class="row-item">
-                        <div class="row-meta">January 2026</div>
-                        <h3>GDevelop Engine Core Localization Integration</h3>
-                        <p>Automated software environment regionalization and framework adaptation sequences for the GDevelop engine ecosystem via distributed localized crowdsourcing nodes.</p>
+                    <div class="history-node">
+                        <div class="history-timestamp">January 2026</div>
+                        <h3>GDevelop Engine Core Integration</h3>
+                        <p>Automated localization sequences and framework translation arrays for GDevelop engine via distributed crowdsourcing nodes.</p>
                     </div>
-                    <div class="row-item">
-                        <div class="row-meta">September 2025</div>
-                        <h3>Terminal Joint Hub Architecture Launch</h3>
-                        <p>Completed base structural logic mastery and founded the Terminal Joint network node to host active prototypes, build projects, and deploy private development environments.</p>
+                    <div class="history-node">
+                        <div class="history-timestamp">September 2025</div>
+                        <h3>Terminal Joint Architecture Launch</h3>
+                        <p>Completed structural logic tracks and formalized the Terminal Joint node to host prototype builds and private environments.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="modal-domains" class="modal-overlay" onclick="closeModalOnOuterClick(event, this)">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title"><span>🛡️</span> Technical Operational Domains</div>
-                <button class="close-btn" onclick="closeModal('modal-domains')">Close</button>
+    <div id="sheet-domains" class="modal-mask" onclick="dismissModalOnOuterClick(event, this)">
+        <div class="modal-sheet">
+            <div class="modal-navbar">
+                <div class="modal-header-title"><span>🛡️</span> Technical Focus Domains</div>
+                <button class="sheet-dismiss-btn" onclick="exitModal('sheet-domains')">Done</button>
             </div>
-            <div class="modal-body">
-                <div class="info-block">
-                    <h3>Cybersecurity & Secure Configurations</h3>
-                    <p>Analyzing protective network environments, operational threat dynamics, and reliable structural pattern implementations throughout standard tracks at Amrita University.</p>
+            <div class="modal-pane-body">
+                <div class="content-card">
+                    <h3>Cybersecurity & Frameworks</h3>
+                    <p>Analyzing protective network environments, structural object patterns, and defensive dynamics throughout coursework architectures.</p>
                 </div>
-                <div class="info-block">
-                    <h3>Technical Language Translation Engineering</h3>
-                    <p>Formulating functional frameworks to eliminate language barrier constraints for technical documentation, expanding access parameters for developers within native fields.</p>
+                <div class="content-card">
+                    <h3>Translation Layer Engineering</h3>
+                    <p>Formulating technical frameworks to resolve native-language barrier constraints for technical documentation logs.</p>
                 </div>
-                <div class="info-block">
-                    <h3>Interactive Logic Systems & Game Mechanics</h3>
-                    <p>Building specialized internal state engines, interactive loops, and modular environment scripts.</p>
+                <div class="content-card">
+                    <h3>Interactive Logic Systems</h3>
+                    <p>Building specialized internal state engines, logical loop paths, and modular game script environments.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function openModal(modalId) {
+        function launchModal(modalId) {
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal(modalId) {
+        function exitModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        function closeModalOnOuterClick(event, element) {
+        function dismissModalOnOuterClick(event, element) {
             if (event.target === element) {
-                closeModal(element.id);
+                exitModal(element.id);
             }
         }
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const visibleModal = document.querySelector('.modal-overlay.active');
-                if (visibleModal) closeModal(visibleModal.id);
+                const visibleModal = document.querySelector('.modal-mask.active');
+                if (visibleModal) exitModal(visibleModal.id);
             }
         });
     </script>
