@@ -6,15 +6,15 @@
     <title>Terminal Joint Console</title>
     <style>
         :root {
-            --bg-color: #06070a;
-            --surface-card: rgba(18, 22, 34, 0.65);
-            --surface-inner: #151a29; 
-            --surface-modal: #0a0d14;
+            --bg-color: #040508;
+            --surface-card: rgba(15, 18, 28, 0.7);
+            --surface-inner: #111522;
+            --surface-modal: #080a10;
             --accent-solid: #0084ff;
-            --accent-glow: rgba(0, 132, 255, 0.2);
+            --accent-glow: rgba(0, 132, 255, 0.25);
             --text-main: #ffffff;
-            --text-secondary: #9ea5bd;
-            --border-subtle: rgba(255, 255, 255, 0.07);
+            --text-secondary: #9097b0;
+            --border-subtle: rgba(255, 255, 255, 0.06);
             --border-hover: rgba(0, 132, 255, 0.4);
             
             --tag-cyber: #0084ff;
@@ -26,7 +26,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -34,7 +34,7 @@
             background-color: var(--bg-color);
             background-image: 
                 radial-gradient(circle at 50% 0%, rgba(0, 132, 255, 0.15) 0%, transparent 60%),
-                radial-gradient(circle at 0% 100%, rgba(48, 209, 88, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 100% 100%, rgba(48, 209, 88, 0.03) 0%, transparent 40%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -42,7 +42,7 @@
             overflow-x: hidden;
             overflow-y: auto;
             padding: 1.5rem 1rem;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .app-container {
@@ -50,7 +50,7 @@
             max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 1.75rem;
+            gap: 1.5rem;
             padding-bottom: 3rem;
             animation: appEntry 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -60,24 +60,24 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* PREMIUM IDENTITY HEADER */
+        /* TECH IDENTITY CARD */
         .identity-card {
             background: var(--surface-card);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-subtle);
-            border-radius: 24px;
-            padding: 1.5rem;
+            border-radius: 20px;
+            padding: 1.25rem;
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
         }
 
         .avatar-frame {
             position: relative;
-            width: 74px;
-            height: 74px;
+            width: 70px;
+            height: 70px;
             flex-shrink: 0;
         }
 
@@ -88,18 +88,17 @@
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.1);
             background: var(--surface-inner);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         }
 
         .identity-meta h1 {
-            font-size: 1.35rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: -0.5px;
             color: #ffffff;
         }
 
         .identity-meta p {
-            font-size: 0.88rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             margin-top: 2px;
         }
@@ -112,33 +111,57 @@
         }
 
         .pill {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 8px;
-            letter-spacing: 0.3px;
+            padding: 3px 8px;
+            border-radius: 6px;
         }
         .pill.active-cyber { color: var(--tag-cyber); background: rgba(0, 132, 255, 0.08); border: 1px solid rgba(0, 132, 255, 0.15); }
         .pill.active-py { color: var(--tag-py); background: rgba(48, 209, 88, 0.08); border: 1px solid rgba(48, 209, 88, 0.15); }
 
-        /* GROUP TITLES */
+        /* DASHBOARD INTRO MODULE */
+        .intro-box {
+            background: rgba(0, 132, 255, 0.02);
+            border: 1px dashed rgba(0, 132, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.15rem;
+        }
+
+        .intro-box h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-solid);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .intro-box p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* LABELS */
         .group-label {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
             color: var(--text-secondary);
             letter-spacing: 1.5px;
             font-weight: 700;
-            margin-left: 6px;
-            margin-bottom: 0.75rem;
-            opacity: 0.8;
+            margin-left: 4px;
+            margin-bottom: 0.65rem;
+            opacity: 0.7;
         }
 
-        /* BRANDED INTERACTIVE GATEWAYS */
+        /* GATEWAY ROW ARCHITECTURE */
         .interactive-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .action-row {
@@ -147,34 +170,33 @@
             justify-content: space-between;
             color: var(--text-main);
             text-decoration: none;
-            padding: 1.15rem 1.35rem;
+            padding: 1.1rem 1.25rem;
             background: var(--surface-card);
-            border-radius: 20px;
+            border-radius: 16px;
             border: 1px solid var(--border-subtle);
-            min-height: 72px;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            min-height: 68px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .action-row:active {
             background: var(--surface-inner);
             border-color: var(--border-hover);
             transform: scale(0.98);
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 16px var(--accent-glow);
         }
 
         .row-left {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .brand-logo-frame {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -182,137 +204,114 @@
         }
 
         .brand-svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             object-fit: contain;
         }
 
         .text-stack {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 1px;
         }
 
         .text-stack .row-title {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             font-weight: 600;
             color: #ffffff;
         }
 
         .text-stack .row-subtitle {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
         }
 
         .row-arrow {
             color: var(--text-secondary);
-            font-size: 1.2rem;
-            opacity: 0.35;
+            font-size: 1.1rem;
+            opacity: 0.3;
         }
 
-        /* METADATA TARGET MODULE PACKS */
+        /* GRID TILES */
         .compact-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
         }
 
         .module-tile {
             background: var(--surface-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 1.35rem 0.5rem;
+            border-radius: 16px;
+            padding: 1.25rem 0.25rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .module-tile:active {
             background: var(--surface-inner);
-            border-color: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.15);
             transform: scale(0.95);
         }
 
         .tile-graphic {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 1.1rem;
         }
 
         .module-tile h2 {
-            font-size: 0.82rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: #ffffff;
         }
 
-        /* SHEET WINDOW COMPONENT (MODALS) */
+        /* FULL PAGE MODAL MASK OVERLAYS */
         .modal-mask {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(3, 4, 6, 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: var(--surface-modal);
             z-index: 2000;
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
+            flex-direction: column;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
         }
 
         .modal-mask.active {
             opacity: 1;
             pointer-events: auto;
-        }
-
-        .modal-sheet {
-            background: var(--surface-modal);
-            border-top: 1px solid rgba(255, 255, 255, 0.09);
-            border-radius: 28px 28px 0 0;
-            width: 100%;
-            max-width: 480px;
-            max-height: 84vh;
-            overflow-y: auto;
-            transform: translateY(100%);
-            transition: transform 0.28s cubic-bezier(0.15, 1, 0.3, 1);
-            box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .modal-mask.active .modal-sheet {
-            transform: translateY(0);
+            transform: translateX(0);
         }
 
         .modal-navbar {
-            position: sticky;
-            top: 0;
-            background: rgba(10, 13, 20, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 1.35rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             border-bottom: 1px solid var(--border-subtle);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            z-index: 5;
+            background: rgba(8, 10, 16, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .modal-header-title {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -324,54 +323,54 @@
             background: var(--surface-inner);
             border: 1px solid rgba(255, 255, 255, 0.06);
             color: var(--text-main);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 12px;
+            padding: 8px 14px;
+            border-radius: 10px;
             cursor: pointer;
         }
 
         .modal-pane-body {
             padding: 1.5rem;
+            overflow-y: auto;
+            flex-grow: 1;
         }
 
-        /* DATA BLOCKS */
+        /* OVERLAY DATA CARDS */
         .content-card {
-            background: var(--surface-inner);
-            border-radius: 20px;
-            padding: 1.35rem;
+            background: var(--surface-card);
+            border-radius: 16px;
+            padding: 1.25rem;
             margin-bottom: 12px;
             border: 1px solid var(--border-subtle);
         }
-        .content-card:last-child { margin-bottom: 0; }
 
         .content-card h3 {
-            font-size: 0.98rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.4rem;
             color: #ffffff;
         }
 
         .content-card p {
-            font-size: 0.88rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            line-height: 1.55;
+            line-height: 1.5;
         }
 
         .history-node {
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 1.15rem 0;
+            padding: 1rem 0;
         }
         .history-node:first-child { padding-top: 0; }
         .history-node:last-child { border-bottom: none; padding-bottom: 0; }
 
         .history-timestamp {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             color: var(--accent-solid);
             font-weight: 700;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.25rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -393,6 +392,11 @@
             </div>
         </header>
 
+        <div class="intro-box">
+            <h2><span>[</span>sys_init<span>]</span> Intro</h2>
+            <p>Welcome to the main pipeline console. I specialize in backend security layers, technical framework translations, and localization optimization tracks within open source platforms.</p>
+        </div>
+
         <nav class="group-wrapper">
             <div class="group-label">Core Verification Gateways</div>
             <div class="interactive-list">
@@ -404,7 +408,7 @@
                         </div>
                         <div class="text-stack">
                             <span class="row-title">GitHub Profile Matrix</span>
-                            <span class="row-subtitle">Main developer ecosystem code repository</span>
+                            <span class="row-subtitle">Core code environments</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
@@ -416,8 +420,8 @@
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" style="filter: invert(41%) sepia(87%) saturate(1234%) hue-rotate(186deg) brightness(97%) contrast(102%);" alt="LinkedIn">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">LinkedIn Engineering Network</span>
-                            <span class="row-subtitle">Professional node and academic validation</span>
+                            <span class="row-title">LinkedIn Network</span>
+                            <span class="row-subtitle">Professional verification index</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
@@ -429,8 +433,8 @@
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">Official PyTamil Repository</span>
-                            <span class="row-subtitle">Python core configuration files in Tamil</span>
+                            <span class="row-title">Official PyTamil Repo</span>
+                            <span class="row-subtitle">Python framework translation arrays</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
@@ -443,7 +447,7 @@
                         </div>
                         <div class="text-stack">
                             <span class="row-title">PyTamil Community Hub</span>
-                            <span class="row-subtitle">Join community localized chat servers</span>
+                            <span class="row-subtitle">Community synchronization channels</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
@@ -456,20 +460,20 @@
                         </div>
                         <div class="text-stack">
                             <span class="row-title">Python DevGuide Coordinator</span>
-                            <span class="row-subtitle">Official validation ledger and proof documentation</span>
+                            <span class="row-subtitle">Official coordination proof ledger</span>
                         </div>
                     </div>
                     <span class="row-arrow">›</span>
                 </a>
 
-                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="action-row" style="border-color: rgba(0, 132, 255, 0.4); background: linear-gradient(90deg, rgba(0, 132, 255, 0.05), transparent);">
+                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" class="action-row" style="border-color: rgba(0, 132, 255, 0.4); background: linear-gradient(90deg, rgba(0, 132, 255, 0.04), transparent);">
                     <div class="row-left">
                         <div class="brand-logo-frame" style="border-color: rgba(0, 132, 255, 0.2); background: rgba(0, 132, 255, 0.1);">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" style="filter: invert(45%) sepia(95%) saturate(2200%) hue-rotate(195deg) brightness(101%) contrast(105%);" alt="Contact Discord">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title" style="color: #ffffff; font-weight: 700;">Direct Contact Interface</span>
-                            <span class="row-subtitle" style="color: var(--text-secondary);">Join Terminal Joint Server & Ping Me</span>
+                            <span class="row-title" style="color: #ffffff; font-weight: 700;">Direct Contact Layer</span>
+                            <span class="row-subtitle" style="color: var(--text-secondary);">Join Terminal Joint Server & Ping</span>
                         </div>
                     </div>
                     <span class="row-arrow" style="opacity: 1; color: var(--accent-solid);">›</span>
@@ -501,101 +505,102 @@
         </section>
     </div>
 
-    <div id="sheet-overview" class="modal-mask" onclick="dismissModalOnOuterClick(event, this)">
-        <div class="modal-sheet">
-            <div class="modal-navbar">
-                <div class="modal-header-title"><span>👤</span> Overview Dataset</div>
-                <button class="sheet-dismiss-btn" onclick="exitModal('sheet-overview')">Done</button>
+    <div id="sheet-overview" class="modal-mask">
+        <div class="modal-navbar">
+            <div class="modal-header-title"><span>👤</span> Overview Dataset</div>
+            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
+        </div>
+        <div class="modal-pane-body">
+            <div class="content-card">
+                <h3>Academic Parameters</h3>
+                <p>Executing active coursework as a 1st-year B.Tech Cybersecurity Engineering student at Amrita University Chennai. Track cycle: Class of 2026 – 2030.</p>
             </div>
-            <div class="modal-pane-body">
-                <div class="content-card">
-                    <h3>Academic Parameters</h3>
-                    <p>Executing active coursework as a 1st-year B.Tech Cybersecurity Engineering student at Amrita University Chennai. Track cycle: Class of 2026 – 2030.</p>
+            <div class="content-card">
+                <h3>Terminal Joint Workshop</h3>
+                <p>Founder and lead manager of Terminal Joint—an independent laboratory environment and software sandbox prioritizing custom codebase development and native translation tracks.</p>
+            </div>
+            <div class="content-card">
+                <h3>Spatial Localization</h3>
+                <p>Salem, Tamil Nadu, India [Zone Index: 636501]</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="sheet-history" class="modal-mask">
+        <div class="modal-navbar">
+            <div class="modal-header-title"><span>⏳</span> System Records Log</div>
+            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
+        </div>
+        <div class="modal-pane-body">
+            <div class="content-card">
+                <div class="history-node">
+                    <div class="history-timestamp">March 2026</div>
+                    <h3>PyTamil Documentation Pipeline</h3>
+                    <p>Configured optimization engine translating Python core language documentation into Tamil. Structured continuous synchronization channels over Discord.</p>
                 </div>
-                <div class="content-card">
-                    <h3>Terminal Joint Workshop</h3>
-                    <p>Founder and lead manager of Terminal Joint—an independent laboratory environment and software sandbox prioritizing custom codebase development and native translation tracks.</p>
+                <div class="history-node">
+                    <div class="history-timestamp">January 2026</div>
+                    <h3>GDevelop Engine Core Integration</h3>
+                    <p>Automated localization sequences and framework translation arrays for GDevelop engine via distributed crowdsourcing nodes.</p>
                 </div>
-                <div class="content-card">
-                    <h3>Spatial Localization</h3>
-                    <p>Salem, Tamil Nadu, India [Zone Index: 636501]</p>
+                <div class="history-node">
+                    <div class="history-timestamp">September 2025</div>
+                    <h3>Terminal Joint Architecture Launch</h3>
+                    <p>Completed structural logic tracks and formalized the Terminal Joint node to host prototype builds and private environments.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="sheet-history" class="modal-mask" onclick="dismissModalOnOuterClick(event, this)">
-        <div class="modal-sheet">
-            <div class="modal-navbar">
-                <div class="modal-header-title"><span>⏳</span> System Records Log</div>
-                <button class="sheet-dismiss-btn" onclick="exitModal('sheet-history')">Done</button>
-            </div>
-            <div class="modal-pane-body">
-                <div class="content-card">
-                    <div class="history-node">
-                        <div class="history-timestamp">March 2026</div>
-                        <h3>PyTamil Documentation Pipeline</h3>
-                        <p>Configured optimization engine translating Python core language documentation into Tamil. Structured continuous synchronization channels over Discord.</p>
-                    </div>
-                    <div class="history-node">
-                        <div class="history-timestamp">January 2026</div>
-                        <h3>GDevelop Engine Core Integration</h3>
-                        <p>Automated localization sequences and framework translation arrays for GDevelop engine via distributed crowdsourcing nodes.</p>
-                    </div>
-                    <div class="history-node">
-                        <div class="history-timestamp">September 2025</div>
-                        <h3>Terminal Joint Architecture Launch</h3>
-                        <p>Completed structural logic tracks and formalized the Terminal Joint node to host prototype builds and private environments.</p>
-                    </div>
-                </div>
-            </div>
+    <div id="sheet-domains" class="modal-mask">
+        <div class="modal-navbar">
+            <div class="modal-header-title"><span>🛡️</span> Technical Focus Domains</div>
+            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
         </div>
-    </div>
-
-    <div id="sheet-domains" class="modal-mask" onclick="dismissModalOnOuterClick(event, this)">
-        <div class="modal-sheet">
-            <div class="modal-navbar">
-                <div class="modal-header-title"><span>🛡️</span> Technical Focus Domains</div>
-                <button class="sheet-dismiss-btn" onclick="exitModal('sheet-domains')">Done</button>
+        <div class="modal-pane-body">
+            <div class="content-card">
+                <h3>Cybersecurity & Frameworks</h3>
+                <p>Analyzing protective network environments, structural object patterns, and defensive dynamics throughout coursework architectures.</p>
             </div>
-            <div class="modal-pane-body">
-                <div class="content-card">
-                    <h3>Cybersecurity & Frameworks</h3>
-                    <p>Analyzing protective network environments, structural object patterns, and defensive dynamics throughout coursework architectures.</p>
-                </div>
-                <div class="content-card">
-                    <h3>Translation Layer Engineering</h3>
-                    <p>Formulating technical frameworks to resolve native-language barrier constraints for technical documentation logs.</p>
-                </div>
-                <div class="content-card">
-                    <h3>Interactive Logic Systems</h3>
-                    <p>Building specialized internal state engines, logical loop paths, and modular game script environments.</p>
-                </div>
+            <div class="content-card">
+                <h3>Translation Layer Engineering</h3>
+                <p>Formulating technical frameworks to resolve native-language barrier constraints for technical documentation logs.</p>
+            </div>
+            <div class="content-card">
+                <h3>Interactive Logic Systems</h3>
+                <p>Building specialized internal state engines, logical loop paths, and modular game script environments.</p>
             </div>
         </div>
     </div>
 
     <script>
+        let openModalId = null;
+
         function launchModal(modalId) {
+            openModalId = modalId;
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Push virtual browser state to handle device back button actions
+            history.pushState({ modalOpen: modalId }, "");
         }
 
-        function exitModal(modalId) {
+        function exitModalDirect(modalId) {
+            if (!modalId) return;
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = 'auto';
+            openModalId = null;
         }
 
-        function dismissModalOnOuterClick(event, element) {
-            if (event.target === element) {
-                exitModal(element.id);
-            }
+        function triggerBackNavigation() {
+            // Emulates back movement, firing the popstate controller automatically
+            history.back();
         }
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const visibleModal = document.querySelector('.modal-mask.active');
-                if (visibleModal) exitModal(visibleModal.id);
+        // Monitors device system back click activities
+        window.addEventListener('popstate', function(event) {
+            if (openModalId) {
+                exitModalDirect(openModalId);
             }
         });
     </script>
