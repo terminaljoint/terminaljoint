@@ -6,36 +6,39 @@
     <title>Murugan Santhosh</title>
     <style>
         :root {
-            /* APPLE DRIVEN SYSTEM PALETTE */
             --bg-main: #000000;
-            --bg-surface: #121212;
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-gradient: radial-gradient(circle at 50% 0%, #0a0f1d 0%, #000000 100%);
             
-            /* TYPOGRAPHY MATRIX */
-            --text-main: #f5f5f7;
+            --glass-card: rgba(255, 255, 255, 0.015);
+            --glass-card-hover: rgba(255, 255, 255, 0.035);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --glass-border-hover: rgba(255, 255, 255, 0.12);
+            
+            --text-main: #ffffff;
             --text-secondary: #86868b;
-            --text-link: #2997ff;
+            --text-muted: #424245;
             
-            /* HIGHLIGHT CODES */
-            --tag-cyber: #38bdf8;
-            --tag-py: #4ade80;
+            --accent-blue: #0066cc;
+            --max-width: 840px;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
-            background-color: var(--bg-main);
             height: 100%;
+            background-color: var(--bg-main);
         }
 
         body {
+            background-image: var(--bg-gradient);
+            background-attachment: fixed;
             color: var(--text-main);
             min-height: 100%;
             display: flex;
@@ -44,40 +47,39 @@
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-font-smoothing: antialiased;
-            padding: clamp(2rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem);
-            line-height: 1.47059;
+            -moz-osx-font-smoothing: grayscale;
+            padding: clamp(2.5rem, 10vw, 7rem) clamp(1.5rem, 6vw, 4rem) clamp(2rem, 6vw, 4rem);
+            line-height: 1.5;
             letter-spacing: -0.022em;
         }
 
-        /* STRUCTURAL CONTAINER WINDOW */
+        /* MASTER STRICT STRUCTURAL AXIS ALIGNMENT CONTAINER */
         .app-container {
             width: 100%;
-            max-width: 1020px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(3rem, 8vw, 5rem); 
+            max-width: var(--max-width);
+            display: flex;
+            flex-direction: column;
+            gap: 4.5rem; 
+            z-index: 10;
             position: relative;
-            animation: appleFade 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            contain: content;
         }
 
-        @keyframes appleFade {
-            from { opacity: 0; transform: scale(0.99); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* LEFT COLUMN: CRISP ASYMMETRICAL ALIGNMENT */
-        .identity-column {
+        /* 1. IDENTITY PROFILE NODE */
+        .identity-section {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
-            gap: 1.5rem;
+            gap: 2rem;
+            width: 100%;
+            padding-bottom: 1.5rem;
         }
 
         .avatar-frame {
             position: relative;
-            width: 80px;
-            height: 80px;
+            width: 84px;
+            height: 84px;
             flex-shrink: 0;
         }
 
@@ -86,277 +88,296 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .identity-meta h1 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
             font-weight: 700;
-            letter-spacing: -0.003em;
+            letter-spacing: -0.015em;
             color: var(--text-main);
-            line-height: 1.1;
+            line-height: 1.08;
         }
 
         .identity-meta p {
-            font-size: 1.05rem;
+            font-size: clamp(1.1rem, 2.8vw, 1.35rem);
             color: var(--text-secondary);
-            margin-top: 0.75rem;
+            margin-top: 1rem;
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.45;
         }
 
         .pill-container {
             display: flex;
-            gap: 6px;
-            margin-top: 1.25rem;
+            gap: 8px;
+            margin-top: 1.75rem;
             flex-wrap: wrap;
         }
 
         .pill {
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            padding: 4px 10px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 5px 12px;
             border-radius: 6px;
-            letter-spacing: 0.03em;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
+            border: 1px solid var(--glass-border);
+            letter-spacing: 0.01em;
         }
-        .pill.active-cyber { color: var(--tag-cyber); background: rgba(56, 189, 248, 0.05); }
-        .pill.active-py { color: var(--tag-py); background: rgba(74, 222, 128, 0.05); }
 
-        /* RIGHT COLUMN: MAIN LOGICAL TRACK */
-        .main-content-column {
+        /* REUSABLE STRUCTURAL FLOW UNITS */
+        .content-block {
             display: flex;
             flex-direction: column;
-            gap: clamp(3rem, 8vw, 5rem);
-        }
-
-        /* ABOUT ME BLOCKS */
-        .intro-section p {
-            font-size: clamp(1.2rem, 3vw, 1.45rem);
-            font-weight: 400;
-            color: var(--text-main);
-            line-height: 1.5;
-            letter-spacing: -0.009em;
-        }
-
-        /* APPLE-STYLE STRUCTURAL LINE ITEMS */
-        .group-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            width: 100%;
         }
 
         .group-label {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             text-transform: uppercase;
             color: var(--text-secondary);
             letter-spacing: 0.08em;
             font-weight: 600;
+            margin-bottom: 1.5rem;
             border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.6rem;
+            width: 100%;
         }
 
-        .topic-list {
+        .section-desc {
+            font-size: clamp(1.2rem, 3.2vw, 1.55rem);
+            color: var(--text-main);
+            line-height: 1.45;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* THREE-COLUMN INTEGRATED TILE GRID MATRIX */
+        .compact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            width: 100%;
+        }
+
+        .module-tile {
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 2.25rem;
-        }
-
-        .topic-item {
-            display: flex;
             align-items: flex-start;
             gap: 1.25rem;
-            text-decoration: none;
-            color: inherit;
+            cursor: pointer;
+            transition: border-color 0.25s ease, background-color 0.25s ease;
         }
 
-        .brand-logo-frame {
-            width: 24px;
+        .module-tile:hover {
+            border-color: var(--glass-border-hover);
+            background-color: var(--glass-card-hover);
+        }
+
+        .tile-graphic {
+            font-size: 1.35rem;
             height: 24px;
-            margin-top: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .module-tile h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+
+        .module-tile p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* LOW-PROFILE MINIMAL ROW DIRECTORY */
+        .interactive-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .action-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            text-decoration: none;
+            padding: 1.5rem 0;
+            gap: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            transition: opacity 0.2s ease;
+        }
+
+        .action-row:hover {
+            opacity: 0.65;
+        }
+
+        .row-left {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* MONOCHROME WHITE PUBLIC LOGOS ENGINE */
+        .brand-logo-frame {
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .brand-svg {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            opacity: 0.8;
-            transition: opacity 0.2s ease;
-        }
-
-        .topic-item:hover .brand-svg {
-            opacity: 1;
+            filter: brightness(0) invert(1);
+            opacity: 0.85;
         }
 
         .text-stack {
             display: flex;
             flex-direction: column;
             gap: 4px;
+            flex: 1;
+            min-width: 0;
         }
 
-        .row-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .row-title .link-arrow {
-            color: var(--text-link);
-            font-weight: 400;
-            transition: transform 0.2s ease;
-        }
-
-        .topic-item:hover .row-title .link-arrow {
-            transform: translate3d(3px, 0, 0);
-        }
-
-        .row-subtitle {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        /* EXPLORE MORE TILES GRID SYSTEM */
-        .compact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .module-tile {
-            background: var(--bg-surface);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            padding: 1.75rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-            cursor: pointer;
-            transition: border-color 0.2s ease;
-        }
-
-        .module-tile:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .tile-graphic {
-            font-size: 1.25rem;
-        }
-
-        .module-tile h2 {
+        .text-stack .row-title {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-main);
+            letter-spacing: -0.005em;
         }
 
-        .module-tile p {
-            font-size: 0.9rem;
+        .text-stack .row-subtitle {
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        /* DESKTOP SPLIT MATRIX INTERFACE SCREEN ADJUSTMENTS */
-        @media (min-width: 860px) {
-            .app-container {
-                grid-template-columns: 320px 1fr;
-                align-items: start;
-                gap: 4rem;
-            }
-            .identity-column {
-                position: sticky;
-                top: 6rem;
-            }
+        .row-arrow {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 400;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
-        /* MODAL SHEET OVERLAYS */
+        /* PREMIUM FINISH FOOTER */
+        .site-footer {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            width: 100%;
+        }
+
+        .footer-text {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        /* HIGH FIDELITY OVERLAY SHEETS */
         .modal-mask {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100dvh;
-            background-color: var(--bg-main);
+            background-color: rgba(0,0,0,0.96);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 2000;
             display: flex;
             flex-direction: column;
             opacity: 0;
             pointer-events: none;
-            transform: translate3d(0, 30px, 0);
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+            transform: scale(1.015);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
         }
 
         .modal-mask.active {
             opacity: 1;
             pointer-events: auto;
-            transform: translate3d(0, 0, 0);
+            transform: scale(1);
         }
 
         .modal-navbar {
-            padding: 2rem clamp(1.5rem, 5vw, 3rem);
-            border-bottom: 1px solid var(--glass-border);
+            padding: 2rem clamp(1.5rem, 6vw, 4rem);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 1px solid var(--glass-border);
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
             flex-shrink: 0;
         }
 
         .modal-header-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         .sheet-dismiss-btn {
-            background: transparent;
+            background: none;
             border: none;
-            color: var(--text-link);
+            color: var(--accent-blue);
             font-size: 1rem;
             font-weight: 400;
             cursor: pointer;
         }
 
+        .sheet-dismiss-btn:hover {
+            text-decoration: underline;
+        }
+
         .modal-pane-body {
-            padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+            padding: 3rem clamp(1.5rem, 6vw, 4rem);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 2.5rem;
-            max-width: 680px;
+            gap: 3rem;
+            max-width: var(--max-width);
             width: 100%;
             margin: 0 auto;
         }
 
         .modal-pane-body .content-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             color: var(--text-main);
+            letter-spacing: -0.01em;
         }
 
         .modal-pane-body .content-card p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .history-node {
             border-bottom: 1px solid var(--glass-border);
-            padding: 1.5rem 0;
+            padding: 2rem 0;
         }
         .history-node:first-child { padding-top: 0; }
         .history-node:last-child { border-bottom: none; padding-bottom: 0; }
@@ -364,8 +385,10 @@
         .history-timestamp {
             font-size: 0.8rem;
             color: var(--text-secondary);
-            font-weight: 500;
-            margin-bottom: 0.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
     </style>
 </head>
@@ -373,124 +396,145 @@
 
     <main class="app-container">
         
-        <div class="identity-column">
+        <header class="identity-section">
             <div class="avatar-frame">
                 <img class="avatar-img" src="WhatsApp Image 2026-06-27 at 9.22.16 PM.jpeg" alt="Murugan Santhosh" onerror="this.style.display='none';">
             </div>
             <div class="identity-meta">
                 <h1>Murugan Santhosh</h1>
-                <p>B.Tech CSE (Cyber Security) Student<br>@ Amrita University Chennai<br>1st Year (2026 to 2030)</p>
+                <p>B.Tech CSE (Cyber Security) Student at Amrita University Chennai.<br>First Year Track Cycle (2026 – 2030).</p>
                 <div class="pill-container">
-                    <span class="pill active-cyber">B.Tech CYS</span>
-                    <span class="pill active-py">Python Docs Tamil Coordinator</span>
-                    <span class="pill active-cyber">Terminal Joint Lead</span>
+                    <span class="pill">B.Tech CYS</span>
+                    <span class="pill">Python Docs Tamil Coordinator</span>
+                    <span class="pill">Terminal Joint Lead</span>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <div class="main-content-column">
-            <section class="intro-section">
-                <p>I am Murugan Santhosh, a B.Tech CSE (Cyber Security) student at Amrita University Chennai. Welcome to Terminal Joint, the architectural sandbox where I anchor my research core and development blueprints.</p>
-            </section>
+        <section class="content-block">
+            <div class="group-label">Overview</div>
+            <p class="section-desc">Welcome to Terminal Joint, an independent sandbox framework configured to anchor system research core scripts, native-tongue open-source translations, and prototype build blueprints.</p>
+        </section>
 
-            <nav class="group-wrapper">
-                <div class="group-label">Profiles & Links</div>
-                <div class="topic-list">
-                    
-                    <a href="https://github.com/terminaljoint" target="_blank" rel="noopener" class="topic-item">
+        <section class="content-block">
+            <div class="group-label">Explore More</div>
+            <div class="compact-grid">
+                
+                <div class="module-tile" onclick="launchModal('sheet-overview')">
+                    <div class="tile-graphic">👤</div>
+                    <h2>Profile Context</h2>
+                    <p>Core academic records status details, campus tracking index, and digital lab operations infrastructure data.</p>
+                </div>
+
+                <div class="module-tile" onclick="launchModal('sheet-domains')">
+                    <div class="tile-graphic">🛡️</div>
+                    <h2>Focus Areas</h2>
+                    <p>Active research across defensive network configurations, language barrier optimization, and logic runtime environments.</p>
+                </div>
+
+                <div class="module-tile" onclick="launchModal('sheet-history')">
+                    <div class="tile-graphic">⏳</div>
+                    <h2>Milestones</h2>
+                    <p>Timeline roadmap detailing public framework integrations, core deployments, and organizational system setups.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <nav class="content-block">
+            <div class="group-label">Profiles & Links</div>
+            <div class="interactive-list">
+                
+                <a href="https://github.com/terminaljoint" target="_blank" rel="noopener" class="action-row">
+                    <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="filter: invert(1);" alt="GitHub">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">GitHub Profile <span class="link-arrow">↗</span></span>
-                            <span class="row-subtitle">Access core workspace profiles, continuous deployment configurations, and early experimental repository builds.</span>
+                            <span class="row-title">GitHub Profile</span>
+                            <span class="row-subtitle">Hosting active source-code file staging bases and algorithmic experiment files.</span>
                         </div>
-                    </a>
+                    </div>
+                    <span class="row-arrow">↗</span>
+                </a>
 
-                    <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" rel="noopener" class="topic-item">
+                <a href="https://www.linkedin.com/in/murugansanthosh" target="_blank" rel="noopener" class="action-row">
+                    <div class="row-left">
                         <div class="brand-logo-frame">
-                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" style="filter: invert(1);" alt="LinkedIn">
+                            <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">LinkedIn Connection <span class="link-arrow">↗</span></span>
-                            <span class="row-subtitle">Professional validation matrix, continuous industry networking setups, and formal academic history data log.</span>
+                            <span class="row-title">LinkedIn Connection</span>
+                            <span class="row-subtitle">Professional validation index, verified credentials portfolio, and career network directory.</span>
                         </div>
-                    </a>
+                    </div>
+                    <span class="row-arrow">↗</span>
+                </a>
 
-                    <a href="https://github.com/Terminal-Joint/python-docs-ta" target="_blank" rel="noopener" class="topic-item">
+                <a href="https://github.com/Terminal-Joint/python-docs-ta" target="_blank" rel="noopener" class="action-row">
+                    <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">Python Docs Tamil Repo <span class="link-arrow">↗</span></span>
-                            <span class="row-subtitle">Localized technical library framework aimed at providing complete translation sets for programming logic blocks.</span>
+                            <span class="row-title">Python Docs Tamil Repo</span>
+                            <span class="row-subtitle">The primary localization branch repository translating core language source entries to Tamil.</span>
                         </div>
-                    </a>
+                    </div>
+                    <span class="row-arrow">↗</span>
+                </a>
 
-                    <a href="https://discord.gg/JNWjefK2yG" target="_blank" rel="noopener" class="topic-item">
+                <a href="https://discord.gg/JNWjefK2yG" target="_blank" rel="noopener" class="action-row">
+                    <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">PyTamil Discord Hub <span class="link-arrow">↗</span></span>
-                            <span class="row-subtitle">Community synchronization server connecting developers across regional localization milestones.</span>
+                            <span class="row-title">PyTamil Discord Hub</span>
+                            <span class="row-subtitle">Community coordinator engineering hub running synchronous localization review files.</span>
                         </div>
-                    </a>
+                    </div>
+                    <span class="row-arrow">↗</span>
+                </a>
 
-                    <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" rel="noopener" class="topic-item">
+                <a href="https://devguide.python.org/documentation/translations/translating/index.html" target="_blank" rel="noopener" class="action-row">
+                    <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python Proof">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title">Role Verification Index <span class="link-arrow">↗</span></span>
-                            <span class="row-subtitle">Official language track coordinator confirmation registry documented natively in the Python Developer's Guide.</span>
+                            <span class="row-title">Role Verification Index</span>
+                            <span class="row-subtitle">Official Translation Coordinator reference registry listed inside Python Devguide.</span>
                         </div>
-                    </a>
+                    </div>
+                    <span class="row-arrow">↗</span>
+                </a>
 
-                    <a href="https://discord.gg/KrWy5B4MGX" target="_blank" rel="noopener" class="topic-item">
+                <a href="https://discord.gg/KrWy5B4MGX" target="_blank" rel="noopener" class="action-row">
+                    <div class="row-left">
                         <div class="brand-logo-frame">
                             <img class="brand-svg" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Contact Discord">
                         </div>
                         <div class="text-stack">
-                            <span class="row-title" style="color: var(--text-link);">Get In Touch <span class="link-arrow">↗</span></span>
-                            <span class="row-subtitle">Initialize a communication connection instantly by joining the central Terminal Joint server and paging my workspace profile.</span>
+                            <span class="row-title">Get In Touch</span>
+                            <span class="row-subtitle">Direct network communication node within the main Terminal Joint operations server.</span>
                         </div>
-                    </a>
-
-                </div>
-            </nav>
-
-            <section class="group-wrapper">
-                <div class="group-label">Explore More</div>
-                <div class="compact-grid">
-                    
-                    <div class="module-tile" onclick="launchModal('sheet-overview')">
-                        <div class="tile-graphic">👤</div>
-                        <h2>Overview</h2>
-                        <p>Core academic status track records, workshop operations, and localization system backgrounds.</p>
                     </div>
+                    <span class="row-arrow">↗</span>
+                </a>
 
-                    <div class="module-tile" onclick="launchModal('sheet-history')">
-                        <div class="tile-graphic">⏳</div>
-                        <h2>Milestones</h2>
-                        <p>Chronological framework engineering developments, pipeline launches, and localization integrations.</p>
-                    </div>
+            </div>
+        </nav>
 
-                    <div class="module-tile" onclick="launchModal('sheet-domains')">
-                        <div class="tile-graphic">🛡️</div>
-                        <h2>Focus</h2>
-                        <p>Deep-dives into specific engineering sectors including cybersecurity metrics and translation architecture layers.</p>
-                    </div>
-
-                </div>
-            </section>
-        </div>
+        <footer class="site-footer">
+            <p class="footer-text">©Murugan Santhosh . 2026 . All rights Reserved</p>
+        </footer>
     </main>
 
     <div id="sheet-overview" class="modal-mask">
         <div class="modal-navbar">
-            <div class="modal-header-title"><span>👤</span> Personal Overview</div>
-            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
+            <div class="modal-header-title">Profile Context</div>
+            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Close</button>
         </div>
         <div class="modal-pane-body">
             <div class="content-card">
@@ -508,34 +552,10 @@
         </div>
     </div>
 
-    <div id="sheet-history" class="modal-mask">
-        <div class="modal-navbar">
-            <div class="modal-header-title"><span>⏳</span> Background Milestones</div>
-            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
-        </div>
-        <div class="modal-pane-body">
-            <div class="history-node">
-                <div class="history-timestamp">March 2026</div>
-                <h3>PyTamil Documentation Pipeline</h3>
-                <p>Configured optimization engine translating Python core language documentation into Tamil. Structured continuous synchronization channels over Discord.</p>
-            </div>
-            <div class="history-node">
-                <div class="history-timestamp">January 2026</div>
-                <h3>GDevelop Engine Core Integration</h3>
-                <p>Automated localization sequences and framework translation arrays for GDevelop engine via distributed crowdsourcing nodes.</p>
-            </div>
-            <div class="history-node">
-                <div class="history-timestamp">September 2025</div>
-                <h3>Terminal Joint Architecture Launch</h3>
-                <p>Completed structural logic tracks and formalized the Terminal Joint node to host prototype builds and private environments.</p>
-            </div>
-        </div>
-    </div>
-
     <div id="sheet-domains" class="modal-mask">
         <div class="modal-navbar">
-            <div class="modal-header-title"><span>🛡️</span> Technical Focus Areas</div>
-            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Done</button>
+            <div class="modal-header-title">Technical Focus Areas</div>
+            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Close</button>
         </div>
         <div class="modal-pane-body">
             <div class="content-card">
@@ -549,6 +569,32 @@
             <div class="content-card">
                 <h3>Interactive Logic Systems</h3>
                 <p>Building specialized internal state engines, logical loop paths, and modular game script environments.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="sheet-history" class="modal-mask">
+        <div class="modal-navbar">
+            <div class="modal-header-title">Background Milestones</div>
+            <button class="sheet-dismiss-btn" onclick="triggerBackNavigation()">Close</button>
+        </div>
+        <div class="modal-pane-body">
+            <div class="content-card">
+                <div class="history-node">
+                    <div class="history-timestamp">March 2026</div>
+                    <h3>PyTamil Documentation Pipeline</h3>
+                    <p>Configured optimization engine translating Python core language documentation into Tamil. Structured continuous synchronization channels over Discord.</p>
+                </div>
+                <div class="history-node">
+                    <div class="history-timestamp">January 2026</div>
+                    <h3>GDevelop Engine Core Integration</h3>
+                    <p>Automated localization sequences and framework translation arrays for GDevelop engine via distributed crowdsourcing nodes.</p>
+                </div>
+                <div class="history-node">
+                    <div class="history-timestamp">September 2025</div>
+                    <h3>Terminal Joint Architecture Launch</h3>
+                    <p>Completed structural logic tracks and formalized the Terminal Joint node to host prototype builds and private environments.</p>
+                </div>
             </div>
         </div>
     </div>
