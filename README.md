@@ -10,6 +10,8 @@
 - Within 6 months from initiating my brand, in March-2026 I have created the repository for the official python documentation for tamil, and i am maintaining it now.
 - And, I am the initiative of PyTamil Community, An online community communicating via discord. Established at March 2026.
 - Also i am now developing some games
+
+- Finally... I am not a loser just because I lose, but because I won't dare to lose again...
 <!--
 **terminaljoint/terminaljoint** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
