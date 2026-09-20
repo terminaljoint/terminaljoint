@@ -11,6 +11,10 @@
 - And, I am the initiative of PyTamil Community, An online community communicating via discord. Established at March 2026.
 - Also i am now developing some games
 
+
+## Connect
+
+- [LinkedIn](https://www.linkedin.com/in/murugansanthosh)
 <!--
 **terminaljoint/terminaljoint** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
