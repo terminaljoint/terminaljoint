@@ -1,6 +1,7 @@
 ## Hi there 👋
 - Saying simply about me :)
 - I am Murugan Santhosh, B.Tech CSE(with CYS) 1st year (2026 to 2030) Student at Amrita University Chennai. and this is Terminal Joint, where i present all my projects!
+- And i love to contribute to FOSS, i like to build, also contribute to other projects, and i was a Speaker @IndiaFOSS 2026 by the way...
 - I am from Jalakandapuram, Salem, Tamil Nadu, India (636501).
 - Not More to say..., But;
 - Self-taught some coding skills...
