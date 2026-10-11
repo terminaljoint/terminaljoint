@@ -1,7 +1,6 @@
 ## Hi there 👋
 - Saying simply about me :)
 - I am Murugan Santhosh, B.Tech CSE(with CYS) 1st year (2026 to 2030) Student at Amrita University Chennai. and this is Terminal Joint, where i present all my projects!
-- Terminal Joint is an online open-source lab maintained by Me. Operating as an experimental digital workshop, the lab serves as a centralized hub for independent game development, regional tech accessibility tools, and native-language localization workflows. Built on the core philosophy of open collaboration, Terminal Joint provides a completely open-to-work ecosystem where global developers, translators, and creators can contribute to public repositories and collaborative platforms—headlined by its flagship community project, PyTamil, which is translating the official Python documentation into Tamil.
 - I am from Jalakandapuram, Salem, Tamil Nadu, India (636501).
 - Not More to say..., But;
 - Self-taught some coding skills...
@@ -10,6 +9,7 @@
 - Within 6 months from initiating my brand, in March-2026 I have created the repository for the official python documentation for tamil, and i am maintaining it now.
 - And, I am the initiative of PyTamil Community, An online community communicating via discord. Established at March 2026.
 - Also i am now developing some games
+- Terminal Joint is an online open-source lab maintained by Me. Operating as an experimental digital workshop, the lab serves as a centralized hub for independent game development, regional tech accessibility tools, and native-language localization workflows. Built on the core philosophy of open collaboration, Terminal Joint provides a completely open-to-work ecosystem where global developers, translators, and creators can contribute to public repositories and collaborative platforms—headlined by its flagship community project, PyTamil, which is translating the official Python documentation into Tamil.
 
 
 ## Connect
